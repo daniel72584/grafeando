@@ -176,7 +176,8 @@ def main():
 
     # Install command
     install_parser = subparsers.add_parser("install", help="Install grafeando MCP server config into IDEs")
-    install_parser.add_argument("--project", action="store_true", help="Install into current project repository instead of user home profile")
+    install_parser.add_argument("--project", action="store_true", help="Force project-scoped installation in current workspace")
+    install_parser.add_argument("--global", dest="global_only", action="store_true", help="Force global user home profile installation only")
     install_parser.add_argument(
         "--platform",
         choices=["all", "claude", "cursor", "gemini", "windsurf", "continue", "codex"],
@@ -194,9 +195,27 @@ def main():
     args = parser.parse_args()
 
     if args.command == "install":
-        print(f"🚀 Installing Grafeando MCP Server (Target: {args.platform}, Project Scoped: {args.project})...")
-        install_mcp_config(platform=args.platform, project_scoped=args.project)
-        print("\n✨ Grafeando installation complete! Open your AI assistant IDE and type /grafeando or use get_blast_radius.")
+        cwd = Path.cwd()
+        is_workspace = args.project or (not args.global_only and any((cwd / item).exists() for item in [".git", "package.json", "setup.py", "go.mod", "pom.xml", "Cargo.toml"]))
+
+        if is_workspace:
+            print(f"🚀 Installing Grafeando MCP Server into Project Workspace '{cwd.name}'...")
+            install_mcp_config(platform=args.platform, project_scoped=True)
+
+        if not args.project:
+            print(f"🚀 Ensuring Global IDE Profile Configurations...")
+            install_mcp_config(platform=args.platform, project_scoped=False)
+
+        if is_workspace:
+            print("\n⚡ Running initial AST indexing on workspace...")
+            try:
+                from server import index_codebase
+                msg = index_codebase(str(cwd))
+                print(f"✅ {msg}")
+            except Exception as e:
+                print(f"⚠️ Initial indexing warning: {e}")
+
+        print("\n✨ Grafeando installation complete! Open your AI assistant IDE and ask questions or use get_blast_radius.")
 
     elif args.command == "index":
         from server import index_codebase
@@ -209,6 +228,7 @@ def main():
 
     else:
         parser.print_help()
+
 
 
 if __name__ == "__main__":
