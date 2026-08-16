@@ -98,8 +98,9 @@ def install_mcp_config(platform: str, project_scoped: bool = False):
         except Exception as e:
             print(f"⚠️ Could not update config at {config_path}: {e}")
 
-    # Also install assistant SKILL.md if project or global skill directory exists
-    skill_dir = (cwd / ".agents" / "skills" / "grafeando") if project_scoped else (home / ".gemini" / "config" / "skills" / "grafeando")
+    # Also install assistant SKILL.md and AGENTS.md rule if project or global directory exists
+    agents_dir = (cwd / ".agents") if project_scoped else (home / ".gemini" / "config")
+    skill_dir = agents_dir / "skills" / "grafeando"
     try:
         skill_dir.mkdir(parents=True, exist_ok=True)
         skill_file = skill_dir / "SKILL.md"
@@ -118,8 +119,31 @@ Use `grafeando` to query code change blast radius and dependency relationships b
 - `get_blast_radius(symbol_name, depth=3)`: Calculates impact radius for functions, components, services, or SQL tables.
 """)
         print(f"✅ Installed Assistant Skill at: {skill_file}")
+
+        agents_file = agents_dir / "AGENTS.md"
+        rule_content = """
+## grafeando
+
+This project uses Grafeando graph context engine for AST dependency mapping, call graph analysis, and blast radius calculations.
+
+Rules:
+- Before modifying shared functions, classes, components, services, or database schemas, call `get_blast_radius(symbol_name, depth=3)` to assess downstream impact.
+- For codebase, architecture, or relationship queries, run `index_codebase(".")` if not indexed, and query the graph instead of reading raw files or running blanket greps.
+- Review blast radius results to inspect dependent callers and imports, ensuring zero breaking changes.
+- After creating new modules, services, or exports, trigger `index_codebase(".")` to keep the AST context engine updated.
+"""
+        existing_content = ""
+        if agents_file.exists():
+            with open(agents_file, "r", encoding="utf-8") as f:
+                existing_content = f.read()
+
+        if "## grafeando" not in existing_content:
+            with open(agents_file, "a", encoding="utf-8") as f:
+                f.write(rule_content)
+            print(f"✅ Installed AGENTS.md rule at: {agents_file}")
     except Exception as e:
-        print(f"⚠️ Could not write skill file: {e}")
+        print(f"⚠️ Could not write skill or rule file: {e}")
+
 
 
 def main():
