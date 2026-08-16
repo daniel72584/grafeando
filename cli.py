@@ -144,6 +144,27 @@ Rules:
     except Exception as e:
         print(f"⚠️ Could not write skill or rule file: {e}")
 
+    # Install git post-commit auto-indexing hook if inside a git repository
+    git_hooks_dir = cwd / ".git" / "hooks"
+    if git_hooks_dir.exists():
+        try:
+            hook_file = git_hooks_dir / "post-commit"
+            hook_script = f"""#!/bin/sh
+# Grafeando automatic post-commit AST graph index update (AST-only, ~43ms, 0 API cost)
+if command -v grafeando >/dev/null 2>&1; then
+    grafeando index . >/dev/null 2>&1 &
+elif [ -f "{python_bin}" ]; then
+    "{python_bin}" "{server_script}" index . >/dev/null 2>&1 &
+fi
+"""
+            with open(hook_file, "w", encoding="utf-8") as f:
+                f.write(hook_script)
+            os.chmod(hook_file, 0o755)
+            print(f"✅ Installed Git post-commit auto-indexing hook at: {hook_file}")
+        except Exception as e:
+            print(f"⚠️ Could not install git post-commit hook: {e}")
+
+
 
 
 def main():

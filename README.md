@@ -56,6 +56,29 @@ Your AI uses Grafeando automatically in the background to find the answer.
 
 ---
 
+## 🤖 Prompt Guide for AI IDEs (Cursor, Claude, Gemini, Windsurf)
+
+You can copy and paste these prompts directly into your AI Assistant chat:
+
+### 1. 🚀 Master Setup Prompt (Run Once Per Repo)
+> 💬 *"Set up Grafeando on this repository: run `grafeando install --project`, append the `## grafeando` rule to `AGENTS.md`, add `.grafeando_kuzu/` to `.gitignore`, and run `index_codebase('.')` to index the codebase."*
+
+### 2. 🛡️ Safe Code Editing Prompt (Preventing Breakages)
+> 💬 *"Before making any changes to `[Function/Class/File Name]`, check its blast radius using `get_blast_radius` to see all upstream callers and downstream dependencies. Ensure no breaking changes are introduced."*
+
+### 3. 🗺️ Codebase Exploration Prompt
+> 💬 *"Use Grafeando graph context to trace all files, services, and queries connected to `[Component/Service/Table Name]`."*
+
+---
+
+## 🔄 Automatic Git Auto-Indexing Hook
+
+When you run `grafeando install --project`, Grafeando automatically installs a Git `post-commit` hook in `.git/hooks/post-commit`.
+
+- **Automatic Updates**: Every time you or your AI assistant commit code, Grafeando re-indexes the AST graph in the background (~43 ms execution).
+- **Zero API Cost**: Indexing uses local multi-language AST parsers with **0 LLM API calls and 0 token cost**.
+
+
 <details>
 <summary>⚙️ <b>Advanced Technical Details & Benchmarks (For Power Users)</b></summary>
 
