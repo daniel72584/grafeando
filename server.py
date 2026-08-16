@@ -45,12 +45,15 @@ def index_codebase(path: str = ".") -> str:
     if not os.path.exists(abs_path):
         return f"Error: Path '{path}' does not exist."
 
-    db_path = os.path.join(abs_path, ".grafeando_db")
+    # Automatically resolve true project root if inside a nested subfolder
+    root_path = code_parser.find_project_root(abs_path)
+
+    db_path = os.path.join(root_path, ".grafeando_db")
     db = get_graph_db()
     db.reset_database(db_path)
 
     # Parse AST
-    parsed_data = code_parser.parse_directory(abs_path)
+    parsed_data = code_parser.parse_directory(root_path)
 
     # Ingest into Graph Database
     db.ingest_parse_data(parsed_data)

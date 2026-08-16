@@ -48,6 +48,17 @@ class CodeParser:
             print(f"Error reading file {file_path}: {e}")
             return empty_res
 
+    def find_project_root(self, path: str = ".") -> str:
+        """Finds the true project root by looking upwards for markers (.git, package.json, go.mod, etc.)."""
+        current = os.path.abspath(path)
+        markers = {".git", "package.json", "go.mod", "pom.xml", "Cargo.toml", "pyproject.toml", "setup.py"}
+
+        while current and current != os.path.dirname(current):
+            if any(os.path.exists(os.path.join(current, marker)) for marker in markers):
+                return current
+            current = os.path.dirname(current)
+        return os.path.abspath(path)
+
     def parse_directory(self, root_dir: str) -> Dict[str, List[Dict[str, Any]]]:
         combined_data: Dict[str, List[Dict[str, Any]]] = {
             "files": [],
@@ -62,10 +73,29 @@ class CodeParser:
             "imports": []
         }
 
-        for dirpath, dirnames, filenames in os.walk(root_dir):
+        abs_root = os.path.abspath(root_dir)
+
+        # Parse .gitignore entries if present
+        extra_ignores = set()
+        gitignore_path = os.path.join(abs_root, ".gitignore")
+        if os.path.exists(gitignore_path):
+            try:
+                with open(gitignore_path, "r", encoding="utf-8", errors="ignore") as f:
+                    for line in f:
+                        line = line.strip()
+                        if line and not line.startswith("#"):
+                            clean_entry = line.strip("/").rstrip("/*")
+                            if clean_entry:
+                                extra_ignores.add(clean_entry)
+            except Exception:
+                pass
+
+        all_ignored = self.ignored_dirs.union(extra_ignores)
+
+        for dirpath, dirnames, filenames in os.walk(abs_root):
             dirnames[:] = [
                 d for d in dirnames
-                if not d.startswith(".") and d not in self.ignored_dirs
+                if not d.startswith(".") and d not in all_ignored
             ]
             for f in filenames:
                 ext = os.path.splitext(f)[1].lower()

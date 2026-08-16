@@ -66,182 +66,197 @@ class GraphEngine:
         """
         Ingests extracted files, classes, functions, calls, injects, renders, implements, and decorators into Kùzu.
         """
+        # Build in-memory lookup maps for instant PK resolution
+        func_map = {}
+        for f in parse_data.get("functions", []):
+            fid = str(f.get("id", "")).strip()
+            if fid:
+                func_map[f["name"]] = fid
+                if "qualified_name" in f and f["qualified_name"]:
+                    func_map[f["qualified_name"]] = fid
+
+        class_map = {
+            c["name"]: str(c["id"]).strip()
+            for c in parse_data.get("classes", [])
+            if str(c.get("id", "")).strip()
+        }
+
         # Ingest Files
         for f in parse_data.get("files", []):
+            fid = str(f.get("id", "")).strip()
+            if not fid:
+                continue
             try:
                 self.conn.execute(
                     "MERGE (fl:File {id: $id, path: $path, language: $language})",
-                    {"id": f["id"], "path": f["path"], "language": f.get("language", "unknown")}
+                    {"id": fid, "path": str(f.get("path", "")), "language": f.get("language", "unknown")}
                 )
             except Exception as e:
-                print(f"Error inserting file {f['id']}: {e}")
+                pass
 
         # Ingest Classes / Structs / Interfaces / Tables
         for cls in parse_data.get("classes", []):
+            cid = str(cls.get("id", "")).strip()
+            if not cid:
+                continue
             try:
                 self.conn.execute(
                     "MERGE (c:Class {id: $id, name: $name, file_path: $file_path, category: $category})",
                     {
-                        "id": cls["id"],
-                        "name": cls["name"],
-                        "file_path": cls["file_path"],
+                        "id": cid,
+                        "name": cls.get("name", ""),
+                        "file_path": cls.get("file_path", ""),
                         "category": cls.get("category", "class")
                     }
                 )
             except Exception as e:
-                print(f"Error inserting class {cls['id']}: {e}")
+                pass
 
         # Ingest Functions / Methods / Hooks / Components / Endpoints / Procedures / Queries
         for func in parse_data.get("functions", []):
+            fid = str(func.get("id", "")).strip()
+            if not fid:
+                continue
             try:
                 self.conn.execute(
                     "MERGE (f:Function {id: $id, name: $name, qualified_name: $qualified_name, file_path: $file_path, start_line: $start_line, category: $category})",
                     {
-                        "id": func["id"],
-                        "name": func["name"],
-                        "qualified_name": func.get("qualified_name", func["name"]),
-                        "file_path": func["file_path"],
-                        "start_line": int(func["start_line"]),
+                        "id": fid,
+                        "name": func.get("name", ""),
+                        "qualified_name": func.get("qualified_name", func.get("name", "")),
+                        "file_path": func.get("file_path", ""),
+                        "start_line": int(func.get("start_line", 1)),
                         "category": func.get("category", "function")
                     }
                 )
             except Exception as e:
-                print(f"Error inserting function {func['id']}: {e}")
+                pass
 
         # Ingest Decorators
         for dec in parse_data.get("decorators", []):
+            did = str(dec.get("id", "")).strip()
+            if not did:
+                continue
             try:
                 self.conn.execute(
                     "MERGE (d:Decorator {id: $id, name: $name, target_id: $target_id, file_path: $file_path})",
                     {
-                        "id": dec["id"],
-                        "name": dec["name"],
-                        "target_id": dec["target_id"],
-                        "file_path": dec["file_path"]
+                        "id": did,
+                        "name": dec.get("name", ""),
+                        "target_id": dec.get("target_id", ""),
+                        "file_path": dec.get("file_path", "")
                     }
                 )
             except Exception as e:
-                print(f"Error inserting decorator {dec['id']}: {e}")
+                pass
 
         # Ingest CONTAINS (Class -> Function)
         for rel in parse_data.get("contains", []):
+            cid = str(rel.get("class_id", "")).strip()
+            fid = str(rel.get("function_id", "")).strip()
+            if not cid or not fid:
+                continue
             try:
                 self.conn.execute(
                     "MATCH (c:Class {id: $class_id}), (f:Function {id: $function_id}) MERGE (c)-[:CONTAINS]->(f)",
-                    {"class_id": rel["class_id"], "function_id": rel["function_id"]}
+                    {"class_id": cid, "function_id": fid}
                 )
-            except Exception as e:
-                print(f"Error inserting CONTAINS rel {rel}: {e}")
+            except Exception:
+                pass
 
-        # Ingest CALLS (Function -> Function OR Function -> Class/Table)
+        # Ingest CALLS (Function -> Function OR Function -> Class/Table) using direct PK lookups
         for call in parse_data.get("calls", []):
-            try:
-                self.conn.execute(
-                    """
-                    MATCH (caller:Function {id: $caller_id}), (callee:Function)
-                    WHERE callee.name = $callee_name OR callee.id = $callee_name OR callee.qualified_name = $callee_name
-                    MERGE (caller)-[:CALLS]->(callee)
-                    """,
-                    {"caller_id": call["caller_id"], "callee_name": call["callee_name"]}
-                )
-            except Exception:
-                pass
+            caller_id = str(call.get("caller_id", "")).strip()
+            callee_name = str(call.get("callee_name", "")).strip()
+            if not caller_id or not callee_name:
+                continue
 
-            try:
-                self.conn.execute(
-                    """
-                    MATCH (caller:Function {id: $caller_id}), (callee:Class)
-                    WHERE callee.name = $callee_name OR callee.id = $callee_name
-                    MERGE (caller)-[:CALLS]->(callee)
-                    """,
-                    {"caller_id": call["caller_id"], "callee_name": call["callee_name"]}
-                )
-            except Exception:
-                pass
+            target_func_id = func_map.get(callee_name)
+            target_class_id = class_map.get(callee_name)
+
+            if target_func_id:
+                try:
+                    self.conn.execute(
+                        "MATCH (caller:Function {id: $caller_id}), (callee:Function {id: $target_id}) MERGE (caller)-[:CALLS]->(callee)",
+                        {"caller_id": caller_id, "target_id": target_func_id}
+                    )
+                except Exception:
+                    pass
+            elif target_class_id:
+                try:
+                    self.conn.execute(
+                        "MATCH (caller:Function {id: $caller_id}), (callee:Class {id: $target_id}) MERGE (caller)-[:CALLS]->(callee)",
+                        {"caller_id": caller_id, "target_id": target_class_id}
+                    )
+                except Exception:
+                    pass
 
         # Ingest RENDERS (React Component -> Component)
         for ren in parse_data.get("renders", []):
-            try:
-                self.conn.execute(
-                    """
-                    MATCH (parent:Function {id: $parent_func_id}), (child:Function)
-                    WHERE child.name = $rendered_component_name OR child.id = $rendered_component_name
-                    MERGE (parent)-[:RENDERS]->(child)
-                    """,
-                    {
-                        "parent_func_id": ren["parent_func_id"],
-                        "rendered_component_name": ren["rendered_component_name"]
-                    }
-                )
-            except Exception as e:
-                print(f"Error inserting RENDERS rel {ren}: {e}")
+            parent_id = str(ren.get("parent_func_id", "")).strip()
+            rendered_comp = str(ren.get("rendered_component_name", "")).strip()
+            if not parent_id or not rendered_comp:
+                continue
+            target_func_id = func_map.get(rendered_comp)
+            if target_func_id:
+                try:
+                    self.conn.execute(
+                        "MATCH (parent:Function {id: $parent_id}), (child:Function {id: $target_id}) MERGE (parent)-[:RENDERS]->(child)",
+                        {"parent_id": parent_id, "target_id": target_func_id}
+                    )
+                except Exception:
+                    pass
 
         # Ingest INJECTS (NestJS / FastAPI / Spring / Foreign Keys)
         for inj in parse_data.get("injects", []):
-            # Class -> Class
-            try:
-                self.conn.execute(
-                    """
-                    MATCH (inj:Class {id: $injector_id}), (target:Class)
-                    WHERE target.name = $target_class_name OR target.id = $target_class_name
-                    MERGE (inj)-[:INJECTS]->(target)
-                    """,
-                    {
-                        "injector_id": inj["injector_id"],
-                        "target_class_name": inj["target_class_name"]
-                    }
-                )
-            except Exception:
-                pass
+            inj_id = str(inj.get("injector_id", "")).strip()
+            target_name = str(inj.get("target_class_name", "")).strip()
+            if not inj_id or not target_name:
+                continue
 
-            # Function -> Function (e.g. FastAPI Endpoint -> Dependency Function)
-            try:
-                self.conn.execute(
-                    """
-                    MATCH (inj:Function {id: $injector_id}), (target:Function)
-                    WHERE target.name = $target_class_name OR target.id = $target_class_name
-                    MERGE (inj)-[:INJECTS]->(target)
-                    """,
-                    {
-                        "injector_id": inj["injector_id"],
-                        "target_class_name": inj["target_class_name"]
-                    }
-                )
-            except Exception:
-                pass
+            target_class_id = class_map.get(target_name)
+            target_func_id = func_map.get(target_name)
 
-            # Function -> Class
-            try:
-                self.conn.execute(
-                    """
-                    MATCH (inj:Function {id: $injector_id}), (target:Class)
-                    WHERE target.name = $target_class_name OR target.id = $target_class_name
-                    MERGE (inj)-[:INJECTS]->(target)
-                    """,
-                    {
-                        "injector_id": inj["injector_id"],
-                        "target_class_name": inj["target_class_name"]
-                    }
-                )
-            except Exception:
-                pass
+            if target_class_id:
+                try:
+                    self.conn.execute(
+                        "MATCH (inj:Class {id: $inj_id}), (target:Class {id: $target_id}) MERGE (inj)-[:INJECTS]->(target)",
+                        {"inj_id": inj_id, "target_id": target_class_id}
+                    )
+                except Exception:
+                    pass
+                try:
+                    self.conn.execute(
+                        "MATCH (inj:Function {id: $inj_id}), (target:Class {id: $target_id}) MERGE (inj)-[:INJECTS]->(target)",
+                        {"inj_id": inj_id, "target_id": target_class_id}
+                    )
+                except Exception:
+                    pass
+            elif target_func_id:
+                try:
+                    self.conn.execute(
+                        "MATCH (inj:Function {id: $inj_id}), (target:Function {id: $target_id}) MERGE (inj)-[:INJECTS]->(target)",
+                        {"inj_id": inj_id, "target_id": target_func_id}
+                    )
+                except Exception:
+                    pass
 
         # Ingest IMPLEMENTS (Class -> Interface Class)
         for imp in parse_data.get("implements", []):
-            try:
-                self.conn.execute(
-                    """
-                    MATCH (c:Class {id: $class_id}), (iface:Class)
-                    WHERE iface.name = $interface_name OR iface.id = $interface_name
-                    MERGE (c)-[:IMPLEMENTS]->(iface)
-                    """,
-                    {
-                        "class_id": imp["class_id"],
-                        "interface_name": imp["interface_name"]
-                    }
-                )
-            except Exception as e:
-                print(f"Error inserting IMPLEMENTS rel {imp}: {e}")
+            cid = str(imp.get("class_id", "")).strip()
+            iface_name = str(imp.get("interface_name", "")).strip()
+            if not cid or not iface_name:
+                continue
+
+            target_iface_id = class_map.get(iface_name)
+            if target_iface_id:
+                try:
+                    self.conn.execute(
+                        "MATCH (c:Class {id: $cid}), (iface:Class {id: $target_id}) MERGE (c)-[:IMPLEMENTS]->(iface)",
+                        {"cid": cid, "target_id": target_iface_id}
+                    )
+                except Exception:
+                    pass
 
     def get_blast_radius(self, function_name: str, depth: int = 3) -> List[Dict[str, Any]]:
         """
