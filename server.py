@@ -19,7 +19,18 @@ mcp = FastMCP("grafeando")
 
 # Initialize Parser & Graph Database
 code_parser = CodeParser()
-graph_db = GraphEngine()
+_graph_db = None
+
+def get_graph_db() -> GraphEngine:
+    global _graph_db
+    if _graph_db is None:
+        cwd_db = os.path.abspath(".grafeando_db")
+        if os.path.exists(cwd_db):
+            _graph_db = GraphEngine(cwd_db)
+        else:
+            default_dir = os.path.expanduser("~")
+            _graph_db = GraphEngine(os.path.join(default_dir, ".grafeando_db"))
+    return _graph_db
 
 
 @mcp.tool()
@@ -35,13 +46,14 @@ def index_codebase(path: str = ".") -> str:
         return f"Error: Path '{path}' does not exist."
 
     db_path = os.path.join(abs_path, ".grafeando_db")
-    graph_db.reset_database(db_path)
+    db = get_graph_db()
+    db.reset_database(db_path)
 
     # Parse AST
     parsed_data = code_parser.parse_directory(abs_path)
 
     # Ingest into Graph Database
-    graph_db.ingest_parse_data(parsed_data)
+    db.ingest_parse_data(parsed_data)
 
     num_files = len(parsed_data.get("files", []))
     num_classes = len(parsed_data.get("classes", []))
@@ -63,13 +75,13 @@ def get_blast_radius(symbol_name: str, depth: int = 3) -> Dict[str, Any]:
     Calculates the blast radius of changing a function, component, or class.
     Traverses dependent callers, rendered React parent components, and injected NestJS/Spring services up to `depth` levels deep.
     """
-    # Ensure graph_db is pointing to the current directory's .grafeando_db if present
+    db = get_graph_db()
     cwd_db = os.path.abspath(".grafeando_db")
-    if os.path.exists(cwd_db) and os.path.abspath(graph_db.db_path) != cwd_db:
-        graph_db.reset_database(cwd_db)
+    if os.path.exists(cwd_db) and os.path.abspath(db.db_path) != cwd_db:
+        db.reset_database(cwd_db)
 
-    callers = graph_db.get_blast_radius(function_name=symbol_name, depth=depth)
-    injections = graph_db.get_injection_dependencies(class_name=symbol_name)
+    callers = db.get_blast_radius(function_name=symbol_name, depth=depth)
+    injections = db.get_injection_dependencies(class_name=symbol_name)
 
     return {
         "target_symbol": symbol_name,
