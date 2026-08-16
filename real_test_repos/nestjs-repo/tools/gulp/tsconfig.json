@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "outDir": "../../dist/tools/gulp",
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "target": "ES2023",
+    "types": ["node"],
+    "typeRoots": ["./typings", "../../node_modules/@types/"],
+    "baseUrl": "."
+  },
+  "files": ["gulpfile.ts"]
+}

@@ -1,0 +1,94 @@
+import { Injectable, Optional } from '../decorators/core/index.js';
+import { ArgumentMetadata, HttpStatus } from '../index.js';
+import { PipeTransform } from '../interfaces/features/pipe-transform.interface.js';
+import {
+  ErrorHttpStatusCode,
+  HttpErrorByCode,
+} from '../utils/http-error-by-code.util.js';
+import { isNil } from '../utils/shared.utils.js';
+
+/**
+ * @publicApi
+ */
+export interface ParseEnumPipeOptions {
+  /**
+   * If true, the pipe will return null or undefined if the value is not provided
+   * @default false
+   */
+  optional?: boolean;
+  /**
+   * The HTTP status code to be used in the response when the validation fails.
+   */
+  errorHttpStatusCode?: ErrorHttpStatusCode;
+  /**
+   * A factory function that returns an exception object to be thrown
+   * if validation fails.
+   * @param error Error message
+   * @returns The exception object
+   */
+  exceptionFactory?: (error: string) => any;
+}
+
+/**
+ * Defines the built-in ParseEnum Pipe
+ *
+ * @see [Built-in Pipes](https://docs.nestjs.com/pipes#built-in-pipes)
+ *
+ * @publicApi
+ */
+@Injectable()
+export class ParseEnumPipe<T = any> implements PipeTransform<T> {
+  protected exceptionFactory: (error: string) => any;
+  constructor(
+    protected readonly enumType: T,
+    @Optional() protected readonly options?: ParseEnumPipeOptions,
+  ) {
+    if (!enumType) {
+      throw new Error(
+        `"ParseEnumPipe" requires "enumType" argument specified (to validate input values).`,
+      );
+    }
+    options = options || {};
+    const { exceptionFactory, errorHttpStatusCode = HttpStatus.BAD_REQUEST } =
+      options;
+
+    this.exceptionFactory =
+      exceptionFactory ||
+      (error => new HttpErrorByCode[errorHttpStatusCode](error));
+  }
+
+  /**
+   * Method that accesses and performs optional transformation on argument for
+   * in-flight requests.
+   *
+   * @param value currently processed route argument
+   * @param metadata contains metadata about the currently processed route argument
+   */
+  async transform(
+    value: unknown,
+    metadata: ArgumentMetadata,
+  ): Promise<T | undefined | null> {
+    if (isNil(value) && this.options?.optional) {
+      return value;
+    }
+    if (!this.isEnum(value)) {
+      throw this.exceptionFactory(
+        'Validation failed (enum string is expected)',
+      );
+    }
+    return value as T;
+  }
+
+  protected isEnum(value: unknown): boolean {
+    const enumValues = Object.keys(this.enumType as object)
+      .filter(key => {
+        const enumValue = (this.enumType as any)[key];
+        return !(
+          typeof enumValue === 'string' &&
+          typeof (this.enumType as any)[enumValue] === 'number'
+        );
+      })
+      .map(key => (this.enumType as any)[key]);
+    return enumValues.includes(value);
+  }
+}

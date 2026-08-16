@@ -1,0 +1,143 @@
+import { INestApplication } from '@nestjs/common';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { Test } from '@nestjs/testing';
+import request from 'supertest';
+import { BusinessDto } from '../src/kafka/dtos/business.dto.js';
+import { UserDto } from '../src/kafka/dtos/user.dto.js';
+import { UserEntity } from '../src/kafka/entities/user.entity.js';
+import { KafkaController } from '../src/kafka/kafka.controller.js';
+import { KafkaMessagesController } from '../src/kafka/kafka.messages.controller.js';
+
+/**
+ * Skip this flaky test in CI/CD pipeline as it frequently
+ * fails to connect to Kafka container in the cloud.
+ */
+describe.skip('Kafka transport', function () {
+  let server: any;
+  let app: INestApplication;
+
+  // set timeout to be longer (especially for the after hook)
+  beforeAll(async () => {
+    const module = await Test.createTestingModule({
+      controllers: [KafkaController, KafkaMessagesController],
+    }).compile();
+
+    app = module.createNestApplication();
+    server = app.getHttpAdapter().getInstance();
+
+    app.connectMicroservice<MicroserviceOptions>({
+      transport: Transport.KAFKA,
+      options: {
+        client: {
+          brokers: ['localhost:9092'],
+        },
+      },
+    });
+    app.enableShutdownHooks();
+    await app.startAllMicroservices();
+    await app.init();
+  });
+
+  it(`/POST (sync sum kafka message)`, function () {
+    return request(server)
+      .post('/mathSumSyncKafkaMessage')
+      .send([1, 2, 3, 4, 5])
+      .expect(200)
+      .expect(200, '15');
+  });
+
+  it(`/POST (sync sum kafka(ish) message without key and only the value)`, () => {
+    return request(server)
+      .post('/mathSumSyncWithoutKey')
+      .send([1, 2, 3, 4, 5])
+      .expect(200)
+      .expect(200, '15');
+  });
+
+  it(`/POST (sync sum plain object)`, () => {
+    return request(server)
+      .post('/mathSumSyncPlainObject')
+      .send([1, 2, 3, 4, 5])
+      .expect(200)
+      .expect(200, '15');
+  });
+
+  it(`/POST (sync sum array)`, () => {
+    return request(server)
+      .post('/mathSumSyncArray')
+      .send([1, 2, 3, 4, 5])
+      .expect(200)
+      .expect(200, '15');
+  });
+
+  it(`/POST (sync sum string)`, () => {
+    return request(server)
+      .post('/mathSumSyncString')
+      .send([1, 2, 3, 4, 5])
+      .expect(200)
+      .expect(200, '15');
+  });
+
+  it(`/POST (sync sum number)`, () => {
+    return request(server)
+      .post('/mathSumSyncNumber')
+      .send([12345])
+      .expect(200)
+      .expect(200, '15');
+  });
+
+  it(`/POST (sync sum regexp message pattern)`, () => {
+    return request(server)
+      .post('/mathSumSyncRegex')
+      .send([1, 2, 3, 4, 5])
+      .expect(200)
+      .expect(200, '15');
+  });
+
+  it(`/POST (async event notification)`, () =>
+    new Promise<void>(done => {
+      void request(server)
+        .post('/notify')
+        .send()
+        .end(() => {
+          setTimeout(() => {
+            expect(KafkaController.IS_NOTIFIED).toBe(true);
+            done();
+          }, 1000);
+        });
+    }));
+
+  const userDto: UserDto = {
+    email: 'enriquebenavidesm@gmail.com',
+    name: 'Ben',
+    phone: '1112223331',
+    years: 33,
+  };
+  const newUser: UserEntity = new UserEntity(userDto);
+  const businessDto: BusinessDto = {
+    name: 'Example',
+    phone: '2233441122',
+    user: newUser,
+  };
+  it(`/POST (sync command create user)`, () => {
+    return request(server).post('/user').send(userDto).expect(200);
+  });
+
+  it(`/POST (sync command create business`, () => {
+    return request(server).post('/business').send(businessDto).expect(200);
+  });
+
+  it(`/POST (sync command create user) Concurrency Test`, async () => {
+    const promises = [] as Array<Promise<any>>;
+    for (let concurrencyKey = 0; concurrencyKey < 100; concurrencyKey++) {
+      const innerUserDto = JSON.parse(JSON.stringify(userDto));
+      innerUserDto.name += `+${concurrencyKey}`;
+      promises.push(request(server).post('/user').send(userDto).expect(200));
+    }
+    await Promise.all(promises);
+  });
+
+  afterAll(async () => {
+    await app.close();
+  });
+});

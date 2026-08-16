@@ -1,0 +1,97 @@
+import { of } from 'rxjs';
+import { ExternalExceptionFilter } from '../../exceptions/external-exception-filter.js';
+import { ExternalExceptionsHandler } from '../../exceptions/external-exceptions-handler.js';
+
+describe('ExternalExceptionsHandler', () => {
+  let handler: ExternalExceptionsHandler;
+
+  beforeEach(() => {
+    handler = new ExternalExceptionsHandler();
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore The 'logger' property is private but we want to avoid showing useless error logs
+    ExternalExceptionFilter.logger.error = () => {};
+  });
+
+  describe('next', () => {
+    it('should method returns expected stream with message when exception is unknown', () => {
+      const error = new Error();
+      expect(() => handler.next(error, null!)).toThrow(error);
+    });
+    describe('when "invokeCustomFilters" returns value', () => {
+      const observable$ = of(true);
+      beforeEach(() => {
+        vi.spyOn(handler, 'invokeCustomFilters').mockReturnValue(
+          observable$ as any,
+        );
+      });
+      it('should return observable', () => {
+        const result = handler.next(new Error(), null!);
+        expect(result).toEqual(observable$);
+      });
+    });
+  });
+  describe('setCustomFilters', () => {
+    const filters = ['test', 'test2'];
+    it('should set custom filters', () => {
+      handler.setCustomFilters(filters as any);
+      expect((handler as any).filters).toEqual(filters);
+    });
+    it('should throw exception when passed argument is not an array', () => {
+      expect(() => handler.setCustomFilters(null!)).toThrow();
+    });
+  });
+  describe('invokeCustomFilters', () => {
+    describe('when filters array is empty', () => {
+      it('should return identity', () => {
+        expect(handler.invokeCustomFilters(null, null!)).toBeNull();
+      });
+    });
+    describe('when filters array is not empty', () => {
+      let filters, funcSpy;
+      class TestException {}
+      class AnotherTestException {}
+
+      beforeEach(() => {
+        funcSpy = vi.fn();
+      });
+      describe('when filter exists in filters array', () => {
+        beforeEach(() => {
+          filters = [{ exceptionMetatypes: [TestException], func: funcSpy }];
+          (handler as any).filters = filters;
+        });
+        it('should call funcSpy', async () => {
+          await handler.invokeCustomFilters(new TestException(), null!);
+          expect(funcSpy).toHaveBeenCalled();
+        });
+        it('should call funcSpy with exception and response passed as an arguments', async () => {
+          const exception = new TestException();
+          await handler.invokeCustomFilters(exception, null!);
+          expect(funcSpy).toHaveBeenCalledWith(exception, null);
+        });
+        it('should return stream', () => {
+          expect(
+            handler.invokeCustomFilters(new TestException(), null!),
+          ).not.toBeNull();
+        });
+      });
+      describe('when filter does not exists in filters array', () => {
+        beforeEach(() => {
+          filters = [
+            { exceptionMetatypes: [AnotherTestException], func: funcSpy },
+          ];
+          (handler as any).filters = filters;
+        });
+        it('should not call funcSpy', async () => {
+          await handler.invokeCustomFilters(new TestException(), null!);
+          expect(funcSpy).not.toHaveBeenCalled();
+        });
+        it('should return null', () => {
+          expect(
+            handler.invokeCustomFilters(new TestException(), null!),
+          ).toBeNull();
+        });
+      });
+    });
+  });
+});

@@ -1,0 +1,41 @@
+{
+  "name": "nest-babel-starter",
+  "version": "1.0.0",
+  "description": "Nest Babel starter repository",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --write \"**/*.js\"",
+    "build": "babel src -d dist",
+    "start": "babel-node index.js",
+    "start:dev": "nodemon",
+    "test": "vitest run",
+    "test:cov": "vitest run --coverage",
+    "test:e2e": "vitest run --config ./vitest.config.e2e.mts"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.1.29",
+    "@nestjs/core": "11.1.29",
+    "@nestjs/platform-express": "11.1.29",
+    "@nestjs/microservices": "11.1.29",
+    "@nestjs/websockets": "11.1.29",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.29.7",
+    "@babel/core": "7.29.7",
+    "@babel/node": "7.29.7",
+    "@babel/plugin-proposal-decorators": "7.29.7",
+    "@babel/plugin-transform-runtime": "7.29.7",
+    "@babel/preset-env": "7.29.7",
+    "@babel/register": "7.29.7",
+    "@babel/runtime": "7.29.7",
+    "@nestjs/testing": "11.1.29",
+    "nodemon": "3.1.14",
+    "oxlint": "1.58.0",
+    "prettier": "3.9.6",
+    "supertest": "7.2.2",
+    "vitest": "4.1.2"
+  },
+  "type": "module"
+}

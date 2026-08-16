@@ -1,0 +1,19 @@
+import { DefaultValuePipe } from '../../pipes/default-value.pipe.js';
+
+describe('DefaultValuePipe', () => {
+  const defaultValue = 'default';
+  const target = new DefaultValuePipe(defaultValue);
+
+  describe('transform', () => {
+    it('should return original value if one was provided', () => {
+      const value = 'value';
+      const result = target.transform(value);
+      expect(result).toBe(value);
+    });
+
+    it('should return default value if no value was provided', () => {
+      const result = target.transform(undefined);
+      expect(result).toBe(defaultValue);
+    });
+  });
+});

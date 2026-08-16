@@ -1,0 +1,519 @@
+import type {
+  ArgumentMetadata,
+  ContextType,
+  RouteParamMetadata,
+} from '@nestjs/common';
+import {
+  type CanActivate,
+  ForbiddenException,
+  type HttpServer,
+  type ParamData,
+  type PipeTransform,
+  type RequestMethod,
+  SSE_ABORT_CONTROLLER,
+} from '@nestjs/common';
+import {
+  type Controller,
+  CUSTOM_ROUTE_ARGS_METADATA,
+  HEADERS_METADATA,
+  HTTP_CODE_METADATA,
+  isEmptyArray,
+  isString,
+  REDIRECT_METADATA,
+  RENDER_METADATA,
+  ROUTE_ARGS_METADATA,
+  RouteParamtypes,
+  SSE_METADATA,
+} from '@nestjs/common/internal';
+import type { StandardSchemaV1 } from '@standard-schema/spec';
+import { IncomingMessage } from 'http';
+import { Observable } from 'rxjs';
+import {
+  FORBIDDEN_MESSAGE,
+  GuardsConsumer,
+  GuardsContextCreator,
+} from '../guards/index.js';
+import { ContextUtils } from '../helpers/context-utils.js';
+import { ExecutionContextHost } from '../helpers/execution-context-host.js';
+import {
+  HandleResponseFn,
+  HandlerMetadata,
+  HandlerMetadataStorage,
+  HandlerResponseBasicFn,
+} from '../helpers/handler-metadata-storage.js';
+import { STATIC_CONTEXT } from '../injector/constants.js';
+import { InterceptorsConsumer } from '../interceptors/interceptors-consumer.js';
+import { InterceptorsContextCreator } from '../interceptors/interceptors-context-creator.js';
+import { PipesConsumer } from '../pipes/pipes-consumer.js';
+import { PipesContextCreator } from '../pipes/pipes-context-creator.js';
+import { IRouteParamsFactory } from './interfaces/route-params-factory.interface.js';
+import {
+  CustomHeader,
+  RedirectResponse,
+  RouterResponseController,
+} from './router-response-controller.js';
+import { HeaderStream } from './sse-stream.js';
+
+export interface ParamProperties {
+  index: number;
+  type: RouteParamtypes | string;
+  data: ParamData;
+  pipes: PipeTransform[];
+  extractValue: <TRequest, TResponse>(
+    req: TRequest,
+    res: TResponse,
+    next: Function,
+  ) => any;
+  schema?: StandardSchemaV1;
+}
+
+export class RouterExecutionContext {
+  private readonly handlerMetadataStorage = new HandlerMetadataStorage();
+  private readonly contextUtils = new ContextUtils();
+  private readonly responseController: RouterResponseController;
+
+  constructor(
+    private readonly paramsFactory: IRouteParamsFactory,
+    private readonly pipesContextCreator: PipesContextCreator,
+    private readonly pipesConsumer: PipesConsumer,
+    private readonly guardsContextCreator: GuardsContextCreator,
+    private readonly guardsConsumer: GuardsConsumer,
+    private readonly interceptorsContextCreator: InterceptorsContextCreator,
+    private readonly interceptorsConsumer: InterceptorsConsumer,
+    readonly applicationRef: HttpServer,
+  ) {
+    this.responseController = new RouterResponseController(applicationRef);
+  }
+
+  public create(
+    instance: Controller,
+    callback: (...args: any[]) => unknown,
+    methodName: string,
+    moduleKey: string,
+    requestMethod: RequestMethod,
+    contextId = STATIC_CONTEXT,
+    inquirerId?: string,
+  ) {
+    const contextType: ContextType = 'http';
+    const {
+      argsLength,
+      fnHandleResponse,
+      isSseHandler,
+      paramtypes,
+      getParamsMetadata,
+      httpStatusCode,
+      responseHeaders,
+      hasCustomHeaders,
+    } = this.getMetadata(
+      instance,
+      callback,
+      methodName,
+      moduleKey,
+      requestMethod,
+      contextType,
+    );
+
+    const paramsOptions = this.contextUtils.mergeParamsMetatypes(
+      getParamsMetadata(moduleKey, contextId, inquirerId),
+      paramtypes,
+    );
+    const pipes = this.pipesContextCreator.create(
+      instance,
+      callback,
+      moduleKey,
+      contextId,
+      inquirerId,
+    );
+    const guards = this.guardsContextCreator.create(
+      instance,
+      callback,
+      moduleKey,
+      contextId,
+      inquirerId,
+    );
+    const interceptors = this.interceptorsContextCreator.create(
+      instance,
+      callback,
+      moduleKey,
+      contextId,
+      inquirerId,
+    );
+
+    const fnCanActivate = this.createGuardsFn(
+      guards,
+      instance,
+      callback,
+      contextType,
+    );
+    const fnApplyPipes = this.createPipesFn(pipes, paramsOptions);
+
+    const handler =
+      <TRequest, TResponse>(
+        args: any[],
+        req: TRequest,
+        res: TResponse,
+        next: Function,
+      ) =>
+      async () => {
+        fnApplyPipes && (await fnApplyPipes(args, req, res, next));
+        return callback.apply(instance, args);
+      };
+
+    return async <TRequest, TResponse>(
+      req: TRequest,
+      res: TResponse,
+      next: Function,
+    ) => {
+      const args = this.contextUtils.createNullArray(argsLength);
+      fnCanActivate && (await fnCanActivate([req, res, next]));
+
+      this.responseController.setStatus(res, httpStatusCode);
+      hasCustomHeaders &&
+        this.responseController.setHeaders(res, responseHeaders);
+
+      if (isSseHandler) {
+        // Attach a per-request AbortController before the handler runs so async
+        // @Sse() handlers can observe client disconnects via @SseSignal() during
+        // their setup. The controller is aborted in RouterResponseController.sse()
+        // when the underlying connection closes.
+        this.attachSseAbortSignal(req);
+      }
+
+      const resultOrDeferred = this.interceptorsConsumer.intercept(
+        interceptors,
+        [req, res, next],
+        instance,
+        callback,
+        handler(args, req, res, next),
+        contextType,
+      );
+      const result = isSseHandler ? resultOrDeferred : await resultOrDeferred;
+      await (fnHandleResponse as HandlerResponseBasicFn)(result, res, req);
+    };
+  }
+
+  public getMetadata<TContext extends ContextType = ContextType>(
+    instance: Controller,
+    callback: (...args: any[]) => any,
+    methodName: string,
+    moduleKey: string,
+    requestMethod: RequestMethod,
+    contextType: TContext,
+  ): HandlerMetadata {
+    const cacheMetadata = this.handlerMetadataStorage.get(instance, methodName);
+    if (cacheMetadata) {
+      return cacheMetadata;
+    }
+    const metadata =
+      this.contextUtils.reflectCallbackMetadata(
+        instance,
+        methodName,
+        ROUTE_ARGS_METADATA,
+      ) || {};
+    const keys = Object.keys(metadata);
+    const argsLength = this.contextUtils.getArgumentsLength(keys, metadata);
+    const paramtypes = this.contextUtils.reflectCallbackParamtypes(
+      instance,
+      methodName,
+    );
+
+    const contextFactory = this.contextUtils.getContextFactory(
+      contextType,
+      instance,
+      callback,
+    );
+    const getParamsMetadata = (
+      moduleKey: string,
+      contextId = STATIC_CONTEXT,
+      inquirerId?: string,
+    ) =>
+      this.exchangeKeysForValues(
+        keys,
+        metadata,
+        moduleKey,
+        contextId,
+        inquirerId,
+        contextFactory,
+      );
+
+    const paramsMetadata = getParamsMetadata(moduleKey);
+    const isResponseHandled = this.isResponseHandled(
+      instance,
+      methodName,
+      paramsMetadata,
+    );
+
+    const httpRedirectResponse = this.reflectRedirect(callback);
+    const fnHandleResponse = this.createHandleResponseFn(
+      callback,
+      isResponseHandled,
+      httpRedirectResponse,
+    );
+    const isSseHandler = !!this.reflectSse(callback);
+
+    const httpCode = this.reflectHttpStatusCode(callback);
+    const httpStatusCode =
+      httpCode ?? this.responseController.getStatusByMethod(requestMethod);
+
+    const responseHeaders = this.reflectResponseHeaders(callback);
+    const hasCustomHeaders = !isEmptyArray(responseHeaders);
+    const handlerMetadata: HandlerMetadata = {
+      argsLength,
+      fnHandleResponse,
+      isSseHandler,
+      paramtypes,
+      getParamsMetadata,
+      httpStatusCode,
+      hasCustomHeaders,
+      responseHeaders,
+    };
+    this.handlerMetadataStorage.set(instance, methodName, handlerMetadata);
+    return handlerMetadata;
+  }
+
+  public reflectRedirect(
+    callback: (...args: unknown[]) => unknown,
+  ): RedirectResponse {
+    return Reflect.getMetadata(REDIRECT_METADATA, callback);
+  }
+
+  public reflectHttpStatusCode(
+    callback: (...args: unknown[]) => unknown,
+  ): number {
+    return Reflect.getMetadata(HTTP_CODE_METADATA, callback);
+  }
+
+  public reflectRenderTemplate(
+    callback: (...args: unknown[]) => unknown,
+  ): string {
+    return Reflect.getMetadata(RENDER_METADATA, callback);
+  }
+
+  public reflectResponseHeaders(
+    callback: (...args: unknown[]) => unknown,
+  ): CustomHeader[] {
+    return Reflect.getMetadata(HEADERS_METADATA, callback) || [];
+  }
+
+  public reflectSse(callback: (...args: unknown[]) => unknown): string {
+    return Reflect.getMetadata(SSE_METADATA, callback);
+  }
+
+  public exchangeKeysForValues(
+    keys: string[],
+    metadata: Record<number, RouteParamMetadata>,
+    moduleContext: string,
+    contextId = STATIC_CONTEXT,
+    inquirerId?: string,
+    contextFactory?: (args: unknown[]) => ExecutionContextHost,
+  ): ParamProperties[] {
+    this.pipesContextCreator.setModuleContext(moduleContext);
+
+    return keys.map(key => {
+      const { index, data, pipes: pipesCollection, schema } = metadata[key];
+      const pipes = this.pipesContextCreator.createConcreteContext(
+        pipesCollection,
+        contextId,
+        inquirerId,
+      );
+      const type = this.contextUtils.mapParamType(key);
+
+      if (key.includes(CUSTOM_ROUTE_ARGS_METADATA)) {
+        const { factory } = metadata[key];
+        const customExtractValue = this.contextUtils.getCustomFactory(
+          factory,
+          data,
+          contextFactory!,
+        );
+        return {
+          index,
+          extractValue: customExtractValue,
+          type,
+          data,
+          pipes,
+          schema,
+        };
+      }
+      const numericType = Number(type);
+      const extractValue = <TRequest, TResponse>(
+        req: TRequest,
+        res: TResponse,
+        next: Function,
+      ) =>
+        this.paramsFactory.exchangeKeyForValue(numericType, data, {
+          req: req as Record<string, any>,
+          res,
+          next,
+        });
+      return { index, extractValue, type: numericType, data, pipes, schema };
+    });
+  }
+
+  public async getParamValue<T>(
+    value: T,
+    metadata: ArgumentMetadata,
+    pipes: PipeTransform[],
+  ): Promise<unknown> {
+    if (!isEmptyArray(pipes)) {
+      return this.pipesConsumer.apply(value, metadata, pipes);
+    }
+    return value;
+  }
+
+  public isPipeable(type: number | string): boolean {
+    return (
+      type === RouteParamtypes.BODY ||
+      type === RouteParamtypes.RAW_BODY ||
+      type === RouteParamtypes.QUERY ||
+      type === RouteParamtypes.PARAM ||
+      type === RouteParamtypes.FILE ||
+      type === RouteParamtypes.FILES ||
+      isString(type)
+    );
+  }
+
+  public createGuardsFn<TContext extends string = ContextType>(
+    guards: CanActivate[],
+    instance: Controller,
+    callback: (...args: any[]) => any,
+    contextType?: TContext,
+  ): ((args: any[]) => Promise<void>) | null {
+    const canActivateFn = async (args: any[]) => {
+      const canActivate = await this.guardsConsumer.tryActivate<TContext>(
+        guards,
+        args,
+        instance,
+        callback,
+        contextType,
+      );
+      if (!canActivate) {
+        throw new ForbiddenException(FORBIDDEN_MESSAGE);
+      }
+    };
+    return guards.length ? canActivateFn : null;
+  }
+
+  public createPipesFn(
+    pipes: PipeTransform[],
+    paramsOptions: (ParamProperties & { metatype?: any })[],
+  ) {
+    const pipesFn = async <TRequest, TResponse>(
+      args: any[],
+      req: TRequest,
+      res: TResponse,
+      next: Function,
+    ) => {
+      const resolveParamValue = async (
+        param: ParamProperties & { metatype?: any },
+      ) => {
+        const {
+          index,
+          extractValue,
+          type,
+          data,
+          metatype,
+          pipes: paramPipes,
+          schema,
+        } = param;
+        const value = extractValue(req, res, next);
+
+        args[index] = this.isPipeable(type)
+          ? await this.getParamValue(
+              value,
+              { metatype, type, data, schema } as ArgumentMetadata,
+              pipes.concat(paramPipes),
+            )
+          : value;
+      };
+      await Promise.all(paramsOptions.map(resolveParamValue));
+    };
+    return paramsOptions.length ? pipesFn : null;
+  }
+
+  public createHandleResponseFn(
+    callback: (...args: unknown[]) => unknown,
+    isResponseHandled: boolean,
+    redirectResponse?: RedirectResponse,
+    httpStatusCode?: number,
+  ): HandleResponseFn {
+    const renderTemplate = this.reflectRenderTemplate(callback);
+    if (renderTemplate) {
+      return async <TResult, TResponse>(result: TResult, res: TResponse) => {
+        return await this.responseController.render(
+          result,
+          res,
+          renderTemplate,
+        );
+      };
+    }
+    if (redirectResponse && isString(redirectResponse.url)) {
+      return async <TResult, TResponse>(result: TResult, res: TResponse) => {
+        await this.responseController.redirect(result, res, redirectResponse);
+      };
+    }
+    const isSseHandler = !!this.reflectSse(callback);
+    if (isSseHandler) {
+      return async <
+        TResult extends Observable<unknown> = any,
+        TResponse extends HeaderStream = any,
+        TRequest extends IncomingMessage = any,
+      >(
+        result: TResult,
+        res: TResponse,
+        req: TRequest,
+      ) => {
+        const rawResponse = (res as { raw?: TResponse }).raw ?? res;
+        await this.responseController.sse(
+          result,
+          rawResponse,
+          (req as any).raw || req,
+          {
+            additionalHeaders: res.getHeaders?.(),
+            statusCode:
+              (res as { statusCode?: number }).statusCode ??
+              (rawResponse as { statusCode?: number }).statusCode,
+          },
+        );
+      };
+    }
+    return async <TResult, TResponse>(result: TResult, res: TResponse) => {
+      result = await this.responseController.transformToResult(result);
+      !isResponseHandled &&
+        (await this.responseController.apply(result, res, httpStatusCode));
+      return res;
+    };
+  }
+
+  private isResponseHandled(
+    instance: Controller,
+    methodName: string,
+    paramsMetadata: ParamProperties[],
+  ): boolean {
+    const hasResponseOrNextDecorator = paramsMetadata.some(
+      ({ type }) =>
+        type === RouteParamtypes.RESPONSE || type === RouteParamtypes.NEXT,
+    );
+    const isPassthroughEnabled = this.contextUtils.reflectPassthrough(
+      instance,
+      methodName,
+    );
+    return hasResponseOrNextDecorator && !isPassthroughEnabled;
+  }
+
+  private attachSseAbortSignal<TRequest>(req: TRequest): void {
+    const carrier = req as TRequest & {
+      raw?: unknown;
+      [SSE_ABORT_CONTROLLER]?: AbortController;
+    };
+    // Attach to both the framework request and its raw form (when present), since
+    // @SseSignal() reads from the execution-context request while
+    // RouterResponseController.sse() operates on the raw request.
+    if (!carrier[SSE_ABORT_CONTROLLER]) {
+      carrier[SSE_ABORT_CONTROLLER] = new AbortController();
+    }
+    if (carrier.raw && !(carrier.raw as object)[SSE_ABORT_CONTROLLER]) {
+      (carrier.raw as object)[SSE_ABORT_CONTROLLER] =
+        carrier[SSE_ABORT_CONTROLLER];
+    }
+  }
+}

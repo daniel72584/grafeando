@@ -1,0 +1,18 @@
+import { Header } from '../../decorators/http/index.js';
+import { HEADERS_METADATA } from '../../constants.js';
+
+describe('@Header', () => {
+  class Test {
+    @Header('Content-Type', 'Test')
+    @Header('Authorization', 'JWT')
+    public static test() {}
+  }
+
+  it('should enhance method with expected template string', () => {
+    const metadata = Reflect.getMetadata(HEADERS_METADATA, Test.test);
+    expect(metadata).toEqual([
+      { name: 'Authorization', value: 'JWT' },
+      { name: 'Content-Type', value: 'Test' },
+    ]);
+  });
+});

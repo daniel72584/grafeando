@@ -1,0 +1,47 @@
+import { Catch } from '../../../common/decorators/core/catch.decorator.js';
+import { UseFilters } from '../../../common/decorators/core/exception-filters.decorator.js';
+import { NestContainer } from '../../../core/injector/container.js';
+import { ExceptionFiltersContext } from '../../context/exception-filters-context.js';
+
+describe('ExceptionFiltersContext', () => {
+  let exceptionFilter: ExceptionFiltersContext;
+
+  class CustomException {}
+  @Catch(CustomException)
+  class ExceptionFilter {
+    public catch(exc, res) {}
+  }
+
+  beforeEach(() => {
+    exceptionFilter = new ExceptionFiltersContext(new NestContainer() as any);
+  });
+  describe('create', () => {
+    describe('when filters metadata is empty', () => {
+      class EmptyMetadata {}
+      beforeEach(() => {
+        vi.spyOn(exceptionFilter, 'createContext').mockReturnValue([]);
+      });
+      it('should return plain ExceptionHandler object', () => {
+        const filter = exceptionFilter.create(
+          new EmptyMetadata(),
+          () => ({}) as any,
+          '',
+        );
+        expect((filter as any).filters).toHaveLength(0);
+      });
+    });
+    describe('when filters metadata is not empty', () => {
+      @UseFilters(new ExceptionFilter())
+      class WithMetadata {}
+
+      it('should return ExceptionHandler object with exception filters', () => {
+        const filter = exceptionFilter.create(
+          new WithMetadata(),
+          () => ({}) as any,
+          '',
+        );
+        expect((filter as any).filters).not.toHaveLength(0);
+      });
+    });
+  });
+});

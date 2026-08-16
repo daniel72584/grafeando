@@ -1,0 +1,23 @@
+import { REDIRECT_METADATA } from '../../constants.js';
+import { Redirect } from '../../decorators/http/redirect.decorator.js';
+import { HttpStatus } from '../../index.js';
+
+describe('@Redirect', () => {
+  const url = 'http://test.com';
+  const statusCode = HttpStatus.FOUND;
+
+  class Test {
+    @Redirect(url, statusCode)
+    public static test() {}
+  }
+
+  it('should enhance method with expected redirect url string', () => {
+    const metadata = Reflect.getMetadata(REDIRECT_METADATA, Test.test);
+    expect(metadata.url).toEqual(url);
+  });
+
+  it('should enhance method with expected response code', () => {
+    const metadata = Reflect.getMetadata(REDIRECT_METADATA, Test.test);
+    expect(metadata.statusCode).toEqual(statusCode);
+  });
+});

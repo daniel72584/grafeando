@@ -1,0 +1,45 @@
+import { OnModuleInit } from '@nestjs/common';
+import { callModuleInitHook } from '../../hooks/on-module-init.hook.js';
+import { NestContainer } from '../../injector/container.js';
+import { Module } from '../../injector/module.js';
+
+class SampleProvider implements OnModuleInit {
+  onModuleInit() {}
+}
+
+class SampleModule implements OnModuleInit {
+  onModuleInit() {}
+}
+
+class WithoutHookProvider {}
+
+describe('OnModuleInit', () => {
+  let moduleRef: Module;
+  let sampleProvider: SampleProvider;
+
+  beforeEach(() => {
+    sampleProvider = new SampleProvider();
+    moduleRef = new Module(SampleModule, new NestContainer());
+
+    const moduleWrapperRef = moduleRef.getProviderByKey(SampleModule);
+    moduleWrapperRef.instance = new SampleModule();
+
+    moduleRef.addProvider({
+      provide: SampleProvider,
+      useValue: sampleProvider,
+    });
+    moduleRef.addProvider({
+      provide: WithoutHookProvider,
+      useValue: new WithoutHookProvider(),
+    });
+  });
+
+  describe('callModuleInitHook', () => {
+    it('should call "onModuleInit" hook for the entire module', async () => {
+      const hookSpy = vi.spyOn(sampleProvider, 'onModuleInit');
+      await callModuleInitHook(moduleRef);
+
+      expect(hookSpy).toHaveBeenCalled();
+    });
+  });
+});

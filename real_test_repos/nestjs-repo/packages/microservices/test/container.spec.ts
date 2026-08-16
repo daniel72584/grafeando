@@ -1,0 +1,30 @@
+import { ClientsContainer } from '../container.js';
+
+describe('ClientsContainer', () => {
+  let instance: ClientsContainer;
+  beforeEach(() => {
+    instance = new ClientsContainer();
+  });
+  describe('getAllClients', () => {
+    it('should return array of clients', () => {
+      const clients = [1, 2, 3];
+      (instance as any).clients = clients;
+      expect(instance.getAllClients()).toEqual(clients);
+    });
+  });
+  describe('addClient', () => {
+    it('should push client into clients array', () => {
+      const client = 'test';
+      instance.addClient(client as any);
+      expect(instance.getAllClients()).toEqual([client]);
+    });
+  });
+  describe('clear', () => {
+    it('should remove all clients', () => {
+      const clients = [1, 2, 3];
+      (instance as any).clients = clients;
+      instance.clear();
+      expect(instance.getAllClients()).toEqual([]);
+    });
+  });
+});

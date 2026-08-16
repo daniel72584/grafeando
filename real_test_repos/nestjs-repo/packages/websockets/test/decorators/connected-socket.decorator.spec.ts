@@ -1,0 +1,25 @@
+import { PARAM_ARGS_METADATA } from '../../constants.js';
+import { ConnectedSocket } from '../../decorators/index.js';
+import { WsParamtype } from '../../enums/ws-paramtype.enum.js';
+
+class ConnectedSocketTest {
+  public test(@ConnectedSocket() socket: any) {}
+}
+
+describe('@ConnectedSocket', () => {
+  it('should enhance class with expected request metadata', () => {
+    const argsMetadata = Reflect.getMetadata(
+      PARAM_ARGS_METADATA,
+      ConnectedSocketTest,
+      'test',
+    );
+    const expectedMetadata = {
+      [`${WsParamtype.SOCKET}:0`]: {
+        data: undefined,
+        index: 0,
+        pipes: [],
+      },
+    };
+    expect(argsMetadata).toEqual(expectedMetadata);
+  });
+});
