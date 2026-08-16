@@ -16,20 +16,24 @@ It also cuts AI token usage by **99.9%**, making AI responses **faster and much 
 
 ---
 
-## ⚡ Quickstart (2 Steps)
+## ⚡ Quickstart (1-Line Install)
 
-### 1. Install Grafeando
+Run this single command in any project directory to install `grafeando`, connect it to your AI IDE, and index your codebase:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/daniel72584/grafeando/main/install.sh | bash
+```
+
+<details>
+<summary>📦 <b>Manual Installation Steps</b></summary>
+
 ```bash
 git clone https://github.com/daniel72584/grafeando.git
 cd grafeando
 pip install -e .
+grafeando install --project
 ```
-
-### 2. Connect to your AI tool
-```bash
-grafeando install
-```
-*(Automatically configures **Cursor, Claude Desktop, Gemini, Windsurf, Continue, and Codex**).*
+</details>
 
 ---
 

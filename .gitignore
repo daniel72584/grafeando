@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Grafeando DB
+.grafeando_db/
+.grafeando_kuzu/
+

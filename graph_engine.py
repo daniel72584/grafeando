@@ -1,3 +1,4 @@
+import os
 from typing import Dict, List, Any
 import kuzu
 
@@ -5,13 +6,18 @@ import kuzu
 class GraphEngine:
     def __init__(self, db_path: str = ""):
         """
-        Initializes Kùzu graph database. If db_path is empty, creates an in-memory database instance.
+        Initializes Kùzu graph database. If db_path is empty, defaults to .grafeando_db in working dir or GRAFEANDO_DB_PATH.
         """
-        self.db_path = db_path
+        if not db_path:
+            db_path = os.environ.get("GRAFEANDO_DB_PATH", os.path.join(os.getcwd(), ".grafeando_db"))
+        self.db_path = os.path.abspath(db_path)
         self._init_db()
 
     def _init_db(self):
         if self.db_path:
+            db_dir = os.path.dirname(self.db_path)
+            if db_dir and not os.path.exists(db_dir):
+                os.makedirs(db_dir, exist_ok=True)
             self.db = kuzu.Database(self.db_path)
         else:
             self.db = kuzu.Database(":memory:")
@@ -40,8 +46,10 @@ class GraphEngine:
             except Exception:
                 pass
 
-    def reset_database(self):
+    def reset_database(self, new_path: str = ""):
         """Re-initializes DB to clear existing nodes & edges."""
+        if new_path:
+            self.db_path = os.path.abspath(new_path)
         self._init_db()
 
     def ingest_parse_data(self, parse_data: Dict[str, List[Dict[str, Any]]]):

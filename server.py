@@ -1,4 +1,5 @@
 import os
+import sys
 from typing import Dict, Any
 
 try:
@@ -6,11 +7,15 @@ try:
 except ImportError:
     from mcp.server.mcpserver import MCPServer as FastMCP
 
-from parser import CodeParser
-from graph_engine import GraphEngine
+try:
+    from grafeando.parser import CodeParser
+    from grafeando.graph_engine import GraphEngine
+except ImportError:
+    from parser import CodeParser
+    from graph_engine import GraphEngine
 
 # Initialize MCP Server
-mcp = FastMCP("CodeContextEngine")
+mcp = FastMCP("grafeando")
 
 # Initialize Parser & Graph Database
 code_parser = CodeParser()
@@ -22,18 +27,20 @@ def index_codebase(path: str = ".") -> str:
     """
     Parses source files in the given directory across supported languages:
     Python (.py), TypeScript/JavaScript (.ts, .tsx, .js, .jsx - NestJS & React),
-    Go (.go), and Java (.java).
+    Go (.go), Java (.java), SQL (.sql), Markdown (.md), CSV (.csv), PDF (.pdf), and JSON (.json).
     Ingests extracted entities, call graphs, component render trees, and dependency injections into Kùzu.
     """
     abs_path = os.path.abspath(path)
     if not os.path.exists(abs_path):
         return f"Error: Path '{path}' does not exist."
 
+    db_path = os.path.join(abs_path, ".grafeando_db")
+    graph_db.reset_database(db_path)
+
     # Parse AST
     parsed_data = code_parser.parse_directory(abs_path)
 
     # Ingest into Graph Database
-    graph_db.reset_database()
     graph_db.ingest_parse_data(parsed_data)
 
     num_files = len(parsed_data.get("files", []))
@@ -56,6 +63,11 @@ def get_blast_radius(symbol_name: str, depth: int = 3) -> Dict[str, Any]:
     Calculates the blast radius of changing a function, component, or class.
     Traverses dependent callers, rendered React parent components, and injected NestJS/Spring services up to `depth` levels deep.
     """
+    # Ensure graph_db is pointing to the current directory's .grafeando_db if present
+    cwd_db = os.path.abspath(".grafeando_db")
+    if os.path.exists(cwd_db) and os.path.abspath(graph_db.db_path) != cwd_db:
+        graph_db.reset_database(cwd_db)
+
     callers = graph_db.get_blast_radius(function_name=symbol_name, depth=depth)
     injections = graph_db.get_injection_dependencies(class_name=symbol_name)
 
@@ -69,5 +81,10 @@ def get_blast_radius(symbol_name: str, depth: int = 3) -> Dict[str, Any]:
     }
 
 
-if __name__ == "__main__":
+def main():
     mcp.run(transport="stdio")
+
+
+if __name__ == "__main__":
+    main()
+

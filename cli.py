@@ -51,6 +51,7 @@ def install_mcp_config(platform: str, project_scoped: bool = False):
 
     if platform in ("all", "gemini"):
         if project_scoped:
+            configs_to_update.append(cwd / ".agents" / "mcp_config.json")
             configs_to_update.append(cwd / ".gemini" / "mcp.json")
         else:
             configs_to_update.append(home / ".gemini" / "antigravity-ide" / "mcp.json")
@@ -209,7 +210,10 @@ def main():
         if is_workspace:
             print("\n⚡ Running initial AST indexing on workspace...")
             try:
-                from server import index_codebase
+                try:
+                    from grafeando.server import index_codebase
+                except ImportError:
+                    from server import index_codebase
                 msg = index_codebase(str(cwd))
                 print(f"✅ {msg}")
             except Exception as e:
@@ -218,12 +222,18 @@ def main():
         print("\n✨ Grafeando installation complete! Open your AI assistant IDE and ask questions or use get_blast_radius.")
 
     elif args.command == "index":
-        from server import index_codebase
+        try:
+            from grafeando.server import index_codebase
+        except ImportError:
+            from server import index_codebase
         msg = index_codebase(args.path)
         print(msg)
 
     elif args.command == "server":
-        from server import mcp
+        try:
+            from grafeando.server import mcp
+        except ImportError:
+            from server import mcp
         mcp.run(transport="stdio")
 
     else:
