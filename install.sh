@@ -13,9 +13,14 @@ else
     exit 1
 fi
 
-# 2. Check Python version
+# 2. Check Python version & Virtual Environment
 PYTHON_VERSION=$($PYTHON_CMD -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
-echo "✓ Found Python $PYTHON_VERSION"
+if [ -n "$VIRTUAL_ENV" ]; then
+    echo "✓ Found Python $PYTHON_VERSION (Active virtualenv: $VIRTUAL_ENV)"
+else
+    echo "✓ Found Python $PYTHON_VERSION"
+    echo "💡 Tip: Creating a virtual environment (python3 -m venv venv && source venv/bin/activate) is recommended before installing."
+fi
 
 # 3. Install grafeando via pip
 echo "📦 Installing grafeando package from GitHub..."
@@ -28,8 +33,8 @@ else
     GRAFEANDO_BIN="$PYTHON_CMD -m grafeando"
 fi
 
-echo "🚀 Configuring MCP server for AI IDEs (Antigravity/Gemini, Claude, Cursor, Windsurf, Continue, Codex)..."
-$GRAFEANDO_BIN install --project
+echo "🚀 Configuring MCP server for detected AI IDEs (Antigravity, Gemini, Claude, Cursor, Windsurf, Continue, Codex)..."
+$GRAFEANDO_BIN install --project --platform auto
 
 echo "⚡ Indexing workspace codebase graph..."
 $GRAFEANDO_BIN index .

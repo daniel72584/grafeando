@@ -24,7 +24,8 @@ class CodeParser:
         }
         self.ignored_dirs = {
             "venv", "env", "__pycache__", "build", "dist",
-            "node_modules", ".next", "target", "vendor", ".git", ".agents", "real_test_repos"
+            "node_modules", ".next", "target", "vendor", ".git", ".agents", "real_test_repos",
+            "graphify-out", "coverage"
         }
 
     def parse_file(self, file_path: str) -> Dict[str, List[Dict[str, Any]]]:

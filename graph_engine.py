@@ -88,7 +88,7 @@ class GraphEngine:
                 continue
             try:
                 self.conn.execute(
-                    "MERGE (fl:File {id: $id, path: $path, language: $language})",
+                    "MERGE (fl:File {id: $id}) ON CREATE SET fl.path = $path, fl.language = $language",
                     {"id": fid, "path": str(f.get("path", "")), "language": f.get("language", "unknown")}
                 )
             except Exception as e:
@@ -101,7 +101,7 @@ class GraphEngine:
                 continue
             try:
                 self.conn.execute(
-                    "MERGE (c:Class {id: $id, name: $name, file_path: $file_path, category: $category})",
+                    "MERGE (c:Class {id: $id}) ON CREATE SET c.name = $name, c.file_path = $file_path, c.category = $category",
                     {
                         "id": cid,
                         "name": cls.get("name", ""),
@@ -119,7 +119,7 @@ class GraphEngine:
                 continue
             try:
                 self.conn.execute(
-                    "MERGE (f:Function {id: $id, name: $name, qualified_name: $qualified_name, file_path: $file_path, start_line: $start_line, category: $category})",
+                    "MERGE (f:Function {id: $id}) ON CREATE SET f.name = $name, f.qualified_name = $qualified_name, f.file_path = $file_path, f.start_line = $start_line, f.category = $category",
                     {
                         "id": fid,
                         "name": func.get("name", ""),

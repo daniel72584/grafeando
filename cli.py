@@ -3,6 +3,7 @@ import sys
 import json
 import argparse
 from pathlib import Path
+from typing import List
 
 
 def get_server_path() -> str:
@@ -17,6 +18,47 @@ def get_python_path() -> str:
     return sys.executable
 
 
+def detect_installed_ides() -> List[str]:
+    home = Path.home()
+    cwd = Path.cwd()
+    detected = []
+
+    # Check Antigravity / Gemini
+    if (home / ".gemini").exists() or (cwd / ".gemini").exists() or (cwd / ".agents").exists():
+        detected.extend(["antigravity", "gemini"])
+
+    # Check Claude
+    claude_paths = [
+        home / "Library" / "Application Support" / "Claude",
+        home / ".config" / "Claude",
+        cwd / ".claude"
+    ]
+    if any(p.exists() for p in claude_paths):
+        detected.append("claude")
+
+    # Check Cursor
+    if (home / ".cursor").exists() or (cwd / ".cursor").exists():
+        detected.append("cursor")
+
+    # Check Windsurf
+    if (home / ".codeium" / "windsurf").exists() or (cwd / ".windsurf").exists():
+        detected.append("windsurf")
+
+    # Check Continue
+    if (home / ".continue").exists() or (cwd / ".continue").exists():
+        detected.append("continue")
+
+    # Check Codex
+    if (home / ".codex").exists() or (cwd / ".codex").exists():
+        detected.append("codex")
+
+    # Default to antigravity & gemini if no specific IDE folder exists
+    if not detected:
+        detected = ["antigravity", "gemini"]
+
+    return list(set(detected))
+
+
 def install_mcp_config(platform: str, project_scoped: bool = False):
     python_bin = get_python_path()
     server_script = get_server_path()
@@ -29,9 +71,25 @@ def install_mcp_config(platform: str, project_scoped: bool = False):
     home = Path.home()
     cwd = Path.cwd()
 
+    if platform == "auto":
+        target_platforms = set(detect_installed_ides())
+        scope_str = "Project" if project_scoped else "Global"
+        print(f"🔍 Auto-detected installed IDE targets ({scope_str}): {', '.join(sorted(target_platforms))}")
+    elif platform == "all":
+        target_platforms = {"antigravity", "gemini", "claude", "cursor", "windsurf", "continue", "codex"}
+    else:
+        target_platforms = {platform}
+
     configs_to_update = []
 
-    if platform in ("all", "claude"):
+    if "antigravity" in target_platforms or "gemini" in target_platforms:
+        if project_scoped:
+            configs_to_update.append(cwd / ".agents" / "mcp_config.json")
+            configs_to_update.append(cwd / ".gemini" / "mcp.json")
+        else:
+            configs_to_update.append(home / ".gemini" / "antigravity-ide" / "mcp.json")
+
+    if "claude" in target_platforms:
         if project_scoped:
             configs_to_update.append(cwd / ".claude" / "mcp.json")
         else:
@@ -43,32 +101,25 @@ def install_mcp_config(platform: str, project_scoped: bool = False):
             else:
                 configs_to_update.append(home / ".config" / "Claude" / "claude_desktop_config.json")
 
-    if platform in ("all", "cursor"):
+    if "cursor" in target_platforms:
         if project_scoped:
             configs_to_update.append(cwd / ".cursor" / "mcp.json")
         else:
             configs_to_update.append(home / ".cursor" / "mcp.json")
 
-    if platform in ("all", "gemini"):
-        if project_scoped:
-            configs_to_update.append(cwd / ".agents" / "mcp_config.json")
-            configs_to_update.append(cwd / ".gemini" / "mcp.json")
-        else:
-            configs_to_update.append(home / ".gemini" / "antigravity-ide" / "mcp.json")
-
-    if platform in ("all", "windsurf"):
+    if "windsurf" in target_platforms:
         if project_scoped:
             configs_to_update.append(cwd / ".windsurf" / "mcp.json")
         else:
             configs_to_update.append(home / ".codeium" / "windsurf" / "mcp_config.json")
 
-    if platform in ("all", "continue"):
+    if "continue" in target_platforms:
         if project_scoped:
             configs_to_update.append(cwd / ".continue" / "config.json")
         else:
             configs_to_update.append(home / ".continue" / "config.json")
 
-    if platform in ("all", "codex"):
+    if "codex" in target_platforms:
         if project_scoped:
             configs_to_update.append(cwd / ".codex" / "mcp.json")
         else:
@@ -181,9 +232,9 @@ def main():
     install_parser.add_argument("--global", dest="global_only", action="store_true", help="Force global user home profile installation only")
     install_parser.add_argument(
         "--platform",
-        choices=["all", "claude", "cursor", "gemini", "windsurf", "continue", "codex"],
-        default="all",
-        help="Target IDE platform (default: all)"
+        choices=["auto", "all", "antigravity", "gemini", "claude", "cursor", "windsurf", "continue", "codex"],
+        default="auto",
+        help="Target IDE platform (default: auto - detects installed IDEs)"
     )
 
     # Index command

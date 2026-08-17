@@ -18,20 +18,37 @@ It also cuts AI token usage by **99.9%**, making AI responses **faster and much 
 
 ## ⚡ Quickstart (1-Line Install)
 
-Run this single command in any project directory to install `grafeando`, connect it to your AI IDE, and index your codebase:
+> 💡 **Recommended Step 1**: Create and activate a Python Virtual Environment before installing to ensure zero package conflicts:
+> ```bash
+> python3 -m venv venv && source venv/bin/activate
+> ```
+
+Run this single command in your project workspace directory to install `grafeando`, auto-detect your active AI IDEs (**Antigravity**, **Gemini**, **Cursor**, **Claude**, **Windsurf**, **Continue**, **Codex**), and index your codebase graph:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/daniel72584/grafeando/main/install.sh | bash
 ```
 
 <details>
-<summary>📦 <b>Manual Installation Steps</b></summary>
+<summary>📦 <b>Manual Installation & Virtual Environment Setup</b></summary>
 
 ```bash
+# 1. Create and activate Python virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# 2. Clone repository & install package
 git clone https://github.com/daniel72584/grafeando.git
 cd grafeando
 pip install -e .
-grafeando install --project
+
+# 3. Configure MCP server for detected IDEs (or target specific platform: antigravity, cursor, claude, etc.)
+grafeando install --project --platform auto
+```
+
+Targeting a specific platform:
+```bash
+grafeando install --project --platform antigravity
 ```
 </details>
 

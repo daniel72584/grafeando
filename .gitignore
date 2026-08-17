@@ -217,7 +217,14 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Grafeando DB
-.grafeando_db/
-.grafeando_kuzu/
+# Grafeando DB & Test IDE configs
+.grafeando_db*
+.grafeando_kuzu*
+.agents/
+.claude/
+.cursor/
+.gemini/
+.windsurf/
+.continue/
+.codex/
 

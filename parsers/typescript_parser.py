@@ -131,16 +131,21 @@ class TypeScriptParser(BaseParser):
                                     if m_name_node and get_node_text(m_name_node) == "constructor":
                                         params_node = m.child_by_field_name("parameters")
                                         if params_node:
+                                            def find_type_identifiers(p_node: Node) -> List[str]:
+                                                found = []
+                                                if p_node.type == "type_identifier":
+                                                    found.append(get_node_text(p_node))
+                                                for c_node in p_node.children:
+                                                    found.extend(find_type_identifiers(c_node))
+                                                return found
+
                                             for param in params_node.children:
-                                                type_node = param.child_by_field_name("type") or param.child_by_field_name("value")
-                                                if type_node:
-                                                    for type_child in type_node.children:
-                                                        if type_child.type == "type_identifier":
-                                                            target_dep_name = get_node_text(type_child)
-                                                            res["injects"].append({
-                                                                "injector_id": class_id,
-                                                                "target_class_name": target_dep_name
-                                                            })
+                                                for target_dep_name in find_type_identifiers(param):
+                                                    if target_dep_name and target_dep_name != class_name:
+                                                        res["injects"].append({
+                                                            "injector_id": class_id,
+                                                            "target_class_name": target_dep_name
+                                                        })
 
                         traverse(body_node or child, class_stack + [class_name], func_stack)
                     else:
