@@ -54,6 +54,24 @@ grafeando install --project --platform antigravity
 
 ---
 
+---
+
+## 🌐 Interactive HTML Graph Explorer
+
+You can generate a standalone, physics-based interactive graph visualization of your codebase that opens directly in your browser:
+
+```bash
+grafeando html
+```
+
+**Features:**
+- 🎨 **Multi-Select Category Filters**: Toggle any combination of Controllers, Services, Schemas, Modules, Functions, and Components simultaneously.
+- ⚡ **Configurable Node Limits**: Default 1,000 nodes with instant dropdown scaling (250, 500, 1k, 2.5k, 5k, Unlimited) prioritized by connection degree.
+- 🔍 **Instant Search & Autocomplete**: Real-time camera zoom and neighbor highlighting for any function, class, or file.
+- 💥 **Blast Radius Focus**: One-click to isolate and highlight multi-hop dependencies (1, 2, 3 hops) while hiding the rest of the codebase.
+- 📊 **Node Inspector Drawer**: View file paths, line numbers, incoming callers, and outgoing dependencies with clickable navigation.
+
+
 ## 💬 How to use it
 
 Just chat with your AI assistant normally! For example, ask:
