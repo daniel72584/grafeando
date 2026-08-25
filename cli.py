@@ -5,6 +5,11 @@ import argparse
 from pathlib import Path
 from typing import List
 
+# Ensure local module imports work when running from any cwd
+_pkg_root = str(Path(__file__).parent.resolve())
+if _pkg_root not in sys.path:
+    sys.path.insert(0, _pkg_root)
+
 
 def get_server_path() -> str:
     current_dir = Path(__file__).parent.resolve()
@@ -169,6 +174,7 @@ Use `grafeando` to query code change blast radius and dependency relationships b
 ## Available MCP Tools
 - `index_codebase(path)`: Indexes source code, AST entities, call graphs, React components, and dependency injections into Kùzu graph DB.
 - `get_blast_radius(symbol_name, depth=3)`: Calculates impact radius for functions, components, services, or SQL tables.
+- `export_graph_html(output_file)`: Exports an interactive standalone HTML graph visualizer with multi-select filters, 1k default node limit, search, and blast radius inspector.
 """)
         print(f"✅ Installed Assistant Skill at: {skill_file}")
 
@@ -241,6 +247,18 @@ def main():
     index_parser = subparsers.add_parser("index", help="Index codebase at given directory path")
     index_parser.add_argument("path", nargs="?", default=".", help="Directory path to index (default: current directory)")
 
+    # HTML / Visualizer command
+    html_parser = subparsers.add_parser("html", help="Generate standalone interactive HTML graph visualizer")
+    html_parser.add_argument("-o", "--output", default="grafeando-graph.html", help="Output HTML file path (default: grafeando-graph.html)")
+    html_parser.add_argument("--open", action="store_true", default=True, help="Automatically open generated HTML file in default browser (default: True)")
+    html_parser.add_argument("--no-open", dest="open", action="store_false", help="Do not open browser after generating")
+
+    # Export command (alias for html)
+    export_parser = subparsers.add_parser("export", help="Export codebase graph (HTML, etc.)")
+    export_parser.add_argument("-o", "--output", default="grafeando-graph.html", help="Output file path")
+    export_parser.add_argument("--open", action="store_true", default=True, help="Automatically open generated file in browser")
+    export_parser.add_argument("--no-open", dest="open", action="store_false", help="Do not open browser after generating")
+
     # Server command
     subparsers.add_parser("server", help="Run grafeando MCP server on stdio")
 
@@ -279,6 +297,30 @@ def main():
             from server import index_codebase
         msg = index_codebase(args.path)
         print(msg)
+
+    elif args.command in ("html", "export"):
+        try:
+            from grafeando.server import get_graph_db, index_codebase
+        except ImportError:
+            from server import get_graph_db, index_codebase
+        
+        # Ensure codebase is indexed
+        db_path = Path.cwd() / ".grafeando_db"
+        if not db_path.exists():
+            print("📦 No .grafeando_db found, indexing current directory first...")
+            index_codebase(str(Path.cwd()))
+        
+        db = get_graph_db()
+        out_file = args.output or "grafeando-graph.html"
+        out_path = db.export_graph_html(out_file)
+        print(f"✅ Generated interactive graph explorer at: {out_path}")
+        
+        if getattr(args, "open", True):
+            try:
+                import webbrowser
+                webbrowser.open(f"file://{out_path}")
+            except Exception:
+                pass
 
     elif args.command == "server":
         try:

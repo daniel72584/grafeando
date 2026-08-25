@@ -1,6 +1,11 @@
 import os
 import sys
+from pathlib import Path
 from typing import Dict, Any
+
+_pkg_root = str(Path(__file__).parent.resolve())
+if _pkg_root not in sys.path:
+    sys.path.insert(0, _pkg_root)
 
 try:
     from mcp.server.fastmcp import FastMCP
@@ -94,6 +99,22 @@ def get_blast_radius(symbol_name: str, depth: int = 3) -> Dict[str, Any]:
         "dependent_injections_count": len(injections),
         "dependent_injections": injections
     }
+
+
+@mcp.tool()
+def export_graph_html(output_file: str = "grafeando-graph.html") -> str:
+    """
+    Exports the indexed AST code graph into a standalone interactive HTML visualizer
+    with physics simulation, multi-select category filters, node limit controls (1k default),
+    instant search, and node neighborhood / blast radius inspector.
+    """
+    db = get_graph_db()
+    cwd_db = os.path.abspath(".grafeando_db")
+    if os.path.exists(cwd_db) and os.path.abspath(db.db_path) != cwd_db:
+        db.reset_database(cwd_db)
+
+    out_path = db.export_graph_html(output_file)
+    return f"Successfully generated interactive HTML graph explorer at: {out_path}"
 
 
 def main():
