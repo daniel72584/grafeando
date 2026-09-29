@@ -1,30 +1,27 @@
 import os
 from typing import Dict, List, Any, Optional
-import tree_sitter_typescript as tsts
+import tree_sitter_javascript as tsjs
 from tree_sitter import Language, Parser, Node
 from parsers.base import BaseParser
 
 
-class TypeScriptParser(BaseParser):
+class JavaScriptParser(BaseParser):
     def __init__(self):
-        self.ts_language = Language(tsts.language_typescript())
-        self.tsx_language = Language(tsts.language_tsx())
-        self.ts_parser = Parser(self.ts_language)
-        self.tsx_parser = Parser(self.tsx_language)
+        self.js_language = Language(tsjs.language())
+        self.js_parser = Parser(self.js_language)
 
     def parse_file(self, file_path: str, code_bytes: bytes) -> Dict[str, List[Dict[str, Any]]]:
         res = self.empty_result()
         rel_path = os.path.relpath(file_path)
-        is_tsx = file_path.endswith(".tsx") or file_path.endswith(".jsx")
-        parser = self.tsx_parser if is_tsx else self.ts_parser
-        lang_label = "tsx" if is_tsx else "typescript"
+        is_jsx = file_path.endswith(".jsx") or file_path.endswith(".cjsx") or file_path.endswith(".mjsx")
+        lang_label = "jsx" if is_jsx else "javascript"
 
         res["files"].append({"id": rel_path, "path": rel_path, "language": lang_label})
 
         try:
-            tree = parser.parse(code_bytes)
+            tree = self.js_parser.parse(code_bytes)
         except Exception as e:
-            print(f"Error parsing TS/JS file {file_path}: {e}")
+            print(f"Error parsing JavaScript/JSX file {file_path}: {e}")
             return res
 
         root_node = tree.root_node
@@ -64,6 +61,47 @@ class TypeScriptParser(BaseParser):
                         return get_node_text(gc)
             return None
 
+        def extract_func_name(node: Node) -> Optional[str]:
+            name_node = node.child_by_field_name("name")
+            if name_node:
+                return get_node_text(name_node)
+
+            parent = node.parent
+            if not parent:
+                return None
+
+            if parent.type == "variable_declarator":
+                var_name = parent.child_by_field_name("name")
+                if var_name:
+                    return get_node_text(var_name)
+            elif parent.type == "pair":
+                key_node = parent.child_by_field_name("key")
+                if key_node:
+                    return get_node_text(key_node)
+            elif parent.type == "assignment_expression":
+                left = parent.child_by_field_name("left")
+                if left:
+                    if left.type == "member_expression":
+                        prop = left.child_by_field_name("property")
+                        if prop:
+                            return get_node_text(prop)
+                    return get_node_text(left)
+            elif parent.type == "arguments" and parent.parent and parent.parent.type == "call_expression":
+                call_expr = parent.parent
+                if call_expr.parent and call_expr.parent.type == "variable_declarator":
+                    var_name = call_expr.parent.child_by_field_name("name")
+                    if var_name:
+                        return get_node_text(var_name)
+                elif call_expr.parent and call_expr.parent.type == "assignment_expression":
+                    left = call_expr.parent.child_by_field_name("left")
+                    if left:
+                        if left.type == "member_expression":
+                            prop = left.child_by_field_name("property")
+                            if prop:
+                                return get_node_text(prop)
+                        return get_node_text(left)
+            return None
+
         def traverse(node: Node, class_stack: List[str], func_stack: List[Dict[str, Any]], pending_decorators: List[str] = None):
             if pending_decorators is None:
                 pending_decorators = []
@@ -86,25 +124,64 @@ class TypeScriptParser(BaseParser):
                     pending_decorators = []
 
                 elif child.type == "export_statement":
-                    # Traverse export statement passing any collected decorators
                     traverse(child, class_stack, func_stack, pending_decorators)
                     pending_decorators = []
 
-                elif child.type == "class_declaration":
+                elif child.type in ("class_declaration", "class"):
                     name_node = child.child_by_field_name("name")
-                    if name_node:
-                        class_name = get_node_text(name_node)
+                    class_name = get_node_text(name_node) if name_node else None
+
+                    if not class_name and child.parent and child.parent.type == "variable_declarator":
+                        var_name_node = child.parent.child_by_field_name("name")
+                        if var_name_node:
+                            class_name = get_node_text(var_name_node)
+
+                    if class_name:
                         class_id = f"{rel_path}::{class_name}"
                         decorators = list(set(pending_decorators + extract_decorator_names(child.children)))
                         pending_decorators = []
 
                         category = "class"
-                        if "Controller" in decorators:
+                        if "Controller" in decorators or class_name.endswith("Controller"):
                             category = "controller"
                         elif "Injectable" in decorators or "Service" in class_name:
                             category = "service"
-                        elif "Module" in decorators:
+                        elif "Module" in decorators or class_name.endswith("Module"):
                             category = "module"
+
+                        # Check class heritage for extends / implements
+                        for c in child.children:
+                            if c.type == "class_heritage":
+                                for h_child in c.children:
+                                    if h_child.type in ("identifier", "member_expression"):
+                                        base_name = get_node_text(h_child)
+                                        if base_name and base_name != "extends":
+                                            res["implements"].append({
+                                                "class_id": class_id,
+                                                "interface_name": base_name
+                                            })
+                                            if base_name in ("Component", "PureComponent", "React.Component", "React.PureComponent"):
+                                                category = "component"
+                                    elif h_child.type in ("extends_clause", "extends"):
+                                        for sub_c in h_child.children:
+                                            if sub_c.type in ("identifier", "member_expression"):
+                                                base_name = get_node_text(sub_c)
+                                                if base_name and base_name != "extends":
+                                                    res["implements"].append({
+                                                        "class_id": class_id,
+                                                        "interface_name": base_name
+                                                    })
+                                                    if base_name in ("Component", "PureComponent", "React.Component", "React.PureComponent"):
+                                                        category = "component"
+                                    elif h_child.type == "implements_clause":
+                                        for iface_node in h_child.children:
+                                            if iface_node.type in ("type_identifier", "generic_type", "identifier"):
+                                                iface_name = get_node_text(iface_node).split("<")[0].strip()
+                                                if iface_name and iface_name != "implements":
+                                                    res["implements"].append({
+                                                        "class_id": class_id,
+                                                        "interface_name": iface_name
+                                                    })
 
                         res["classes"].append({
                             "id": class_id,
@@ -121,58 +198,14 @@ class TypeScriptParser(BaseParser):
                                 "file_path": rel_path
                             })
 
-                        # Extract interfaces implemented
-                        for c in child.children:
-                            if c.type == "class_heritage":
-                                for h_child in c.children:
-                                    if h_child.type == "implements_clause":
-                                        for iface_node in h_child.children:
-                                            if iface_node.type in ("type_identifier", "generic_type"):
-                                                iface_name = get_node_text(iface_node).split("<")[0].strip()
-                                                if iface_name and iface_name != "implements":
-                                                    res["implements"].append({
-                                                        "class_id": class_id,
-                                                        "interface_name": iface_name
-                                                    })
-
-                        # Extract NestJS Constructor Dependency Injection
                         body_node = child.child_by_field_name("body")
-                        if body_node:
-                            for m in body_node.children:
-                                if m.type == "method_definition":
-                                    m_name_node = m.child_by_field_name("name")
-                                    if m_name_node and get_node_text(m_name_node) == "constructor":
-                                        params_node = m.child_by_field_name("parameters")
-                                        if params_node:
-                                            def find_type_identifiers(p_node: Node) -> List[str]:
-                                                found = []
-                                                if p_node.type == "type_identifier":
-                                                    found.append(get_node_text(p_node))
-                                                for c_node in p_node.children:
-                                                    found.extend(find_type_identifiers(c_node))
-                                                return found
-
-                                            for param in params_node.children:
-                                                for target_dep_name in find_type_identifiers(param):
-                                                    if target_dep_name and target_dep_name != class_name:
-                                                        res["injects"].append({
-                                                            "injector_id": class_id,
-                                                            "target_class_name": target_dep_name
-                                                        })
-
                         traverse(body_node or child, class_stack + [class_name], func_stack)
                     else:
                         traverse(child, class_stack, func_stack)
                     pending_decorators = []
 
-                elif child.type in ("function_declaration", "method_definition", "arrow_function"):
-                    name_node = child.child_by_field_name("name")
-                    func_name = get_node_text(name_node) if name_node else None
-
-                    if not func_name and child.parent and child.parent.type == "variable_declarator":
-                        var_name_node = child.parent.child_by_field_name("name")
-                        if var_name_node:
-                            func_name = get_node_text(var_name_node)
+                elif child.type in ("function_declaration", "generator_function_declaration", "method_definition", "arrow_function", "function_expression"):
+                    func_name = extract_func_name(child)
 
                     if func_name:
                         qualified_name = f"{class_stack[-1]}.{func_name}" if class_stack else func_name
@@ -185,9 +218,9 @@ class TypeScriptParser(BaseParser):
                         category = "function"
                         if class_stack:
                             category = "method"
-                        elif func_name.startswith("use") and func_name[3:4].isupper():
+                        elif func_name.startswith("use") and len(func_name) > 3 and func_name[3].isupper():
                             category = "hook"
-                        elif func_name[0].isupper() or is_tsx:
+                        elif func_name[0].isupper() or is_jsx:
                             category = "component"
 
                         if any(d in ("Get", "Post", "Put", "Delete", "Patch") for d in decorators):
@@ -236,16 +269,29 @@ class TypeScriptParser(BaseParser):
                     traverse(child, class_stack, func_stack)
 
                 elif child.type == "call_expression":
-                    if func_stack:
+                    func_node = child.child_by_field_name("function")
+                    callee_name = extract_callee_name(func_node) if func_node else None
+
+                    # Extract CommonJS require('...') or dynamic import('...') as imports
+                    if callee_name in ("require", "import"):
+                        args_node = child.child_by_field_name("arguments")
+                        if args_node and args_node.children:
+                            for arg in args_node.children:
+                                if arg.type in ("string", "template_string"):
+                                    mod_name = get_node_text(arg).strip("'\"`")
+                                    res["imports"].append({
+                                        "file_path": rel_path,
+                                        "imported_module": mod_name
+                                    })
+                                    break
+
+                    if func_stack and callee_name:
                         caller_func = func_stack[-1]
-                        func_node = child.child_by_field_name("function")
-                        if func_node:
-                            callee_name = extract_callee_name(func_node)
-                            if callee_name:
-                                res["calls"].append({
-                                    "caller_id": caller_func["id"],
-                                    "callee_name": callee_name
-                                })
+                        res["calls"].append({
+                            "caller_id": caller_func["id"],
+                            "callee_name": callee_name
+                        })
+
                     traverse(child, class_stack, func_stack)
 
                 else:

@@ -1,7 +1,7 @@
 import os
 from typing import Dict, List, Any
 from parsers import (
-    PythonParser, TypeScriptParser, GoParser, JavaParser,
+    PythonParser, TypeScriptParser, JavaScriptParser, GoParser, JavaParser,
     JsonParser, SqlParser, MarkdownParser, CsvParser, PdfParser
 )
 
@@ -12,8 +12,10 @@ class CodeParser:
             ".py": PythonParser(),
             ".ts": TypeScriptParser(),
             ".tsx": TypeScriptParser(),
-            ".js": TypeScriptParser(),
-            ".jsx": TypeScriptParser(),
+            ".js": JavaScriptParser(),
+            ".jsx": JavaScriptParser(),
+            ".mjs": JavaScriptParser(),
+            ".cjs": JavaScriptParser(),
             ".go": GoParser(),
             ".java": JavaParser(),
             ".json": JsonParser(),

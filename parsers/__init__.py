@@ -1,6 +1,7 @@
 from parsers.base import BaseParser
 from parsers.python_parser import PythonParser
 from parsers.typescript_parser import TypeScriptParser
+from parsers.javascript_parser import JavaScriptParser
 from parsers.go_parser import GoParser
 from parsers.java_parser import JavaParser
 from parsers.json_parser import JsonParser
@@ -13,6 +14,7 @@ __all__ = [
     "BaseParser",
     "PythonParser",
     "TypeScriptParser",
+    "JavaScriptParser",
     "GoParser",
     "JavaParser",
     "JsonParser",
