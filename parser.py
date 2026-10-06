@@ -26,7 +26,7 @@ class CodeParser:
         }
         self.ignored_dirs = {
             "venv", "env", "__pycache__", "build", "dist",
-            "node_modules", ".next", "target", "vendor", ".git", ".agents", "real_test_repos",
+            "node_modules", ".next", "target", "vendor", ".git", "real_test_repos",
             "graphify-out", "coverage"
         }
 
@@ -98,7 +98,7 @@ class CodeParser:
         for dirpath, dirnames, filenames in os.walk(abs_root):
             dirnames[:] = [
                 d for d in dirnames
-                if not d.startswith(".") and d not in all_ignored
+                if (d == ".agents" or not d.startswith(".")) and d not in all_ignored
             ]
             for f in filenames:
                 ext = os.path.splitext(f)[1].lower()
