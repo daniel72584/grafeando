@@ -2,9 +2,22 @@
 
 > **A map of your codebase for your AI assistant.**
 
-`grafeando` helps AI coding tools (like **Cursor**, **Claude**, **Windsurf**) understand how all your files and functions connect to each other.
+`grafeando` helps AI coding tools (like **Cursor**, **Claude**, **Windsurf**, **Antigravity**) understand how all your files and functions connect to each other.
 
 ---
+
+## The Eternal Problem of Context
+
+No matter how large an AI context window gets, it will never be enough. The more raw information we put into it, the more noise, confusion, and token costs we get, creating an endless loop.
+
+A better solution is to give the AI a persistent source of truth where it can look up information (architecture, problems, code, statements) on demand. Instead of forcing the agent to scan and reload the entire workspace in every new session, we index it once so every session already knows how everything connects.
+
+To make this memory lightweight, fast, and 100% local without relying on other tools, we use an **AST (Abstract Syntax Tree)**. We parse the repository into a relationship graph and expose it through an **MCP server**.
+
+Now, when you give the agent a prompt like:
+> *"In the login controller, add this validation and update `user.tsx`"*
+
+The agent doesn't need to load dozens of files into its context window. It just queries the graph, traces the exact dependencies and callers needed, and edits your code safely.
 
 ## ❓ What problem does it solve?
 
@@ -128,6 +141,11 @@ When you run `grafeando install --project`, Grafeando automatically installs a G
 </details>
 
 ---
+
+## Possible Improvements:
+- **Use a dedicated graph database (like Neo4j)**: With an external graph database service, searching, expanding, visualizing, and sharing across multiple repositories would be easier. But managing all that extra infrastructure for a single project is complete overkill.
+- **Use embeddings**: Mixing vector embeddings with graph relationships would give a big advantage over purely static AST (Abstract Syntax Tree) parsing. However, it adds cost and complexity. It could be worth it if you have a single source of truth across many repositories, but not for a quick local setup.
+- **Create specific parsers / rules**: Using LLMs to infer relationships—plus custom schemas and rules like YAML—would reduce hallucinations and give sharper context. The problem is the maintenance headache for every rule and stack. The tradeoff between being a simple generic tool for common repos versus a heavy customized solution for everything is something I don't want to take on right now.
 
 ## 📄 License
 
