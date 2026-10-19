@@ -1,4 +1,5 @@
 from parsers.base import BaseParser
+from parsers.tree_sitter_base import TreeSitterBaseParser, TraversalContext
 from parsers.python_parser import PythonParser
 from parsers.typescript_parser import TypeScriptParser
 from parsers.javascript_parser import JavaScriptParser
@@ -12,6 +13,8 @@ from parsers.pdf_parser import PdfParser
 
 __all__ = [
     "BaseParser",
+    "TreeSitterBaseParser",
+    "TraversalContext",
     "PythonParser",
     "TypeScriptParser",
     "JavaScriptParser",
