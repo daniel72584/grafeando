@@ -65,13 +65,21 @@ def detect_installed_ides() -> List[str]:
 
 
 def install_mcp_config(platform: str, project_scoped: bool = False):
+    import shutil
+
     python_bin = get_python_path()
     server_script = get_server_path()
 
-    mcp_entry = {
-        "command": python_bin,
-        "args": [server_script]
-    }
+    if project_scoped or shutil.which("grafeando"):
+        mcp_entry = {
+            "command": "grafeando",
+            "args": ["server"]
+        }
+    else:
+        mcp_entry = {
+            "command": python_bin,
+            "args": [server_script]
+        }
 
     home = Path.home()
     cwd = Path.cwd()
