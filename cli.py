@@ -65,13 +65,21 @@ def detect_installed_ides() -> List[str]:
 
 
 def install_mcp_config(platform: str, project_scoped: bool = False):
+    import shutil
+
     python_bin = get_python_path()
     server_script = get_server_path()
 
-    mcp_entry = {
-        "command": python_bin,
-        "args": [server_script]
-    }
+    if project_scoped or shutil.which("grafeando"):
+        mcp_entry = {
+            "command": "grafeando",
+            "args": ["server"]
+        }
+    else:
+        mcp_entry = {
+            "command": python_bin,
+            "args": [server_script]
+        }
 
     home = Path.home()
     cwd = Path.cwd()
@@ -172,7 +180,7 @@ description: Local multi-language graph context engine for blast radius analysis
 Use `grafeando` to query code change blast radius and dependency relationships before editing files.
 
 ## Available MCP Tools
-- `index_codebase(path)`: Indexes source code, AST entities, call graphs, React components, and dependency injections into Kùzu graph DB.
+- `index_codebase(path)`: Indexes source code, AST entities, call graphs, React components, and dependency injections into LadybugDB graph database.
 - `get_blast_radius(symbol_name, depth=3)`: Calculates impact radius for functions, components, services, or SQL tables.
 - `export_graph_html(output_file)`: Exports an interactive standalone HTML graph visualizer with multi-select filters, 1k default node limit, search, and blast radius inspector.
 """)
@@ -223,6 +231,55 @@ fi
             print(f"⚠️ Could not install git post-commit hook: {e}")
 
 
+def migrate_environment_and_db(platform: str = "auto", project_scoped: bool = False):
+    """
+    Migrates Grafeando installation from legacy Kùzu to LadybugDB:
+    1. Upgrades Python environment package from kuzu to ladybug.
+    2. Re-indexes / regenerates the .grafeando_db using LadybugDB.
+    3. Reinstalls and refreshes MCP server configurations across IDEs.
+    4. Updates SKILL.md and AGENTS.md rules.
+    """
+    print("🐞 Starting Grafeando migration from Kùzu to LadybugDB...")
+
+    # Step 1: Upgrading python dependency
+    python_bin = get_python_path()
+    print(f"📦 Upgrading package dependency to ladybug using {python_bin}...")
+    try:
+        import subprocess
+        subprocess.run([python_bin, "-m", "pip", "install", "--upgrade", "ladybug>=0.22.0"], check=False)
+    except Exception as e:
+        print(f"⚠️ Pip upgrade notice: {e}")
+
+    # Step 2: Refreshing MCP config across IDEs
+    print("🔧 Updating MCP configuration across detected IDE platforms...")
+    install_mcp_config(platform=platform, project_scoped=project_scoped)
+
+    # Step 3: Cleanly regenerate local database with LadybugDB
+    cwd = Path.cwd()
+    db_path = cwd / ".grafeando_db"
+    if db_path.exists():
+        print(f"🔄 Resetting legacy database at {db_path} for LadybugDB...")
+        try:
+            if db_path.is_dir():
+                import shutil
+                shutil.rmtree(db_path, ignore_errors=True)
+            else:
+                db_path.unlink(missing_ok=True)
+        except Exception as e:
+            print(f"⚠️ Could not reset old database: {e}")
+
+    print("⚡ Re-indexing codebase with LadybugDB graph context engine...")
+    try:
+        try:
+            from grafeando.server import index_codebase
+        except ImportError:
+            from server import index_codebase
+        msg = index_codebase(str(cwd))
+        print(f"✅ {msg}")
+    except Exception as e:
+        print(f"⚠️ Re-indexing notice: {e}")
+
+    print("\n✨ Migration to LadybugDB complete! Grafeando MCP server is up to date and active.")
 
 
 def main():
@@ -237,6 +294,16 @@ def main():
     install_parser.add_argument("--project", action="store_true", help="Force project-scoped installation in current workspace")
     install_parser.add_argument("--global", dest="global_only", action="store_true", help="Force global user home profile installation only")
     install_parser.add_argument(
+        "--platform",
+        choices=["auto", "all", "antigravity", "gemini", "claude", "cursor", "windsurf", "continue", "codex"],
+        default="auto",
+        help="Target IDE platform (default: auto - detects installed IDEs)"
+    )
+
+    # Migrate command (from Kùzu to LadybugDB)
+    migrate_parser = subparsers.add_parser("migrate", help="Migrate Grafeando from legacy Kùzu to LadybugDB")
+    migrate_parser.add_argument("--project", action="store_true", help="Force project-scoped migration in current workspace")
+    migrate_parser.add_argument(
         "--platform",
         choices=["auto", "all", "antigravity", "gemini", "claude", "cursor", "windsurf", "continue", "codex"],
         default="auto",
@@ -289,6 +356,11 @@ def main():
                 print(f"⚠️ Initial indexing warning: {e}")
 
         print("\n✨ Grafeando installation complete! Open your AI assistant IDE and ask questions or use get_blast_radius.")
+
+    elif args.command == "migrate":
+        cwd = Path.cwd()
+        is_workspace = args.project or any((cwd / item).exists() for item in [".git", "package.json", "setup.py", "go.mod", "pom.xml", "Cargo.toml"])
+        migrate_environment_and_db(platform=args.platform, project_scoped=is_workspace)
 
     elif args.command == "index":
         try:

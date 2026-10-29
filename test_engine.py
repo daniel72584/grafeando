@@ -19,7 +19,7 @@ def main():
     print(f"Decorators:         {len(res['decorators'])}")
 
     print("\n==================================================")
-    print(" 2. Ingesting Multi-Language Codebase into Kùzu   ")
+    print(" 2. Ingesting Multi-Language Codebase into LadybugDB ")
     print("==================================================")
     ge = GraphEngine()
     ge.reset_database()

@@ -1,9 +1,9 @@
 {
   "mcpServers": {
-    "code-context-engine": {
-      "command": "/Users/macbook/Documents/repos/grafeando/venv/bin/python",
+    "grafeando": {
+      "command": "grafeando",
       "args": [
-        "/Users/macbook/Documents/repos/grafeando/server.py"
+        "server"
       ]
     }
   }

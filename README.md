@@ -113,7 +113,7 @@ Your AI uses Grafeando automatically in the background to find the answer.
 You can copy and paste these prompts directly into your AI Assistant chat:
 
 ### 1. 🚀 Master Setup Prompt (Run Once Per Repo)
-> 💬 *"Set up Grafeando on this repository: run `grafeando install --project`, append the `## grafeando` rule to `AGENTS.md`, add `.grafeando_kuzu/` to `.gitignore`, and run `index_codebase('.')` to index the codebase."*
+> 💬 *"Set up Grafeando on this repository: run `grafeando install --project`, append the `## grafeando` rule to `AGENTS.md`, add `.grafeando_db` to `.gitignore`, and run `index_codebase('.')` to index the codebase."*
 
 ### 2. 🛡️ Safe Code Editing Prompt (Preventing Breakages)
 > 💬 *"Before making any changes to `[Function/Class/File Name]`, check its blast radius using `get_blast_radius` to see all upstream callers and downstream dependencies. Ensure no breaking changes are introduced."*

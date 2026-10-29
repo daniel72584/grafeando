@@ -1,9 +1,9 @@
 {
   "mcpServers": {
     "grafeando": {
-      "command": "/Users/macbook/Documents/repos/grafeando/venv/bin/python",
+      "command": "grafeando",
       "args": [
-        "/Users/macbook/Documents/repos/grafeando/server.py"
+        "server"
       ]
     }
   }
