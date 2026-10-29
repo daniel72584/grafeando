@@ -5,6 +5,12 @@
       "args": [
         "/Users/macbook/Documents/repos/grafeando/server.py"
       ]
+    },
+    "grafeando": {
+      "command": "/Users/macbook/Documents/repos/grafeando/.venv/bin/python",
+      "args": [
+        "/Users/macbook/Documents/repos/grafeando/server.py"
+      ]
     }
   }
 }

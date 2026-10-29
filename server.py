@@ -127,7 +127,7 @@ def index_codebase(path: str = ".") -> str:
     Parses source files in the given directory across supported languages:
     Python (.py), TypeScript/JavaScript (.ts, .tsx, .js, .jsx - NestJS & React),
     Go (.go), Java (.java), SQL (.sql), Markdown (.md), CSV (.csv), PDF (.pdf), and JSON (.json).
-    Ingests extracted entities, call graphs, component render trees, and dependency injections into Kùzu.
+    Ingests extracted entities, call graphs, component render trees, and dependency injections into LadybugDB.
     Automatically verifies weekly repository freshness against remote upstream.
     """
     abs_path = os.path.abspath(path)
@@ -159,7 +159,7 @@ def index_codebase(path: str = ".") -> str:
     msg = (
         f"Successfully indexed codebase at '{abs_path}'. "
         f"Ingested {num_files} files, {num_classes} classes/structs, {num_functions} functions/methods/components, "
-        f"{num_calls} calls, {num_renders} React JSX renders, and {num_injects} DI injections into Kùzu graph."
+        f"{num_calls} calls, {num_renders} React JSX renders, and {num_injects} DI injections into LadybugDB graph."
     )
     if sync_notice:
         msg += f"\n\n{sync_notice}"

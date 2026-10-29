@@ -1,13 +1,19 @@
 import os
 import json
 from typing import Dict, List, Any
-import kuzu
+try:
+    import ladybug as lb
+except ImportError:
+    try:
+        import kuzu as lb
+    except ImportError:
+        raise ImportError("Ladybug graph engine not found. Please run 'pip install ladybug'.")
 
 
 class GraphEngine:
     def __init__(self, db_path: str = ""):
         """
-        Initializes Kùzu graph database. If db_path is empty, defaults to .grafeando_db in working dir or GRAFEANDO_DB_PATH.
+        Initializes LadybugDB graph database. If db_path is empty, defaults to .grafeando_db in working dir or GRAFEANDO_DB_PATH.
         """
         if not db_path:
             cwd = os.getcwd()
@@ -18,7 +24,7 @@ class GraphEngine:
         self._init_db()
 
     def _init_db(self):
-        if self.db_path:
+        if self.db_path and self.db_path != ":memory:":
             db_dir = os.path.dirname(self.db_path)
             if db_dir and not os.path.exists(db_dir):
                 try:
@@ -26,13 +32,22 @@ class GraphEngine:
                 except Exception:
                     pass
             try:
-                self.db = kuzu.Database(self.db_path)
+                self.db = lb.Database(self.db_path)
             except Exception:
-                self.db_path = ":memory:"
-                self.db = kuzu.Database(":memory:")
+                # If opening legacy Kùzu or incompatible database format fails, reset file cleanly
+                try:
+                    if os.path.isdir(self.db_path):
+                        import shutil
+                        shutil.rmtree(self.db_path, ignore_errors=True)
+                    elif os.path.isfile(self.db_path):
+                        os.remove(self.db_path)
+                    self.db = lb.Database(self.db_path)
+                except Exception:
+                    self.db_path = ":memory:"
+                    self.db = lb.Database(":memory:")
         else:
-            self.db = kuzu.Database(":memory:")
-        self.conn = kuzu.Connection(self.db)
+            self.db = lb.Database(":memory:")
+        self.conn = lb.Connection(self.db)
         self._create_schema()
 
     def _create_schema(self):
@@ -65,7 +80,7 @@ class GraphEngine:
 
     def ingest_parse_data(self, parse_data: Dict[str, List[Dict[str, Any]]]):
         """
-        Ingests extracted files, classes, functions, calls, injects, renders, implements, and decorators into Kùzu.
+        Ingests extracted files, classes, functions, calls, injects, renders, implements, and decorators into LadybugDB.
         """
         # Build in-memory lookup maps for instant PK resolution
         func_map = {}

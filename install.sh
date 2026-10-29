@@ -22,11 +22,11 @@ else
     echo "💡 Tip: Creating a virtual environment (python3 -m venv venv && source venv/bin/activate) is recommended before installing."
 fi
 
-# 3. Install grafeando via pip
-echo "📦 Installing grafeando package from GitHub..."
-$PYTHON_CMD -m pip install --quiet --upgrade git+https://github.com/daniel72584/grafeando.git
+# 3. Install/Upgrade ladybug & grafeando via pip
+echo "📦 Installing LadybugDB & grafeando package from GitHub..."
+$PYTHON_CMD -m pip install --quiet --upgrade "ladybug>=0.22.0" git+https://github.com/daniel72584/grafeando.git
 
-# 4. Run grafeando install for project workspace & global IDEs
+# 4. Run grafeando install/migrate for project workspace & global IDEs
 if command -v grafeando >/dev/null 2>&1; then
     GRAFEANDO_BIN="grafeando"
 else
@@ -36,9 +36,15 @@ fi
 echo "🚀 Configuring MCP server for detected AI IDEs (Antigravity, Gemini, Claude, Cursor, Windsurf, Continue, Codex)..."
 $GRAFEANDO_BIN install --project --platform auto
 
-echo "⚡ Indexing workspace codebase graph..."
-$GRAFEANDO_BIN index .
+# If legacy .grafeando_db exists, trigger migration to refresh DB schema under LadybugDB
+if [ -f ".grafeando_db" ] || [ -d ".grafeando_db" ]; then
+    echo "🔄 Refreshing workspace database with LadybugDB engine..."
+    $GRAFEANDO_BIN migrate --project --platform auto
+else
+    echo "⚡ Indexing workspace codebase graph..."
+    $GRAFEANDO_BIN index .
+fi
 
 echo ""
-echo "✨ Grafeando successfully installed and ready!"
-echo "AI Assistant MCP tools active: index_codebase, get_blast_radius"
+echo "✨ Grafeando (powered by LadybugDB) successfully installed and ready!"
+echo "AI Assistant MCP tools active: index_codebase, get_blast_radius, export_graph_html"

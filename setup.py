@@ -9,7 +9,7 @@ setup(
     py_modules=["server", "parser", "graph_engine", "cli"],
     install_requires=[
         "mcp>=1.0.0",
-        "kuzu>=0.4.0",
+        "ladybug>=0.22.0",
         "tree-sitter>=0.22.0",
         "tree-sitter-python>=0.21.0",
         "tree-sitter-typescript>=0.23.0",
