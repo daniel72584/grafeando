@@ -182,7 +182,7 @@ Use `grafeando` to query code change blast radius and dependency relationships b
 ## Available MCP Tools
 - `index_codebase(path)`: Indexes source code, AST entities, call graphs, React components, and dependency injections into LadybugDB graph database.
 - `get_blast_radius(symbol_name, depth=3)`: Calculates impact radius for functions, components, services, or SQL tables.
-- `export_graph_html(output_file)`: Exports an interactive standalone HTML graph visualizer with multi-select filters, 1k default node limit, search, and blast radius inspector.
+- `export_graph_html(output_file)`: Exports an interactive standalone HTML graph visualizer with multi-select filters, 300 random node default limit with Show More pagination, search, and blast radius inspector.
 """)
         print(f"✅ Installed Assistant Skill at: {skill_file}")
 

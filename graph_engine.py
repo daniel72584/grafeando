@@ -1,5 +1,6 @@
 import os
 import json
+import random
 from typing import Dict, List, Any
 try:
     import ladybug as lb
@@ -376,8 +377,8 @@ class GraphEngine:
     def export_graph_html(self, output_file: str = "grafeando-graph.html") -> str:
         """
         Exports the entire graph database into a standalone interactive HTML visualizer
-        with physics simulation, multi-select category filters, node limit selector (1k default),
-        instant search, and node neighborhood / blast radius inspector.
+        with physics simulation, multi-select category filters, random 300-node default limit
+        with Show More pagination, instant search, and node neighborhood / blast radius inspector.
         """
         nodes = []
         node_ids = set()
@@ -493,7 +494,7 @@ class GraphEngine:
         for n in nodes:
             n["degree"] = node_degree.get(n["id"], 0)
 
-        nodes.sort(key=lambda x: x["degree"], reverse=True)
+        random.shuffle(nodes)
 
         nodes_json = json.dumps(nodes)
         edges_json = json.dumps(edges)
@@ -913,13 +914,14 @@ class GraphEngine:
       <div class="limit-control">
         <span>Max Nodes:</span>
         <select class="limit-select" id="limit-select">
-          <option value="250">250 nodes</option>
-          <option value="500">500 nodes</option>
-          <option value="1000" selected>1,000 nodes (Default)</option>
+          <option value="300" selected>300 nodes (Default)</option>
+          <option value="600">600 nodes</option>
+          <option value="1000">1,000 nodes</option>
           <option value="2500">2,500 nodes</option>
           <option value="5000">5,000 nodes</option>
           <option value="999999">All / Unlimited</option>
         </select>
+        <button class="btn" id="btn-show-more" title="Show 300 more random nodes">➕ Show More (+300)</button>
       </div>
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
@@ -985,6 +987,14 @@ class GraphEngine:
     const rawNodes = {nodes_json};
     const rawEdges = {edges_json};
 
+    function shuffleArray(arr) {{
+      for (let i = arr.length - 1; i > 0; i--) {{
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }}
+    }}
+    shuffleArray(rawNodes);
+
     const colorMap = {{
       controller: {{ bg: '#8b5cf6', border: '#a78bfa', text: '#ffffff' }},
       service:    {{ bg: '#0284c7', border: '#38bdf8', text: '#ffffff' }},
@@ -1005,7 +1015,8 @@ class GraphEngine:
     }});
 
     let selectedCategories = new Set(allCategories);
-    let currentNodeLimit = 1000;
+    const NODE_PAGE_STEP = 300;
+    let currentNodeLimit = NODE_PAGE_STEP;
     const edgeTypes = {{ CALLS: true, INJECTS: true, CONTAINS: true }};
 
     const nodesDataSet = new vis.DataSet([]);
@@ -1090,6 +1101,21 @@ class GraphEngine:
       document.getElementById('stat-visible-nodes').innerText = formattedNodes.length.toLocaleString();
       document.getElementById('stat-total-nodes').innerText = rawNodes.length.toLocaleString();
 
+      const btnShowMore = document.getElementById('btn-show-more');
+      if (btnShowMore) {{
+        const remaining = Math.max(0, filteredByCategory.length - limitedNodes.length);
+        if (remaining > 0) {{
+          const nextBatch = Math.min(NODE_PAGE_STEP, remaining);
+          btnShowMore.disabled = false;
+          btnShowMore.style.opacity = '1';
+          btnShowMore.textContent = `➕ Show More (+${{nextBatch.toLocaleString()}})`;
+        }} else {{
+          btnShowMore.disabled = true;
+          btnShowMore.style.opacity = '0.5';
+          btnShowMore.textContent = 'All Shown';
+        }}
+      }}
+
       if (fit) {{
         network.fit({{ animation: {{ duration: 500, easingFunction: 'easeInOutQuad' }} }});
       }}
@@ -1145,9 +1171,34 @@ class GraphEngine:
       applyFiltersAndRender(true);
     }};
 
-    document.getElementById('limit-select').addEventListener('change', (e) => {{
-      currentNodeLimit = parseInt(e.target.value, 10) || 1000;
+    const limitSelect = document.getElementById('limit-select');
+    function syncLimitSelect(limitVal) {{
+      const valStr = String(limitVal);
+      const existing = Array.from(limitSelect.options).find(opt => opt.value === valStr);
+      if (existing) {{
+        limitSelect.value = valStr;
+      }} else {{
+        let customOpt = document.getElementById('limit-custom-option');
+        if (!customOpt) {{
+          customOpt = document.createElement('option');
+          customOpt.id = 'limit-custom-option';
+          limitSelect.insertBefore(customOpt, limitSelect.lastElementChild);
+        }}
+        customOpt.value = valStr;
+        customOpt.textContent = `${{limitVal.toLocaleString()}} nodes`;
+        limitSelect.value = valStr;
+      }}
+    }}
+
+    limitSelect.addEventListener('change', (e) => {{
+      currentNodeLimit = parseInt(e.target.value, 10) || NODE_PAGE_STEP;
       applyFiltersAndRender(true);
+    }});
+
+    document.getElementById('btn-show-more').addEventListener('click', () => {{
+      currentNodeLimit += NODE_PAGE_STEP;
+      syncLimitSelect(currentNodeLimit);
+      applyFiltersAndRender(false);
     }});
 
     ['CALLS', 'INJECTS', 'CONTAINS'].forEach(type => {{
@@ -1234,6 +1285,11 @@ class GraphEngine:
         if (!selectedCategories.has(nodeMeta.group)) {{
           selectedCategories.add(nodeMeta.group);
           renderCategoryPills();
+        }}
+        const idx = rawNodes.indexOf(nodeMeta);
+        if (idx >= currentNodeLimit) {{
+          rawNodes.splice(idx, 1);
+          rawNodes.unshift(nodeMeta);
         }}
         applyFiltersAndRender(false);
       }}
