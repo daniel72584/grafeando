@@ -1,5 +1,6 @@
 import os
 import json
+import random
 from typing import Dict, List, Any
 try:
     import ladybug as lb
@@ -20,7 +21,7 @@ class GraphEngine:
             if cwd == "/" or not os.access(cwd, os.W_OK):
                 cwd = os.path.expanduser("~")
             db_path = os.environ.get("GRAFEANDO_DB_PATH", os.path.join(cwd, ".grafeando_db"))
-        self.db_path = os.path.abspath(db_path)
+        self.db_path = ":memory:" if db_path == ":memory:" else os.path.abspath(db_path)
         self._init_db()
 
     def _init_db(self):
@@ -75,7 +76,7 @@ class GraphEngine:
     def reset_database(self, new_path: str = ""):
         """Re-initializes DB to clear existing nodes & edges."""
         if new_path:
-            self.db_path = os.path.abspath(new_path)
+            self.db_path = ":memory:" if new_path == ":memory:" else os.path.abspath(new_path)
         self._init_db()
 
     def ingest_parse_data(self, parse_data: Dict[str, List[Dict[str, Any]]]):
@@ -373,14 +374,29 @@ class GraphEngine:
 
         return results_list
 
-    def export_graph_html(self, output_file: str = "grafeando-graph.html") -> str:
+    def export_graph_data(self) -> Dict[str, Any]:
         """
-        Exports the entire graph database into a standalone interactive HTML visualizer
-        with physics simulation, multi-select category filters, node limit selector (1k default),
-        instant search, and node neighborhood / blast radius inspector.
+        Exports all nodes, edges, and summary metadata from the graph database as a dictionary.
+        Includes Classes, Functions, CALLS, INJECTS, CONTAINS, RENDERS, IMPLEMENTS,
+        and dataset-to-column links for CSV schemas.
         """
-        nodes = []
+        nodes: List[Dict[str, Any]] = []
         node_ids = set()
+        dataset_ids = set()
+        csv_columns: List[tuple] = []
+
+        # 0. Count indexed files & languages
+        files_count = 0
+        languages: Dict[str, int] = {}
+        try:
+            rf = self.conn.execute("MATCH (fl:File) RETURN fl.id, fl.language")
+            while rf.has_next():
+                row = rf.get_next()
+                files_count += 1
+                lang = str(row[1] or "unknown")
+                languages[lang] = languages.get(lang, 0) + 1
+        except Exception:
+            pass
 
         # 1. Fetch Classes
         r = self.conn.execute("MATCH (c:Class) RETURN c.id, c.name, c.file_path, c.category")
@@ -398,10 +414,23 @@ class GraphEngine:
                 group = "controller"
             elif "service" in lname or "service" in lcat:
                 group = "service"
-            elif "module" in lname or "module" in lcat:
+            elif "module" in lname or "module" in lcat or lcat in ("package", "npm_dependency"):
                 group = "module"
-            elif "schema" in lname or "entity" in lname or "dto" in lname or "table" in lcat or "model" in lname:
+            elif (
+                "schema" in lname
+                or "entity" in lname
+                or "dto" in lname
+                or lcat in ("table", "dataset", "csv_column", "config_key")
+                or "model" in lname
+            ):
                 group = "schema"
+            elif lcat in ("document", "pdf_document"):
+                group = "document"
+
+            if lcat == "dataset":
+                dataset_ids.add(nid)
+            elif lcat == "csv_column":
+                csv_columns.append((nid, file_path))
 
             nodes.append({
                 "id": nid,
@@ -425,14 +454,19 @@ class GraphEngine:
             file_path = str(row[3])
             start_line = row[4]
             cat = str(row[5]) or "function"
+            lcat = cat.lower()
 
             group = "function"
-            if cat == "component" or "component" in cat.lower():
+            if cat == "component" or "component" in lcat:
                 group = "component"
-            elif cat == "endpoint" or "endpoint" in cat.lower():
+            elif cat == "endpoint" or "endpoint" in lcat:
                 group = "endpoint"
-            elif cat == "method" or "method" in cat.lower():
+            elif cat == "method" or "method" in lcat:
                 group = "method"
+            elif lcat in ("query", "procedure"):
+                group = "query"
+            elif lcat in ("section", "pdf_page"):
+                group = "document"
 
             nodes.append({
                 "id": nid,
@@ -443,57 +477,99 @@ class GraphEngine:
                 "start_line": start_line,
                 "node_type": "Function",
                 "qualified_name": qname,
-                "shape": "ellipse" if group in ["function", "method"] else "box"
+                "shape": "ellipse" if group in ["function", "method", "query"] else "box"
             })
             node_ids.add(nid)
 
-        edges = []
+        edges: List[Dict[str, Any]] = []
         edge_set = set()
         node_degree = {nid: 0 for nid in node_ids}
+
+        def add_edge(u: str, v: str, rel_type: str, label: str, weight: int = 1, dashes: bool = False):
+            if u in node_ids and v in node_ids:
+                k = (u, v, rel_type)
+                if k not in edge_set:
+                    edge_set.add(k)
+                    edge_obj: Dict[str, Any] = {
+                        "from": u,
+                        "to": v,
+                        "type": rel_type,
+                        "label": label,
+                        "arrows": "to",
+                    }
+                    if dashes:
+                        edge_obj["dashes"] = True
+                    edges.append(edge_obj)
+                    node_degree[u] = node_degree.get(u, 0) + weight
+                    node_degree[v] = node_degree.get(v, 0) + weight
 
         # CALLS
         r = self.conn.execute("MATCH (a)-[r:CALLS]->(b) RETURN a.id, b.id")
         while r.has_next():
             row = r.get_next()
-            u, v = str(row[0]), str(row[1])
-            if u in node_ids and v in node_ids:
-                k = (u, v, "CALLS")
-                if k not in edge_set:
-                    edge_set.add(k)
-                    edges.append({"from": u, "to": v, "type": "CALLS", "label": "calls", "arrows": "to"})
-                    node_degree[u] = node_degree.get(u, 0) + 1
-                    node_degree[v] = node_degree.get(v, 0) + 1
+            add_edge(str(row[0]), str(row[1]), "CALLS", "calls", weight=1)
 
         # INJECTS
         r = self.conn.execute("MATCH (a)-[r:INJECTS]->(b) RETURN a.id, b.id")
         while r.has_next():
             row = r.get_next()
-            u, v = str(row[0]), str(row[1])
-            if u in node_ids and v in node_ids:
-                k = (u, v, "INJECTS")
-                if k not in edge_set:
-                    edge_set.add(k)
-                    edges.append({"from": u, "to": v, "type": "INJECTS", "label": "injects", "arrows": "to", "dashes": True})
-                    node_degree[u] = node_degree.get(u, 0) + 2
-                    node_degree[v] = node_degree.get(v, 0) + 2
+            add_edge(str(row[0]), str(row[1]), "INJECTS", "injects", weight=2, dashes=True)
 
         # CONTAINS
         r = self.conn.execute("MATCH (c:Class)-[r:CONTAINS]->(f:Function) RETURN c.id, f.id")
         while r.has_next():
             row = r.get_next()
-            u, v = str(row[0]), str(row[1])
-            if u in node_ids and v in node_ids:
-                k = (u, v, "CONTAINS")
-                if k not in edge_set:
-                    edge_set.add(k)
-                    edges.append({"from": u, "to": v, "type": "CONTAINS", "label": "contains", "arrows": "to"})
-                    node_degree[u] = node_degree.get(u, 0) + 1
-                    node_degree[v] = node_degree.get(v, 0) + 1
+            add_edge(str(row[0]), str(row[1]), "CONTAINS", "contains", weight=1)
+
+        # RENDERS (React JSX hierarchy)
+        try:
+            r = self.conn.execute("MATCH (a:Function)-[r:RENDERS]->(b:Function) RETURN a.id, b.id")
+            while r.has_next():
+                row = r.get_next()
+                add_edge(str(row[0]), str(row[1]), "RENDERS", "renders", weight=2)
+        except Exception:
+            pass
+
+        # IMPLEMENTS (Class -> Interface)
+        try:
+            r = self.conn.execute("MATCH (a:Class)-[r:IMPLEMENTS]->(b:Class) RETURN a.id, b.id")
+            while r.has_next():
+                row = r.get_next()
+                add_edge(str(row[0]), str(row[1]), "IMPLEMENTS", "implements", weight=1, dashes=True)
+        except Exception:
+            pass
+
+        # Link CSV columns back to their parent dataset node
+        for col_id, _ in csv_columns:
+            parent_prefix = col_id.rsplit("::", 1)[0]
+            if parent_prefix in dataset_ids:
+                add_edge(parent_prefix, col_id, "CONTAINS", "contains", weight=1)
 
         for n in nodes:
             n["degree"] = node_degree.get(n["id"], 0)
 
-        nodes.sort(key=lambda x: x["degree"], reverse=True)
+        random.shuffle(nodes)
+
+        return {
+            "nodes": nodes,
+            "edges": edges,
+            "stats": {
+                "files": files_count,
+                "nodes": len(nodes),
+                "edges": len(edges),
+                "languages": languages,
+            },
+        }
+
+    def export_graph_html(self, output_file: str = "grafeando-graph.html") -> str:
+        """
+        Exports the entire graph database into a standalone interactive HTML visualizer
+        with physics simulation, multi-select category filters, random 300-node default limit
+        with Show More pagination, instant search, and node neighborhood / blast radius inspector.
+        """
+        graph_data = self.export_graph_data()
+        nodes = graph_data["nodes"]
+        edges = graph_data["edges"]
 
         nodes_json = json.dumps(nodes)
         edges_json = json.dumps(edges)
@@ -913,13 +989,14 @@ class GraphEngine:
       <div class="limit-control">
         <span>Max Nodes:</span>
         <select class="limit-select" id="limit-select">
-          <option value="250">250 nodes</option>
-          <option value="500">500 nodes</option>
-          <option value="1000" selected>1,000 nodes (Default)</option>
+          <option value="300" selected>300 nodes (Default)</option>
+          <option value="600">600 nodes</option>
+          <option value="1000">1,000 nodes</option>
           <option value="2500">2,500 nodes</option>
           <option value="5000">5,000 nodes</option>
           <option value="999999">All / Unlimited</option>
         </select>
+        <button class="btn" id="btn-show-more" title="Show 300 more random nodes">➕ Show More (+300)</button>
       </div>
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
@@ -946,6 +1023,7 @@ class GraphEngine:
     <div class="toolbar-card">
       <button class="btn btn-active" id="toggle-calls" data-type="CALLS">📞 Calls</button>
       <button class="btn btn-active" id="toggle-injects" data-type="INJECTS">💉 Injects</button>
+      <button class="btn btn-active" id="toggle-renders" data-type="RENDERS">⚛️ Renders</button>
       <button class="btn btn-active" id="toggle-contains" data-type="CONTAINS">📦 Contains</button>
     </div>
   </div>
@@ -985,14 +1063,24 @@ class GraphEngine:
     const rawNodes = {nodes_json};
     const rawEdges = {edges_json};
 
+    function shuffleArray(arr) {{
+      for (let i = arr.length - 1; i > 0; i--) {{
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }}
+    }}
+    shuffleArray(rawNodes);
+
     const colorMap = {{
       controller: {{ bg: '#8b5cf6', border: '#a78bfa', text: '#ffffff' }},
       service:    {{ bg: '#0284c7', border: '#38bdf8', text: '#ffffff' }},
       module:     {{ bg: '#059669', border: '#34d399', text: '#ffffff' }},
       schema:     {{ bg: '#d97706', border: '#fbbf24', text: '#ffffff' }},
+      document:   {{ bg: '#0d9488', border: '#5eead4', text: '#ffffff' }},
       class:      {{ bg: '#475569', border: '#94a3b8', text: '#ffffff' }},
       endpoint:   {{ bg: '#4f46e5', border: '#818cf8', text: '#ffffff' }},
       component:  {{ bg: '#db2777', border: '#f472b6', text: '#ffffff' }},
+      query:      {{ bg: '#ea580c', border: '#fb923c', text: '#ffffff' }},
       method:     {{ bg: '#0f766e', border: '#2dd4bf', text: '#ffffff' }},
       function:   {{ bg: '#1e293b', border: '#64748b', text: '#cbd5e1' }}
     }};
@@ -1005,8 +1093,9 @@ class GraphEngine:
     }});
 
     let selectedCategories = new Set(allCategories);
-    let currentNodeLimit = 1000;
-    const edgeTypes = {{ CALLS: true, INJECTS: true, CONTAINS: true }};
+    const NODE_PAGE_STEP = 300;
+    let currentNodeLimit = NODE_PAGE_STEP;
+    const edgeTypes = {{ CALLS: true, INJECTS: true, RENDERS: true, IMPLEMENTS: true, CONTAINS: true }};
 
     const nodesDataSet = new vis.DataSet([]);
     const edgesDataSet = new vis.DataSet([]);
@@ -1066,6 +1155,8 @@ class GraphEngine:
           let dashes = false;
           if (e.type === 'CALLS') col = '#38bdf8';
           if (e.type === 'INJECTS') {{ col = '#a855f7'; dashes = true; }}
+          if (e.type === 'RENDERS') col = '#f472b6';
+          if (e.type === 'IMPLEMENTS') {{ col = '#34d399'; dashes = true; }}
           if (e.type === 'CONTAINS') col = '#334155';
 
           formattedEdges.push({{
@@ -1089,6 +1180,21 @@ class GraphEngine:
 
       document.getElementById('stat-visible-nodes').innerText = formattedNodes.length.toLocaleString();
       document.getElementById('stat-total-nodes').innerText = rawNodes.length.toLocaleString();
+
+      const btnShowMore = document.getElementById('btn-show-more');
+      if (btnShowMore) {{
+        const remaining = Math.max(0, filteredByCategory.length - limitedNodes.length);
+        if (remaining > 0) {{
+          const nextBatch = Math.min(NODE_PAGE_STEP, remaining);
+          btnShowMore.disabled = false;
+          btnShowMore.style.opacity = '1';
+          btnShowMore.textContent = `➕ Show More (+${{nextBatch.toLocaleString()}})`;
+        }} else {{
+          btnShowMore.disabled = true;
+          btnShowMore.style.opacity = '0.5';
+          btnShowMore.textContent = 'All Shown';
+        }}
+      }}
 
       if (fit) {{
         network.fit({{ animation: {{ duration: 500, easingFunction: 'easeInOutQuad' }} }});
@@ -1145,13 +1251,39 @@ class GraphEngine:
       applyFiltersAndRender(true);
     }};
 
-    document.getElementById('limit-select').addEventListener('change', (e) => {{
-      currentNodeLimit = parseInt(e.target.value, 10) || 1000;
+    const limitSelect = document.getElementById('limit-select');
+    function syncLimitSelect(limitVal) {{
+      const valStr = String(limitVal);
+      const existing = Array.from(limitSelect.options).find(opt => opt.value === valStr);
+      if (existing) {{
+        limitSelect.value = valStr;
+      }} else {{
+        let customOpt = document.getElementById('limit-custom-option');
+        if (!customOpt) {{
+          customOpt = document.createElement('option');
+          customOpt.id = 'limit-custom-option';
+          limitSelect.insertBefore(customOpt, limitSelect.lastElementChild);
+        }}
+        customOpt.value = valStr;
+        customOpt.textContent = `${{limitVal.toLocaleString()}} nodes`;
+        limitSelect.value = valStr;
+      }}
+    }}
+
+    limitSelect.addEventListener('change', (e) => {{
+      currentNodeLimit = parseInt(e.target.value, 10) || NODE_PAGE_STEP;
       applyFiltersAndRender(true);
     }});
 
-    ['CALLS', 'INJECTS', 'CONTAINS'].forEach(type => {{
+    document.getElementById('btn-show-more').addEventListener('click', () => {{
+      currentNodeLimit += NODE_PAGE_STEP;
+      syncLimitSelect(currentNodeLimit);
+      applyFiltersAndRender(false);
+    }});
+
+    ['CALLS', 'INJECTS', 'RENDERS', 'CONTAINS'].forEach(type => {{
       const btn = document.getElementById(`toggle-${{type.toLowerCase()}}`);
+      if (!btn) return;
       btn.onclick = () => {{
         edgeTypes[type] = !edgeTypes[type];
         btn.classList.toggle('btn-active', edgeTypes[type]);
@@ -1234,6 +1366,11 @@ class GraphEngine:
         if (!selectedCategories.has(nodeMeta.group)) {{
           selectedCategories.add(nodeMeta.group);
           renderCategoryPills();
+        }}
+        const idx = rawNodes.indexOf(nodeMeta);
+        if (idx >= currentNodeLimit) {{
+          rawNodes.splice(idx, 1);
+          rawNodes.unshift(nodeMeta);
         }}
         applyFiltersAndRender(false);
       }}
@@ -1318,6 +1455,8 @@ class GraphEngine:
           let dashes = false;
           if (e.type === 'CALLS') col = '#38bdf8';
           if (e.type === 'INJECTS') {{ col = '#a855f7'; dashes = true; }}
+          if (e.type === 'RENDERS') col = '#f472b6';
+          if (e.type === 'IMPLEMENTS') {{ col = '#34d399'; dashes = true; }}
           if (e.type === 'CONTAINS') col = '#334155';
 
           subEdgesData.push({{

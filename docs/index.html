@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grafeando — Codebase Dependency Graph for AI Assistants</title>
+  <meta name="description" content="Static AST parser that converts supported files into a tree, stores relationships in Kùzu / LadybugDB, and exposes affected files to AI assistants via MCP." />
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./config.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <div class="brand">
+        <span>🕸️ Grafeando</span>
+        <span class="brand-badge">AST + MCP</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#try">Upload Code</a>
+        <a href="#explorer">Graph Explorer</a>
+        <a href="#install">CLI &amp; MCP</a>
+        <a href="https://github.com/daniel72584/grafeando" target="_blank" rel="noopener">GitHub ↗</a>
+        <button class="api-pill" id="api-status-pill" title="Click to configure custom API endpoint">
+          <span class="status-dot" id="api-status-dot"></span>
+          <span id="api-status-text">Checking engine...</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Concise Plain-English Landing Section -->
+    <section class="hero">
+      <h1>Turn your code into a map. <span class="gradient-text">Edit safely without breaking things.</span></h1>
+      <p class="hero-subtitle">
+        Grafeando uses static parsing (no AI or LLMs) to turn supported files into trees, saves their connections in a local graph database (LadybugDB / Kùzu), and shares them through an MCP server—so your AI assistant knows which files are involved or affected before changing code.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3><span>1.</span> Files → Tree</h3>
+          <p>Uses static rules to read your code, SQL tables, and docs, pulling out classes, functions, components, and links.</p>
+        </div>
+        <div class="feature-card">
+          <h3><span>2.</span> Tree → Graph DB</h3>
+          <p>Saves all symbols and connections (<code>calls</code>, <code>injects</code>, <code>renders</code>, <code>contains</code>) in a fast local graph database (LadybugDB / Kùzu).</p>
+        </div>
+        <div class="feature-card">
+          <h3><span>3.</span> Graph → MCP</h3>
+          <p>Your AI assistant asks the MCP server what is connected, seeing every file that could break—using 99% fewer tokens.</p>
+        </div>
+      </div>
+
+      <div class="tradeoff-note">
+        <strong>💡 The Cost Tradeoff (Why No Vectors?):</strong>
+        We skip vector embeddings to keep Grafeando <strong>100% free, instant (~45 ms), and local with zero API keys</strong>. You lose "search by meaning" (guessing concepts when you don't know the name), and in exchange you get <strong>exact code connections</strong> at zero cost.
+      </div>
+    </section>
+
+    <!-- Upload Folder / File / ZIP Section -->
+    <section class="upload-section" id="try">
+      <div class="upload-box" id="dropzone">
+        <div class="upload-info">
+          <div class="upload-title">
+            <span>📂</span> Try it on your own folder or file
+          </div>
+          <p class="upload-desc">
+            Drop a project folder, individual source files, or a <code>.zip</code> archive. Unsupported files and <code>node_modules</code> / <code>.git</code> / <code>venv</code> are skipped automatically in your browser, and nothing is stored on the server.
+          </p>
+          <div class="ext-strip">
+            <span class="ext-badge">.py</span>
+            <span class="ext-badge">.ts / .tsx</span>
+            <span class="ext-badge">.js / .jsx / .mjs / .cjs</span>
+            <span class="ext-badge">.go</span>
+            <span class="ext-badge">.java</span>
+            <span class="ext-badge">.sql</span>
+            <span class="ext-badge">.json</span>
+            <span class="ext-badge">.md</span>
+            <span class="ext-badge">.csv</span>
+            <span class="ext-badge">.pdf</span>
+          </div>
+        </div>
+
+        <div class="upload-actions">
+          <input type="file" id="input-folder" webkitdirectory directory multiple hidden />
+          <input type="file" id="input-files" multiple accept=".py,.ts,.tsx,.js,.jsx,.mjs,.cjs,.go,.java,.sql,.json,.md,.csv,.pdf,.zip" hidden />
+          <button class="btn-primary" id="btn-pick-folder">📁 Upload Folder</button>
+          <button class="btn-secondary" id="btn-pick-files">📄 Upload File / .zip</button>
+          <button class="btn-secondary" id="btn-reset-demo" style="display:none;">↺ Demo Graph</button>
+        </div>
+      </div>
+
+      <div class="upload-status" id="upload-status">
+        <span id="upload-status-msg"></span>
+      </div>
+    </section>
+
+    <!-- Interactive Graph Explorer -->
+    <section class="explorer-wrapper" id="explorer">
+      <div id="network-container"></div>
+
+      <div class="top-toolbar">
+        <div class="toolbar-card">
+          <div class="project-pill">
+            <span>🕸️</span>
+            <span id="project-label">grafeando (demo)</span>
+          </div>
+          <div class="stats-pill">
+            Showing <span class="stats-count" id="stat-visible-nodes">0</span> / <span id="stat-total-nodes">0</span> nodes · <span id="stat-total-edges">0</span> edges
+          </div>
+        </div>
+
+        <div class="toolbar-card">
+          <select class="limit-select" id="limit-select" title="Max visible nodes">
+            <option value="300" selected>300 nodes</option>
+            <option value="600">600 nodes</option>
+            <option value="1000">1,000 nodes</option>
+            <option value="2500">2,500 nodes</option>
+            <option value="999999">All nodes</option>
+          </select>
+          <button class="btn" id="btn-show-more">➕ +300</button>
+
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="search-input" placeholder="Search symbol or file..." autocomplete="off" />
+            <div class="autocomplete-list" id="autocomplete-list"></div>
+          </div>
+
+          <button class="btn" id="btn-focus-mode" title="Isolate 2-hop neighborhood">🎯 Focus</button>
+          <button class="btn btn-active" id="btn-physics" title="Toggle physics layout">⚡ Physics</button>
+          <button class="btn" id="btn-fit" title="Fit graph to view">🔍 Fit</button>
+          <button class="btn" id="btn-download-json" title="Download graph JSON">⬇ JSON</button>
+          <button class="btn" id="btn-fullscreen" title="Toggle fullscreen explorer">⛶ Fullscreen</button>
+        </div>
+      </div>
+
+      <div class="filter-panel">
+        <div class="filter-header">
+          <span>Node Categories</span>
+          <div>
+            <span class="filter-action-link" id="select-all-cats">All</span>
+            <span style="opacity:0.3"> | </span>
+            <span class="filter-action-link" id="clear-all-cats">Core Only</span>
+          </div>
+        </div>
+        <div class="filter-pills" id="filter-pills"></div>
+      </div>
+
+      <div class="edge-toolbar">
+        <div class="toolbar-card">
+          <button class="btn btn-active" id="toggle-calls" data-type="CALLS">📞 Calls</button>
+          <button class="btn btn-active" id="toggle-injects" data-type="INJECTS">💉 Injects</button>
+          <button class="btn btn-active" id="toggle-renders" data-type="RENDERS">⚛️ Renders</button>
+          <button class="btn btn-active" id="toggle-contains" data-type="CONTAINS">📦 Contains</button>
+        </div>
+      </div>
+
+      <div class="inspector-drawer" id="inspector-drawer">
+        <div class="inspector-header">
+          <div>
+            <div class="inspector-title" id="inspect-name">Symbol</div>
+            <span class="badge" id="inspect-badge">CLASS</span>
+          </div>
+          <button class="close-btn" id="inspect-close">✕</button>
+        </div>
+        <div class="inspector-body">
+          <div>
+            <div class="meta-label">File Location</div>
+            <div class="meta-box" id="inspect-file">path/to/file.py:1</div>
+          </div>
+          <button class="blast-radius-btn" id="btn-calc-blast">💥 Focus Blast Radius (3 Hops)</button>
+          <div>
+            <div class="rel-section-title">
+              <span>Incoming Dependents</span>
+              <span id="count-incoming" class="rel-tag">0</span>
+            </div>
+            <div class="rel-list" id="list-incoming"></div>
+          </div>
+          <div>
+            <div class="rel-section-title">
+              <span>Outgoing Dependencies</span>
+              <span id="count-outgoing" class="rel-tag">0</span>
+            </div>
+            <div class="rel-list" id="list-outgoing"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Concise CLI / MCP Install Section -->
+    <section class="install-section" id="install">
+      <div class="install-card">
+        <div>
+          <h2>Run locally with your AI IDE</h2>
+          <p>Auto-configures MCP for Antigravity, Cursor, Claude, Gemini, and Windsurf—100% local.</p>
+        </div>
+        <div class="code-snippet">
+          <span id="install-cmd">curl -sSL https://raw.githubusercontent.com/daniel72584/grafeando/main/install.sh | bash</span>
+          <button class="btn" id="btn-copy-cmd">Copy</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

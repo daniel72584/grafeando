@@ -58,9 +58,14 @@ class TreeSitterBaseParser(BaseParser):
     def get_language_label(self, file_path: str) -> str:
         return self.default_language_label
 
-    def parse_file(self, file_path: str, code_bytes: bytes) -> Dict[str, List[Dict[str, Any]]]:
+    def parse_file(
+        self,
+        file_path: str,
+        code_bytes: bytes,
+        base_dir: Optional[str] = None,
+    ) -> Dict[str, List[Dict[str, Any]]]:
         res = self.empty_result()
-        rel_path = os.path.relpath(file_path)
+        rel_path = self.get_rel_path(file_path, base_dir)
         lang_label = self.get_language_label(file_path)
         res["files"].append({"id": rel_path, "path": rel_path, "language": lang_label})
 

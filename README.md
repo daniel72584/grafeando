@@ -69,12 +69,18 @@ grafeando install --project --platform antigravity
 
 ---
 
-## 🌐 Interactive HTML Graph Explorer
+## 🌐 Interactive HTML Graph Explorer & Web Playground
 
 You can generate a standalone, physics-based interactive graph visualization of your codebase that opens directly in your browser:
 
 ```bash
 grafeando html
+```
+
+Or launch the **Web Playground** locally (same landing page + folder/file upload graph explorer used on GitHub Pages + Render):
+
+```bash
+grafeando web
 ```
 
 **Features:**

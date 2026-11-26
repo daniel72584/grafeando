@@ -1,14 +1,19 @@
 import os
 import csv
 import io
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 from parsers.base import BaseParser
 
 
 class CsvParser(BaseParser):
-    def parse_file(self, file_path: str, code_bytes: bytes) -> Dict[str, List[Dict[str, Any]]]:
+    def parse_file(
+        self,
+        file_path: str,
+        code_bytes: bytes,
+        base_dir: Optional[str] = None,
+    ) -> Dict[str, List[Dict[str, Any]]]:
         res = self.empty_result()
-        rel_path = os.path.relpath(file_path)
+        rel_path = self.get_rel_path(file_path, base_dir)
         res["files"].append({"id": rel_path, "path": rel_path, "language": "csv"})
 
         dataset_name = os.path.basename(file_path)
