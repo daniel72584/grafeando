@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: grafeando-api
+    runtime: python
+    plan: free
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn web_api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: GRAFEANDO_CORS_ORIGINS
+        value: "*"

@@ -6,9 +6,9 @@ setup(
     description="Local Multi-Language Code Context Engine MCP Server for Blast Radius Analysis & Token Savings",
     author="Grafeando Team",
     packages=find_packages(),
-    py_modules=["server", "parser", "graph_engine", "cli"],
+    py_modules=["server", "parser", "graph_engine", "cli", "web_api"],
     install_requires=[
-        "mcp>=1.0.0",
+        "mcp>=2.2.0",
         "ladybug>=0.22.0",
         "tree-sitter>=0.22.0",
         "tree-sitter-python>=0.21.0",
@@ -17,7 +17,10 @@ setup(
         "tree-sitter-go>=0.25.0",
         "tree-sitter-java>=0.23.0",
         "sqlglot>=30.0.0",
-        "pypdf>=5.0.0"
+        "pypdf>=6.21.3",
+        "starlette>=0.37.0",
+        "uvicorn>=0.29.0",
+        "python-multipart>=0.0.9",
     ],
     entry_points={
         "console_scripts": [

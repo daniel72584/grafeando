@@ -329,6 +329,13 @@ def main():
     # Server command
     subparsers.add_parser("server", help="Run grafeando MCP server on stdio")
 
+    # Web Playground command
+    web_parser = subparsers.add_parser("web", help="Launch interactive web landing page & upload graph explorer")
+    web_parser.add_argument("--host", default="127.0.0.1", help="Bind host (default: 127.0.0.1)")
+    web_parser.add_argument("--port", type=int, default=8000, help="Bind port (default: 8000)")
+    web_parser.add_argument("--open", action="store_true", default=True, help="Open browser automatically")
+    web_parser.add_argument("--no-open", dest="open", action="store_false", help="Do not open browser automatically")
+
     args = parser.parse_args()
 
     if args.command == "install":
@@ -400,6 +407,19 @@ def main():
         except ImportError:
             from server import mcp
         mcp.run(transport="stdio")
+
+    elif args.command == "web":
+        import uvicorn
+        url = f"http://{args.host}:{args.port}"
+        print(f"🌐 Starting Grafeando Web Playground at {url} ...")
+        if getattr(args, "open", True):
+            try:
+                import threading
+                import webbrowser
+                threading.Timer(0.8, lambda: webbrowser.open(url)).start()
+            except Exception:
+                pass
+        uvicorn.run("web_api:app", host=args.host, port=args.port)
 
     else:
         parser.print_help()

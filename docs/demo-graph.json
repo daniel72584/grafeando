@@ -1,0 +1,5573 @@
+{
+  "project_name": "grafeando (demo)",
+  "nodes": [
+    {
+      "id": "server.py::index_codebase",
+      "label": "index_codebase",
+      "group": "function",
+      "category": "function",
+      "file_path": "server.py",
+      "start_line": 125,
+      "node_type": "Function",
+      "qualified_name": "index_codebase",
+      "shape": "ellipse",
+      "degree": 9
+    },
+    {
+      "id": "docs/app.js::readDroppedDataTransfer",
+      "label": "readDroppedDataTransfer",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 438,
+      "node_type": "Function",
+      "qualified_name": "readDroppedDataTransfer",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "parsers/base.py::BaseParser.parse_file",
+      "label": "parse_file",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/base.py",
+      "start_line": 8,
+      "node_type": "Function",
+      "qualified_name": "BaseParser.parse_file",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "docs/app.js::selectAndFocusNode",
+      "label": "selectAndFocusNode",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 226,
+      "node_type": "Function",
+      "qualified_name": "selectAndFocusNode",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "tests/test_web_api.py::test_upload_folder_filters_files_and_builds_connected_graph",
+      "label": "test_upload_folder_filters_files_and_builds_connected_graph",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_web_api.py",
+      "start_line": 92,
+      "node_type": "Function",
+      "qualified_name": "test_upload_folder_filters_files_and_builds_connected_graph",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "web_api.py::health_endpoint",
+      "label": "health_endpoint",
+      "group": "function",
+      "category": "function",
+      "file_path": "web_api.py",
+      "start_line": 78,
+      "node_type": "Function",
+      "qualified_name": "health_endpoint",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "README.md::H2_\u2753 What problem does it solve?",
+      "label": "\u2753 What problem does it solve?",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 22,
+      "node_type": "Function",
+      "qualified_name": "README.md > \u2753 What problem does it solve?",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "graph_engine.py::GraphEngine.reset_database",
+      "label": "reset_database",
+      "group": "method",
+      "category": "method",
+      "file_path": "graph_engine.py",
+      "start_line": 76,
+      "node_type": "Function",
+      "qualified_name": "GraphEngine.reset_database",
+      "shape": "ellipse",
+      "degree": 6
+    },
+    {
+      "id": "parsers/go_parser.py::GoParser.__init__",
+      "label": "__init__",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/go_parser.py",
+      "start_line": 13,
+      "node_type": "Function",
+      "qualified_name": "GoParser.__init__",
+      "shape": "ellipse",
+      "degree": 8
+    },
+    {
+      "id": "tests_fixtures/go_app.go::Controller",
+      "label": "Controller",
+      "group": "controller",
+      "category": "struct",
+      "file_path": "tests_fixtures/go_app.go",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._extract_func_name",
+      "label": "_extract_func_name",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 269,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._extract_func_name",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "docs/app.js::sorted",
+      "label": "sorted",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 196,
+      "node_type": "Function",
+      "qualified_name": "sorted",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "label": "get_node_text",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 18,
+      "node_type": "Function",
+      "qualified_name": "TraversalContext.get_node_text",
+      "shape": "ellipse",
+      "degree": 33
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TreeSitterBaseParser.parse_file",
+      "label": "parse_file",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 61,
+      "node_type": "Function",
+      "qualified_name": "TreeSitterBaseParser.parse_file",
+      "shape": "ellipse",
+      "degree": 7
+    },
+    {
+      "id": "graph_engine.py::GraphEngine._create_schema",
+      "label": "_create_schema",
+      "group": "method",
+      "category": "method",
+      "file_path": "graph_engine.py",
+      "start_line": 54,
+      "node_type": "Function",
+      "qualified_name": "GraphEngine._create_schema",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parser.py::CodeParser.is_supported_file",
+      "label": "is_supported_file",
+      "group": "method",
+      "category": "method",
+      "file_path": "parser.py",
+      "start_line": 50,
+      "node_type": "Function",
+      "qualified_name": "CodeParser.is_supported_file",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "docs/demo-graph.json::nodes",
+      "label": "nodes",
+      "group": "schema",
+      "category": "config_key",
+      "file_path": "docs/demo-graph.json",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 0
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._register_middlewares",
+      "label": "_register_middlewares",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 26,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._register_middlewares",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser",
+      "label": "JavaScriptParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 18
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._handle_import",
+      "label": "_handle_import",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 55,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._handle_import",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests/test_typescript_parser.py::test_parse_nestjs_controller_and_service",
+      "label": "test_parse_nestjs_controller_and_service",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_typescript_parser.py",
+      "start_line": 5,
+      "node_type": "Function",
+      "qualified_name": "test_parse_nestjs_controller_and_service",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests_fixtures/go_app.go::Service.ExecuteQuery",
+      "label": "ExecuteQuery",
+      "group": "method",
+      "category": "method",
+      "file_path": "tests_fixtures/go_app.go",
+      "start_line": 9,
+      "node_type": "Function",
+      "qualified_name": "Service.ExecuteQuery",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser._get_callee_name",
+      "label": "_get_callee_name",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 148,
+      "node_type": "Function",
+      "qualified_name": "PythonParser._get_callee_name",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_handler",
+      "label": "register_handler",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 40,
+      "node_type": "Function",
+      "qualified_name": "TreeSitterBaseParser.register_handler",
+      "shape": "ellipse",
+      "degree": 6
+    },
+    {
+      "id": "tests/test_repo_sync.py::test_check_repo_sync_weekly_non_git",
+      "label": "test_check_repo_sync_weekly_non_git",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_repo_sync.py",
+      "start_line": 6,
+      "node_type": "Function",
+      "qualified_name": "test_check_repo_sync_weekly_non_git",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "docs/app.js::setStatusBanner",
+      "label": "setStatusBanner",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 79,
+      "node_type": "Function",
+      "qualified_name": "setStatusBanner",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "tests_fixtures/java_app.java::UserRepository",
+      "label": "UserRepository",
+      "group": "service",
+      "category": "service",
+      "file_path": "tests_fixtures/java_app.java",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "parsers/base.py::BaseParser",
+      "label": "BaseParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/base.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "tests_fixtures/schema.sql::orders",
+      "label": "orders",
+      "group": "schema",
+      "category": "table",
+      "file_path": "tests_fixtures/schema.sql",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "docs/app.js::core",
+      "label": "core",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 569,
+      "node_type": "Function",
+      "qualified_name": "core",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "npm::react",
+      "label": "react",
+      "group": "module",
+      "category": "npm_dependency",
+      "file_path": "tests_fixtures/package.json",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 2
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser._handle_decorated_definition",
+      "label": "_handle_decorated_definition",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 52,
+      "node_type": "Function",
+      "qualified_name": "PythonParser._handle_decorated_definition",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TraversalContext",
+      "label": "TraversalContext",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 2
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "label": "traverse",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 89,
+      "node_type": "Function",
+      "qualified_name": "TreeSitterBaseParser.traverse",
+      "shape": "ellipse",
+      "degree": 14
+    },
+    {
+      "id": "parsers/json_parser.py::JsonParser",
+      "label": "JsonParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/json_parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 4
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "label": "traverse_children",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 103,
+      "node_type": "Function",
+      "qualified_name": "TreeSitterBaseParser.traverse_children",
+      "shape": "ellipse",
+      "degree": 24
+    },
+    {
+      "id": "README.md::H1_1. Create and activate Python virtual environment",
+      "label": "1. Create and activate Python virtual environment",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 49,
+      "node_type": "Function",
+      "qualified_name": "README.md > 1. Create and activate Python virtual environment",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TreeSitterBaseParser.get_parser",
+      "label": "get_parser",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 54,
+      "node_type": "Function",
+      "qualified_name": "TreeSitterBaseParser.get_parser",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/csv_parser.py::CsvParser",
+      "label": "CsvParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/csv_parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._handle_function",
+      "label": "_handle_function",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 144,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._handle_function",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "tests_fixtures/nestjs_app.ts::UserController.findAll",
+      "label": "findAll",
+      "group": "endpoint",
+      "category": "endpoint",
+      "file_path": "tests_fixtures/nestjs_app.ts",
+      "start_line": 15,
+      "node_type": "Function",
+      "qualified_name": "UserController.findAll",
+      "shape": "box",
+      "degree": 2
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser._handle_import",
+      "label": "_handle_import",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 27,
+      "node_type": "Function",
+      "qualified_name": "PythonParser._handle_import",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "cli.py::get_python_path",
+      "label": "get_python_path",
+      "group": "function",
+      "category": "function",
+      "file_path": "cli.py",
+      "start_line": 19,
+      "node_type": "Function",
+      "qualified_name": "get_python_path",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "web_api.py::_strip_single_top_folder",
+      "label": "_strip_single_top_folder",
+      "group": "function",
+      "category": "function",
+      "file_path": "web_api.py",
+      "start_line": 54,
+      "node_type": "Function",
+      "qualified_name": "_strip_single_top_folder",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "server.py::get_blast_radius",
+      "label": "get_blast_radius",
+      "group": "function",
+      "category": "function",
+      "file_path": "server.py",
+      "start_line": 280,
+      "node_type": "Function",
+      "qualified_name": "get_blast_radius",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._register_strategies",
+      "label": "_register_strategies",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 30,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._register_strategies",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/java_parser.py::JavaParser._handle_class",
+      "label": "_handle_class",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/java_parser.py",
+      "start_line": 31,
+      "node_type": "Function",
+      "qualified_name": "JavaParser._handle_class",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "tests/test_typescript_parser.py::test_parse_react_components_and_jsx",
+      "label": "test_parse_react_components_and_jsx",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_typescript_parser.py",
+      "start_line": 35,
+      "node_type": "Function",
+      "qualified_name": "test_parse_react_components_and_jsx",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "README.md::H2_\ud83c\udf10 Interactive HTML Graph Explorer & Web Playground",
+      "label": "\ud83c\udf10 Interactive HTML Graph Explorer & Web Playground",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 72,
+      "node_type": "Function",
+      "qualified_name": "README.md > \ud83c\udf10 Interactive HTML Graph Explorer & Web Playground",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._handle_export",
+      "label": "_handle_export",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 62,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._handle_export",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._register_strategies",
+      "label": "_register_strategies",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 38,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._register_strategies",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "README.md::H2_\ud83e\udd16 Prompt Guide for AI IDEs (Cursor, Claude, Gemini, Windsurf)",
+      "label": "\ud83e\udd16 Prompt Guide for AI IDEs (Cursor, Claude, Gemini, Windsurf)",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 117,
+      "node_type": "Function",
+      "qualified_name": "README.md > \ud83e\udd16 Prompt Guide for AI IDEs (Cursor, Claude, Gemini, Windsurf)",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "graph_engine.py::GraphEngine.get_injection_dependencies",
+      "label": "get_injection_dependencies",
+      "group": "method",
+      "category": "method",
+      "file_path": "graph_engine.py",
+      "start_line": 330,
+      "node_type": "Function",
+      "qualified_name": "GraphEngine.get_injection_dependencies",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "tests/test_web_api.py::test_upload_zip_archive_and_reject_unsupported_only",
+      "label": "test_upload_zip_archive_and_reject_unsupported_only",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_web_api.py",
+      "start_line": 145,
+      "node_type": "Function",
+      "qualified_name": "test_upload_zip_archive_and_reject_unsupported_only",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._handle_class",
+      "label": "_handle_class",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 66,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._handle_class",
+      "shape": "ellipse",
+      "degree": 6
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser.find_type_identifiers",
+      "label": "find_type_identifiers",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 124,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser.find_type_identifiers",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "parsers/java_parser.py::JavaParser._handle_import",
+      "label": "_handle_import",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/java_parser.py",
+      "start_line": 27,
+      "node_type": "Function",
+      "qualified_name": "JavaParser._handle_import",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._extract_jsx_tag_name",
+      "label": "_extract_jsx_tag_name",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 256,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._extract_jsx_tag_name",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests_fixtures/nestjs_app.ts::UserService.getUser",
+      "label": "getUser",
+      "group": "method",
+      "category": "method",
+      "file_path": "tests_fixtures/nestjs_app.ts",
+      "start_line": 5,
+      "node_type": "Function",
+      "qualified_name": "UserService.getUser",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests/test_javascript_parser.py::test_parse_react_jsx_components_and_hooks",
+      "label": "test_parse_react_jsx_components_and_hooks",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_javascript_parser.py",
+      "start_line": 71,
+      "node_type": "Function",
+      "qualified_name": "test_parse_react_jsx_components_and_hooks",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "README.md::H3_3. \ud83d\uddfa\ufe0f Codebase Exploration Prompt",
+      "label": "3. \ud83d\uddfa\ufe0f Codebase Exploration Prompt",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 127,
+      "node_type": "Function",
+      "qualified_name": "README.md > 3. \ud83d\uddfa\ufe0f Codebase Exploration Prompt",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "parser.py::CodeParser.parse_file",
+      "label": "parse_file",
+      "group": "method",
+      "category": "method",
+      "file_path": "parser.py",
+      "start_line": 54,
+      "node_type": "Function",
+      "qualified_name": "CodeParser.parse_file",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests/test_web_api.py::_asgi_request",
+      "label": "_asgi_request",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_web_api.py",
+      "start_line": 36,
+      "node_type": "Function",
+      "qualified_name": "_asgi_request",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "docs/app.js::getApiBase",
+      "label": "getApiBase",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 28,
+      "node_type": "Function",
+      "qualified_name": "getApiBase",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "docs/app.js::filteredByCategory",
+      "label": "filteredByCategory",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 116,
+      "node_type": "Function",
+      "qualified_name": "filteredByCategory",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "parsers/go_parser.py::GoParser._handle_import",
+      "label": "_handle_import",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/go_parser.py",
+      "start_line": 27,
+      "node_type": "Function",
+      "qualified_name": "GoParser._handle_import",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests_fixtures/react_app.tsx::App",
+      "label": "App",
+      "group": "component",
+      "category": "component",
+      "file_path": "tests_fixtures/react_app.tsx",
+      "start_line": 21,
+      "node_type": "Function",
+      "qualified_name": "App",
+      "shape": "box",
+      "degree": 2
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser.__init__",
+      "label": "__init__",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 13,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser.__init__",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "tests/test_javascript_parser.py::test_code_parser_routing_for_js_and_jsx",
+      "label": "test_code_parser_routing_for_js_and_jsx",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_javascript_parser.py",
+      "start_line": 136,
+      "node_type": "Function",
+      "qualified_name": "test_code_parser_routing_for_js_and_jsx",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._handle_class",
+      "label": "_handle_class",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 64,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._handle_class",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "graph_engine.py::GraphEngine.export_graph_html",
+      "label": "export_graph_html",
+      "group": "method",
+      "category": "method",
+      "file_path": "graph_engine.py",
+      "start_line": 564,
+      "node_type": "Function",
+      "qualified_name": "GraphEngine.export_graph_html",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "docs/app.js::onclick",
+      "label": "onclick",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 212,
+      "node_type": "Function",
+      "qualified_name": "onclick",
+      "shape": "ellipse",
+      "degree": 8
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._decorator_middleware",
+      "label": "_decorator_middleware",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 47,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._decorator_middleware",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests/test_markdown_parser.py::test_parse_markdown_headings_and_links",
+      "label": "test_parse_markdown_headings_and_links",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_markdown_parser.py",
+      "start_line": 5,
+      "node_type": "Function",
+      "qualified_name": "test_parse_markdown_headings_and_links",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "docs/app.js::applyFiltersAndRender",
+      "label": "applyFiltersAndRender",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 115,
+      "node_type": "Function",
+      "qualified_name": "applyFiltersAndRender",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "tests_fixtures/nestjs_app.ts::UserController.constructor",
+      "label": "constructor",
+      "group": "method",
+      "category": "method",
+      "file_path": "tests_fixtures/nestjs_app.ts",
+      "start_line": 12,
+      "node_type": "Function",
+      "qualified_name": "UserController.constructor",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "docs/demo-graph.json::project_name",
+      "label": "project_name",
+      "group": "schema",
+      "category": "config_key",
+      "file_path": "docs/demo-graph.json",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 0
+    },
+    {
+      "id": "web_api.py::generate_graph_endpoint",
+      "label": "generate_graph_endpoint",
+      "group": "function",
+      "category": "function",
+      "file_path": "web_api.py",
+      "start_line": 98,
+      "node_type": "Function",
+      "qualified_name": "generate_graph_endpoint",
+      "shape": "ellipse",
+      "degree": 8
+    },
+    {
+      "id": "docs/app.js::dst",
+      "label": "dst",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 272,
+      "node_type": "Function",
+      "qualified_name": "dst",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "docs/app.js::readBatch",
+      "label": "readBatch",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 456,
+      "node_type": "Function",
+      "qualified_name": "readBatch",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "README.md::H2_Possible Improvements:",
+      "label": "Possible Improvements:",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 151,
+      "node_type": "Function",
+      "qualified_name": "README.md > Possible Improvements:",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "parsers/go_parser.py::GoParser._extract_callee_name",
+      "label": "_extract_callee_name",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/go_parser.py",
+      "start_line": 130,
+      "node_type": "Function",
+      "qualified_name": "GoParser._extract_callee_name",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "docs/app.js::getExt",
+      "label": "getExt",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 344,
+      "node_type": "Function",
+      "qualified_name": "getExt",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "docs/app.js::coldStartTimer",
+      "label": "coldStartTimer",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 391,
+      "node_type": "Function",
+      "qualified_name": "coldStartTimer",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "graph_engine.py::GraphEngine.add_edge",
+      "label": "add_edge",
+      "group": "method",
+      "category": "method",
+      "file_path": "graph_engine.py",
+      "start_line": 488,
+      "node_type": "Function",
+      "qualified_name": "GraphEngine.add_edge",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "web_api.py::supported_endpoint",
+      "label": "supported_endpoint",
+      "group": "function",
+      "category": "function",
+      "file_path": "web_api.py",
+      "start_line": 87,
+      "node_type": "Function",
+      "qualified_name": "supported_endpoint",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._extract_decorator_names",
+      "label": "_extract_decorator_names",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 247,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._extract_decorator_names",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser._handle_class",
+      "label": "_handle_class",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 31,
+      "node_type": "Function",
+      "qualified_name": "PythonParser._handle_class",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._handle_call",
+      "label": "_handle_call",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 218,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._handle_call",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TreeSitterBaseParser",
+      "label": "TreeSitterBaseParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 8
+    },
+    {
+      "id": "tests_fixtures/react_app.tsx::UserProfile",
+      "label": "UserProfile",
+      "group": "component",
+      "category": "component",
+      "file_path": "tests_fixtures/react_app.tsx",
+      "start_line": 12,
+      "node_type": "Function",
+      "qualified_name": "UserProfile",
+      "shape": "box",
+      "degree": 5
+    },
+    {
+      "id": "parsers/go_parser.py::GoParser._handle_method",
+      "label": "_handle_method",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/go_parser.py",
+      "start_line": 48,
+      "node_type": "Function",
+      "qualified_name": "GoParser._handle_method",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser",
+      "label": "TypeScriptParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 19
+    },
+    {
+      "id": "cli.py::main",
+      "label": "main",
+      "group": "function",
+      "category": "function",
+      "file_path": "cli.py",
+      "start_line": 285,
+      "node_type": "Function",
+      "qualified_name": "main",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "server.py::check_repo_sync_weekly",
+      "label": "check_repo_sync_weekly",
+      "group": "function",
+      "category": "function",
+      "file_path": "server.py",
+      "start_line": 46,
+      "node_type": "Function",
+      "qualified_name": "check_repo_sync_weekly",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "docs/app.js::src",
+      "label": "src",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 263,
+      "node_type": "Function",
+      "qualified_name": "src",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._handle_jsx",
+      "label": "_handle_jsx",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 201,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._handle_jsx",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "tests/test_web_api.py::receive",
+      "label": "receive",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_web_api.py",
+      "start_line": 57,
+      "node_type": "Function",
+      "qualified_name": "receive",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "graph_engine.py::GraphEngine.ingest_parse_data",
+      "label": "ingest_parse_data",
+      "group": "method",
+      "category": "method",
+      "file_path": "graph_engine.py",
+      "start_line": 82,
+      "node_type": "Function",
+      "qualified_name": "GraphEngine.ingest_parse_data",
+      "shape": "ellipse",
+      "degree": 9
+    },
+    {
+      "id": "tests_fixtures/go_app.go::Service",
+      "label": "Service",
+      "group": "service",
+      "category": "struct",
+      "file_path": "tests_fixtures/go_app.go",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "README.md::H2_\ud83d\udcac How to use it",
+      "label": "\ud83d\udcac How to use it",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 94,
+      "node_type": "Function",
+      "qualified_name": "README.md > \ud83d\udcac How to use it",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "parsers/pdf_parser.py::PdfParser.parse_file",
+      "label": "parse_file",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/pdf_parser.py",
+      "start_line": 10,
+      "node_type": "Function",
+      "qualified_name": "PdfParser.parse_file",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "README.md::H1_3. Configure MCP server for detected IDEs (or target specific platform: antigravity, cursor, claude, etc.)",
+      "label": "3. Configure MCP server for detected IDEs (or target specific platform: antigravity, cursor, claude, etc.)",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 58,
+      "node_type": "Function",
+      "qualified_name": "README.md > 3. Configure MCP server for detected IDEs (or target specific platform: antigravity, cursor, claude, etc.)",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "tests/test_repo_sync.py::test_check_repo_sync_tool_current_repo",
+      "label": "test_check_repo_sync_tool_current_repo",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_repo_sync.py",
+      "start_line": 30,
+      "node_type": "Function",
+      "qualified_name": "test_check_repo_sync_tool_current_repo",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "server.py::get_graph_db",
+      "label": "get_graph_db",
+      "group": "function",
+      "category": "function",
+      "file_path": "server.py",
+      "start_line": 29,
+      "node_type": "Function",
+      "qualified_name": "get_graph_db",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "README.md::H3_1. \ud83d\ude80 Master Setup Prompt (Run Once Per Repo)",
+      "label": "1. \ud83d\ude80 Master Setup Prompt (Run Once Per Repo)",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 121,
+      "node_type": "Function",
+      "qualified_name": "README.md > 1. \ud83d\ude80 Master Setup Prompt (Run Once Per Repo)",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "tests_fixtures/nestjs_app.ts::UserService",
+      "label": "UserService",
+      "group": "service",
+      "category": "service",
+      "file_path": "tests_fixtures/nestjs_app.ts",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "parsers/go_parser.py::GoParser._handle_type",
+      "label": "_handle_type",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/go_parser.py",
+      "start_line": 31,
+      "node_type": "Function",
+      "qualified_name": "GoParser._handle_type",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "README.md::H1_Grafeando \ud83d\udd78\ufe0f",
+      "label": "Grafeando \ud83d\udd78\ufe0f",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 1,
+      "node_type": "Function",
+      "qualified_name": "README.md > Grafeando \ud83d\udd78\ufe0f",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser.__init__",
+      "label": "__init__",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 14,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser.__init__",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._handle_call",
+      "label": "_handle_call",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 211,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._handle_call",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "server.py::check_repo_sync",
+      "label": "check_repo_sync",
+      "group": "function",
+      "category": "function",
+      "file_path": "server.py",
+      "start_line": 171,
+      "node_type": "Function",
+      "qualified_name": "check_repo_sync",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "graph_engine.py::GraphEngine",
+      "label": "GraphEngine",
+      "group": "class",
+      "category": "class",
+      "file_path": "graph_engine.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 18
+    },
+    {
+      "id": "docs/demo-graph.json::edges",
+      "label": "edges",
+      "group": "schema",
+      "category": "config_key",
+      "file_path": "docs/demo-graph.json",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 0
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser",
+      "label": "PythonParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 12
+    },
+    {
+      "id": "parsers/pdf_parser.py::PdfParser",
+      "label": "PdfParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/pdf_parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "tests/test_real_repos_integration.py::test_real_fastapi_official_template",
+      "label": "test_real_fastapi_official_template",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_real_repos_integration.py",
+      "start_line": 7,
+      "node_type": "Function",
+      "qualified_name": "test_real_fastapi_official_template",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "tests_fixtures/schema.sql::users",
+      "label": "users",
+      "group": "schema",
+      "category": "table",
+      "file_path": "tests_fixtures/schema.sql",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "parser.py::CodeParser.__init__",
+      "label": "__init__",
+      "group": "method",
+      "category": "method",
+      "file_path": "parser.py",
+      "start_line": 27,
+      "node_type": "Function",
+      "qualified_name": "CodeParser.__init__",
+      "shape": "ellipse",
+      "degree": 11
+    },
+    {
+      "id": "tests_fixtures/fastapi_app.py::read_users",
+      "label": "read_users",
+      "group": "endpoint",
+      "category": "endpoint",
+      "file_path": "tests_fixtures/fastapi_app.py",
+      "start_line": 9,
+      "node_type": "Function",
+      "qualified_name": "read_users",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._extract_decorator_names",
+      "label": "_extract_decorator_names",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 241,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._extract_decorator_names",
+      "shape": "ellipse",
+      "degree": 6
+    },
+    {
+      "id": "server.py::main",
+      "label": "main",
+      "group": "function",
+      "category": "function",
+      "file_path": "server.py",
+      "start_line": 319,
+      "node_type": "Function",
+      "qualified_name": "main",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "tests/test_sql_parser.py::test_parse_sql_ddl_and_dml",
+      "label": "test_parse_sql_ddl_and_dml",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_sql_parser.py",
+      "start_line": 5,
+      "node_type": "Function",
+      "qualified_name": "test_parse_sql_ddl_and_dml",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "docs/app.js::subNodes",
+      "label": "subNodes",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 300,
+      "node_type": "Function",
+      "qualified_name": "subNodes",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "tests/test_web_api.py::_encode_multipart",
+      "label": "_encode_multipart",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_web_api.py",
+      "start_line": 11,
+      "node_type": "Function",
+      "qualified_name": "_encode_multipart",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._handle_export",
+      "label": "_handle_export",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 60,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._handle_export",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests/test_json_parser.py::test_parse_package_json",
+      "label": "test_parse_package_json",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_json_parser.py",
+      "start_line": 5,
+      "node_type": "Function",
+      "qualified_name": "test_parse_package_json",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests_fixtures/java_app.java::UserController.getUsers",
+      "label": "getUsers",
+      "group": "endpoint",
+      "category": "endpoint",
+      "file_path": "tests_fixtures/java_app.java",
+      "start_line": 20,
+      "node_type": "Function",
+      "qualified_name": "UserController.getUsers",
+      "shape": "box",
+      "degree": 2
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser.get_language_label",
+      "label": "get_language_label",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 21,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser.get_language_label",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "tests/test_export_html.py::test_export_graph_html_300_random_limit_and_show_more",
+      "label": "test_export_graph_html_300_random_limit_and_show_more",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_export_html.py",
+      "start_line": 4,
+      "node_type": "Function",
+      "qualified_name": "test_export_graph_html_300_random_limit_and_show_more",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "parsers/markdown_parser.py::MarkdownParser",
+      "label": "MarkdownParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/markdown_parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "parsers/java_parser.py::JavaParser",
+      "label": "JavaParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/java_parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 8
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._handle_function",
+      "label": "_handle_function",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 144,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._handle_function",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "npm::express",
+      "label": "express",
+      "group": "module",
+      "category": "npm_dependency",
+      "file_path": "tests_fixtures/package.json",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 2
+    },
+    {
+      "id": "graph_engine.py::GraphEngine.export_graph_data",
+      "label": "export_graph_data",
+      "group": "method",
+      "category": "method",
+      "file_path": "graph_engine.py",
+      "start_line": 377,
+      "node_type": "Function",
+      "qualified_name": "GraphEngine.export_graph_data",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "tests_fixtures/schema.sql::Query_SELECT_L3",
+      "label": "Query_SELECT_L3",
+      "group": "query",
+      "category": "query",
+      "file_path": "tests_fixtures/schema.sql",
+      "start_line": 3,
+      "node_type": "Function",
+      "qualified_name": "tests_fixtures/schema.sql::Query_SELECT_L3",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "docs/app.js::warmUpApi",
+      "label": "warmUpApi",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 496,
+      "node_type": "Function",
+      "qualified_name": "warmUpApi",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "tests_fixtures/package.json::sample-fullstack-app",
+      "label": "sample-fullstack-app",
+      "group": "module",
+      "category": "package",
+      "file_path": "tests_fixtures/package.json",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 6
+    },
+    {
+      "id": "README.md::H2_\u26a1 Quickstart (1-Line Install)",
+      "label": "\u26a1 Quickstart (1-Line Install)",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 32,
+      "node_type": "Function",
+      "qualified_name": "README.md > \u26a1 Quickstart (1-Line Install)",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "parsers/java_parser.py::JavaParser._extract_annotations",
+      "label": "_extract_annotations",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/java_parser.py",
+      "start_line": 150,
+      "node_type": "Function",
+      "qualified_name": "JavaParser._extract_annotations",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "docs/app.js::setApiIndicator",
+      "label": "setApiIndicator",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 489,
+      "node_type": "Function",
+      "qualified_name": "setApiIndicator",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "graph_engine.py::GraphEngine.get_blast_radius",
+      "label": "get_blast_radius",
+      "group": "method",
+      "category": "method",
+      "file_path": "graph_engine.py",
+      "start_line": 278,
+      "node_type": "Function",
+      "qualified_name": "GraphEngine.get_blast_radius",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "docs/app.js::formattedNodes",
+      "label": "formattedNodes",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 120,
+      "node_type": "Function",
+      "qualified_name": "formattedNodes",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "README.md::H3_2. \ud83d\udee1\ufe0f Safe Code Editing Prompt (Preventing Breakages)",
+      "label": "2. \ud83d\udee1\ufe0f Safe Code Editing Prompt (Preventing Breakages)",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 124,
+      "node_type": "Function",
+      "qualified_name": "README.md > 2. \ud83d\udee1\ufe0f Safe Code Editing Prompt (Preventing Breakages)",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "parser.py::CodeParser.parse_directory",
+      "label": "parse_directory",
+      "group": "method",
+      "category": "method",
+      "file_path": "parser.py",
+      "start_line": 90,
+      "node_type": "Function",
+      "qualified_name": "CodeParser.parse_directory",
+      "shape": "ellipse",
+      "degree": 10
+    },
+    {
+      "id": "README.md::H2_The Eternal Problem of Context",
+      "label": "The Eternal Problem of Context",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 9,
+      "node_type": "Function",
+      "qualified_name": "README.md > The Eternal Problem of Context",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "tests_fixtures/go_app.go::Controller.HandleRequest",
+      "label": "HandleRequest",
+      "group": "method",
+      "category": "method",
+      "file_path": "tests_fixtures/go_app.go",
+      "start_line": 17,
+      "node_type": "Function",
+      "qualified_name": "Controller.HandleRequest",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "parsers/markdown_parser.py::MarkdownParser.parse_file",
+      "label": "parse_file",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/markdown_parser.py",
+      "start_line": 8,
+      "node_type": "Function",
+      "qualified_name": "MarkdownParser.parse_file",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "tests/test_web_api.py::test_health_and_supported_endpoints",
+      "label": "test_health_and_supported_endpoints",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_web_api.py",
+      "start_line": 78,
+      "node_type": "Function",
+      "qualified_name": "test_health_and_supported_endpoints",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "docs/app.js::uploadEntriesToApi",
+      "label": "uploadEntriesToApi",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 361,
+      "node_type": "Function",
+      "qualified_name": "uploadEntriesToApi",
+      "shape": "ellipse",
+      "degree": 7
+    },
+    {
+      "id": "parsers/json_parser.py::JsonParser.parse_file",
+      "label": "parse_file",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/json_parser.py",
+      "start_line": 8,
+      "node_type": "Function",
+      "qualified_name": "JsonParser.parse_file",
+      "shape": "ellipse",
+      "degree": 17
+    },
+    {
+      "id": "parsers/java_parser.py::JavaParser._register_strategies",
+      "label": "_register_strategies",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/java_parser.py",
+      "start_line": 21,
+      "node_type": "Function",
+      "qualified_name": "JavaParser._register_strategies",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests/test_web_api.py::send",
+      "label": "send",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_web_api.py",
+      "start_line": 64,
+      "node_type": "Function",
+      "qualified_name": "send",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "cli.py::detect_installed_ides",
+      "label": "detect_installed_ides",
+      "group": "function",
+      "category": "function",
+      "file_path": "cli.py",
+      "start_line": 26,
+      "node_type": "Function",
+      "qualified_name": "detect_installed_ides",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "tests/test_python_parser.py::test_parse_fastapi_and_python",
+      "label": "test_parse_fastapi_and_python",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_python_parser.py",
+      "start_line": 5,
+      "node_type": "Function",
+      "qualified_name": "test_parse_fastapi_and_python",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/sql_parser.py::SqlParser.parse_file",
+      "label": "parse_file",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/sql_parser.py",
+      "start_line": 9,
+      "node_type": "Function",
+      "qualified_name": "SqlParser.parse_file",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "cli.py::migrate_environment_and_db",
+      "label": "migrate_environment_and_db",
+      "group": "function",
+      "category": "function",
+      "file_path": "cli.py",
+      "start_line": 234,
+      "node_type": "Function",
+      "qualified_name": "migrate_environment_and_db",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "tests/test_agents_dir_indexing.py::test_parse_directory_includes_agents_folder",
+      "label": "test_parse_directory_includes_agents_folder",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_agents_dir_indexing.py",
+      "start_line": 6,
+      "node_type": "Function",
+      "qualified_name": "test_parse_directory_includes_agents_folder",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/csv_parser.py::CsvParser.parse_file",
+      "label": "parse_file",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/csv_parser.py",
+      "start_line": 9,
+      "node_type": "Function",
+      "qualified_name": "CsvParser.parse_file",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "parsers/go_parser.py::GoParser._register_strategies",
+      "label": "_register_strategies",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/go_parser.py",
+      "start_line": 20,
+      "node_type": "Function",
+      "qualified_name": "GoParser._register_strategies",
+      "shape": "ellipse",
+      "degree": 7
+    },
+    {
+      "id": "tests/test_csv_parser.py::test_parse_csv_columns_and_linkage",
+      "label": "test_parse_csv_columns_and_linkage",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_csv_parser.py",
+      "start_line": 5,
+      "node_type": "Function",
+      "qualified_name": "test_parse_csv_columns_and_linkage",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._decorator_middleware",
+      "label": "_decorator_middleware",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 49,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._decorator_middleware",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "docs/app.js::traverseEntry",
+      "label": "traverseEntry",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 442,
+      "node_type": "Function",
+      "qualified_name": "traverseEntry",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "docs/app.js::renderCategoryPills",
+      "label": "renderCategoryPills",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 193,
+      "node_type": "Function",
+      "qualified_name": "renderCategoryPills",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "web_api.py::_is_ignored_path",
+      "label": "_is_ignored_path",
+      "group": "function",
+      "category": "function",
+      "file_path": "web_api.py",
+      "start_line": 43,
+      "node_type": "Function",
+      "qualified_name": "_is_ignored_path",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "parsers/base.py::BaseParser.get_rel_path",
+      "label": "get_rel_path",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/base.py",
+      "start_line": 30,
+      "node_type": "Function",
+      "qualified_name": "BaseParser.get_rel_path",
+      "shape": "ellipse",
+      "degree": 7
+    },
+    {
+      "id": "README.md::README.md",
+      "label": "README.md",
+      "group": "document",
+      "category": "document",
+      "file_path": "README.md",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 17
+    },
+    {
+      "id": "tests/test_javascript_parser.py::test_parse_javascript_classes_and_commonjs",
+      "label": "test_parse_javascript_classes_and_commonjs",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_javascript_parser.py",
+      "start_line": 6,
+      "node_type": "Function",
+      "qualified_name": "test_parse_javascript_classes_and_commonjs",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "benchmark.py::estimate_tokens",
+      "label": "estimate_tokens",
+      "group": "function",
+      "category": "function",
+      "file_path": "benchmark.py",
+      "start_line": 8,
+      "node_type": "Function",
+      "qualified_name": "estimate_tokens",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "tests_fixtures/react_app.tsx::useUser",
+      "label": "useUser",
+      "group": "function",
+      "category": "hook",
+      "file_path": "tests_fixtures/react_app.tsx",
+      "start_line": 3,
+      "node_type": "Function",
+      "qualified_name": "useUser",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "README.md::H1_2. Clone repository & install package",
+      "label": "2. Clone repository & install package",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 53,
+      "node_type": "Function",
+      "qualified_name": "README.md > 2. Clone repository & install package",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "tests/test_web_api.py::_run",
+      "label": "_run",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_web_api.py",
+      "start_line": 39,
+      "node_type": "Function",
+      "qualified_name": "_run",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser._register_strategies",
+      "label": "_register_strategies",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 20,
+      "node_type": "Function",
+      "qualified_name": "PythonParser._register_strategies",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests_fixtures/go_app.go::main",
+      "label": "main",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests_fixtures/go_app.go",
+      "start_line": 22,
+      "node_type": "Function",
+      "qualified_name": "main",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "parsers/javascript_parser.py::JavaScriptParser._extract_callee_name",
+      "label": "_extract_callee_name",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/javascript_parser.py",
+      "start_line": 237,
+      "node_type": "Function",
+      "qualified_name": "JavaScriptParser._extract_callee_name",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/go_parser.py::GoParser._handle_call",
+      "label": "_handle_call",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/go_parser.py",
+      "start_line": 117,
+      "node_type": "Function",
+      "qualified_name": "GoParser._handle_call",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser.get_language_label",
+      "label": "get_language_label",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 30,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser.get_language_label",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._handle_jsx",
+      "label": "_handle_jsx",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 208,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._handle_jsx",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "docs/app.js::loadGraphPayload",
+      "label": "loadGraphPayload",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 91,
+      "node_type": "Function",
+      "qualified_name": "loadGraphPayload",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "cli.py::install_mcp_config",
+      "label": "install_mcp_config",
+      "group": "function",
+      "category": "function",
+      "file_path": "cli.py",
+      "start_line": 67,
+      "node_type": "Function",
+      "qualified_name": "install_mcp_config",
+      "shape": "ellipse",
+      "degree": 6
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser._handle_function",
+      "label": "_handle_function",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 49,
+      "node_type": "Function",
+      "qualified_name": "PythonParser._handle_function",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parser.py::CodeParser",
+      "label": "CodeParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 12
+    },
+    {
+      "id": "docs/demo-graph.json::stats",
+      "label": "stats",
+      "group": "schema",
+      "category": "config_key",
+      "file_path": "docs/demo-graph.json",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 0
+    },
+    {
+      "id": "graph_engine.py::GraphEngine._init_db",
+      "label": "_init_db",
+      "group": "method",
+      "category": "method",
+      "file_path": "graph_engine.py",
+      "start_line": 27,
+      "node_type": "Function",
+      "qualified_name": "GraphEngine._init_db",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "docs/app.js::shouldIgnorePath",
+      "label": "shouldIgnorePath",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 349,
+      "node_type": "Function",
+      "qualified_name": "shouldIgnorePath",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "docs/app.js::incoming",
+      "label": "incoming",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 252,
+      "node_type": "Function",
+      "qualified_name": "incoming",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "tests/test_repo_sync.py::test_check_repo_sync_weekly_respects_interval",
+      "label": "test_check_repo_sync_weekly_respects_interval",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_repo_sync.py",
+      "start_line": 12,
+      "node_type": "Function",
+      "qualified_name": "test_check_repo_sync_weekly_respects_interval",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "parsers/java_parser.py::JavaParser._handle_method",
+      "label": "_handle_method",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/java_parser.py",
+      "start_line": 92,
+      "node_type": "Function",
+      "qualified_name": "JavaParser._handle_method",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "parsers/java_parser.py::JavaParser._handle_call",
+      "label": "_handle_call",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/java_parser.py",
+      "start_line": 138,
+      "node_type": "Function",
+      "qualified_name": "JavaParser._handle_call",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "docs/app.js::files",
+      "label": "files",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 516,
+      "node_type": "Function",
+      "qualified_name": "files",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "web_api.py::_normalize_rel_path",
+      "label": "_normalize_rel_path",
+      "group": "function",
+      "category": "function",
+      "file_path": "web_api.py",
+      "start_line": 36,
+      "node_type": "Function",
+      "qualified_name": "_normalize_rel_path",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "npm::typescript",
+      "label": "typescript",
+      "group": "module",
+      "category": "npm_dependency",
+      "file_path": "tests_fixtures/package.json",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 2
+    },
+    {
+      "id": "tests_fixtures/react_app.tsx::UserCard",
+      "label": "UserCard",
+      "group": "component",
+      "category": "component",
+      "file_path": "tests_fixtures/react_app.tsx",
+      "start_line": 8,
+      "node_type": "Function",
+      "qualified_name": "UserCard",
+      "shape": "box",
+      "degree": 2
+    },
+    {
+      "id": "tests/test_json_parser.py::test_parse_openapi_json",
+      "label": "test_parse_openapi_json",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_json_parser.py",
+      "start_line": 26,
+      "node_type": "Function",
+      "qualified_name": "test_parse_openapi_json",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "graph_engine.py::GraphEngine.__init__",
+      "label": "__init__",
+      "group": "method",
+      "category": "method",
+      "file_path": "graph_engine.py",
+      "start_line": 15,
+      "node_type": "Function",
+      "qualified_name": "GraphEngine.__init__",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests/test_pdf_parser.py::test_parse_pdf_pages_and_links",
+      "label": "test_parse_pdf_pages_and_links",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_pdf_parser.py",
+      "start_line": 7,
+      "node_type": "Function",
+      "qualified_name": "test_parse_pdf_pages_and_links",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests_fixtures/java_app.java::UserRepository.findData",
+      "label": "findData",
+      "group": "method",
+      "category": "method",
+      "file_path": "tests_fixtures/java_app.java",
+      "start_line": 10,
+      "node_type": "Function",
+      "qualified_name": "UserRepository.findData",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests_fixtures/fastapi_app.py::get_db",
+      "label": "get_db",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests_fixtures/fastapi_app.py",
+      "start_line": 5,
+      "node_type": "Function",
+      "qualified_name": "get_db",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "README.md::H2_\ud83d\udcc4 License",
+      "label": "\ud83d\udcc4 License",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 156,
+      "node_type": "Function",
+      "qualified_name": "README.md > \ud83d\udcc4 License",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "docs/app.js::isolateNeighborhood",
+      "label": "isolateNeighborhood",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 288,
+      "node_type": "Function",
+      "qualified_name": "isolateNeighborhood",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "scripts/build_demo_graph.py::main",
+      "label": "main",
+      "group": "function",
+      "category": "function",
+      "file_path": "scripts/build_demo_graph.py",
+      "start_line": 13,
+      "node_type": "Function",
+      "qualified_name": "main",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser._extract_fastapi_depends",
+      "label": "_extract_fastapi_depends",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 158,
+      "node_type": "Function",
+      "qualified_name": "PythonParser._extract_fastapi_depends",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "benchmark.py::run_benchmark",
+      "label": "run_benchmark",
+      "group": "function",
+      "category": "function",
+      "file_path": "benchmark.py",
+      "start_line": 13,
+      "node_type": "Function",
+      "qualified_name": "run_benchmark",
+      "shape": "ellipse",
+      "degree": 7
+    },
+    {
+      "id": "parsers/sql_parser.py::SqlParser",
+      "label": "SqlParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/sql_parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TreeSitterBaseParser.get_language_label",
+      "label": "get_language_label",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 58,
+      "node_type": "Function",
+      "qualified_name": "TreeSitterBaseParser.get_language_label",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._extract_callee_name",
+      "label": "_extract_callee_name",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 231,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._extract_callee_name",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser._process_function_node",
+      "label": "_process_function_node",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 72,
+      "node_type": "Function",
+      "qualified_name": "PythonParser._process_function_node",
+      "shape": "ellipse",
+      "degree": 7
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._handle_import",
+      "label": "_handle_import",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 57,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._handle_import",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "tests/test_real_repos_integration.py::test_real_nestjs_official_cats_app",
+      "label": "test_real_nestjs_official_cats_app",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_real_repos_integration.py",
+      "start_line": 27,
+      "node_type": "Function",
+      "qualified_name": "test_real_nestjs_official_cats_app",
+      "shape": "ellipse",
+      "degree": 5
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser._handle_call",
+      "label": "_handle_call",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 135,
+      "node_type": "Function",
+      "qualified_name": "PythonParser._handle_call",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "tests_fixtures/nestjs_app.ts::UserController",
+      "label": "UserController",
+      "group": "controller",
+      "category": "controller",
+      "file_path": "tests_fixtures/nestjs_app.ts",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 4
+    },
+    {
+      "id": "parsers/python_parser.py::PythonParser.__init__",
+      "label": "__init__",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/python_parser.py",
+      "start_line": 13,
+      "node_type": "Function",
+      "qualified_name": "PythonParser.__init__",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "server.py::export_graph_html",
+      "label": "export_graph_html",
+      "group": "function",
+      "category": "function",
+      "file_path": "server.py",
+      "start_line": 304,
+      "node_type": "Function",
+      "qualified_name": "export_graph_html",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "parsers/go_parser.py::GoParser",
+      "label": "GoParser",
+      "group": "class",
+      "category": "class",
+      "file_path": "parsers/go_parser.py",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 9
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser.get_parser",
+      "label": "get_parser",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 25,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser.get_parser",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "README.md::H2_\ud83d\udee0\ufe0f Supported Languages & Technologies",
+      "label": "\ud83d\udee0\ufe0f Supported Languages & Technologies",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 106,
+      "node_type": "Function",
+      "qualified_name": "README.md > \ud83d\udee0\ufe0f Supported Languages & Technologies",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "cli.py::get_server_path",
+      "label": "get_server_path",
+      "group": "function",
+      "category": "function",
+      "file_path": "cli.py",
+      "start_line": 14,
+      "node_type": "Function",
+      "qualified_name": "get_server_path",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "test_engine.py::main",
+      "label": "main",
+      "group": "function",
+      "category": "function",
+      "file_path": "test_engine.py",
+      "start_line": 7,
+      "node_type": "Function",
+      "qualified_name": "main",
+      "shape": "ellipse",
+      "degree": 8
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._register_middlewares",
+      "label": "_register_middlewares",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 35,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._register_middlewares",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "parsers/base.py::BaseParser.empty_result",
+      "label": "empty_result",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/base.py",
+      "start_line": 34,
+      "node_type": "Function",
+      "qualified_name": "BaseParser.empty_result",
+      "shape": "ellipse",
+      "degree": 7
+    },
+    {
+      "id": "parsers/typescript_parser.py::TypeScriptParser._extract_jsx_tag_name",
+      "label": "_extract_jsx_tag_name",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/typescript_parser.py",
+      "start_line": 250,
+      "node_type": "Function",
+      "qualified_name": "TypeScriptParser._extract_jsx_tag_name",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "docs/app.js::nodeMeta",
+      "label": "nodeMeta",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 228,
+      "node_type": "Function",
+      "qualified_name": "nodeMeta",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "docs/app.js::outgoing",
+      "label": "outgoing",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 253,
+      "node_type": "Function",
+      "qualified_name": "outgoing",
+      "shape": "ellipse",
+      "degree": 0
+    },
+    {
+      "id": "parser.py::CodeParser.find_project_root",
+      "label": "find_project_root",
+      "group": "method",
+      "category": "method",
+      "file_path": "parser.py",
+      "start_line": 79,
+      "node_type": "Function",
+      "qualified_name": "CodeParser.find_project_root",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "README.md::H2_\ud83d\udd04 Automatic Git Auto-Indexing Hook",
+      "label": "\ud83d\udd04 Automatic Git Auto-Indexing Hook",
+      "group": "document",
+      "category": "section",
+      "file_path": "README.md",
+      "start_line": 132,
+      "node_type": "Function",
+      "qualified_name": "README.md > \ud83d\udd04 Automatic Git Auto-Indexing Hook",
+      "shape": "box",
+      "degree": 1
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_middleware",
+      "label": "register_middleware",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 47,
+      "node_type": "Function",
+      "qualified_name": "TreeSitterBaseParser.register_middleware",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "tests/test_repo_sync.py::test_check_repo_sync_tool_non_git",
+      "label": "test_check_repo_sync_tool_non_git",
+      "group": "function",
+      "category": "function",
+      "file_path": "tests/test_repo_sync.py",
+      "start_line": 24,
+      "node_type": "Function",
+      "qualified_name": "test_check_repo_sync_tool_non_git",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "docs/app.js::onchange",
+      "label": "onchange",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 515,
+      "node_type": "Function",
+      "qualified_name": "onchange",
+      "shape": "ellipse",
+      "degree": 2
+    },
+    {
+      "id": "docs/app.js::escapeHtml",
+      "label": "escapeHtml",
+      "group": "function",
+      "category": "function",
+      "file_path": "docs/app.js",
+      "start_line": 257,
+      "node_type": "Function",
+      "qualified_name": "escapeHtml",
+      "shape": "ellipse",
+      "degree": 1
+    },
+    {
+      "id": "parsers/go_parser.py::GoParser._handle_function",
+      "label": "_handle_function",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/go_parser.py",
+      "start_line": 90,
+      "node_type": "Function",
+      "qualified_name": "GoParser._handle_function",
+      "shape": "ellipse",
+      "degree": 4
+    },
+    {
+      "id": "tests_fixtures/java_app.java::UserController",
+      "label": "UserController",
+      "group": "controller",
+      "category": "controller",
+      "file_path": "tests_fixtures/java_app.java",
+      "start_line": 1,
+      "node_type": "Class",
+      "shape": "box",
+      "degree": 3
+    },
+    {
+      "id": "parsers/java_parser.py::JavaParser.__init__",
+      "label": "__init__",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/java_parser.py",
+      "start_line": 14,
+      "node_type": "Function",
+      "qualified_name": "JavaParser.__init__",
+      "shape": "ellipse",
+      "degree": 3
+    },
+    {
+      "id": "parsers/tree_sitter_base.py::TreeSitterBaseParser.__init__",
+      "label": "__init__",
+      "group": "method",
+      "category": "method",
+      "file_path": "parsers/tree_sitter_base.py",
+      "start_line": 33,
+      "node_type": "Function",
+      "qualified_name": "TreeSitterBaseParser.__init__",
+      "shape": "ellipse",
+      "degree": 1
+    }
+  ],
+  "edges": [
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._register_middlewares",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_middleware",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_call",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_call",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "web_api.py::generate_graph_endpoint",
+      "to": "web_api.py::_normalize_rel_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "web_api.py::generate_graph_endpoint",
+      "to": "web_api.py::_is_ignored_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "web_api.py::generate_graph_endpoint",
+      "to": "parser.py::CodeParser.is_supported_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "web_api.py::generate_graph_endpoint",
+      "to": "web_api.py::_strip_single_top_folder",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "web_api.py::generate_graph_endpoint",
+      "to": "parser.py::CodeParser.parse_directory",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "web_api.py::generate_graph_endpoint",
+      "to": "graph_engine.py::GraphEngine.ingest_parse_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "web_api.py::generate_graph_endpoint",
+      "to": "graph_engine.py::GraphEngine.export_graph_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "benchmark.py::run_benchmark",
+      "to": "benchmark.py::estimate_tokens",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "benchmark.py::run_benchmark",
+      "to": "parser.py::CodeParser.parse_directory",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "benchmark.py::run_benchmark",
+      "to": "graph_engine.py::GraphEngine.ingest_parse_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "benchmark.py::run_benchmark",
+      "to": "graph_engine.py::GraphEngine.get_blast_radius",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "benchmark.py::run_benchmark",
+      "to": "graph_engine.py::GraphEngine.get_injection_dependencies",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "web_api.py::supported_endpoint",
+      "to": "docs/app.js::sorted",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::check_repo_sync",
+      "to": "parser.py::CodeParser.find_project_root",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::export_graph_html",
+      "to": "server.py::get_graph_db",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::export_graph_html",
+      "to": "graph_engine.py::GraphEngine.reset_database",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::export_graph_html",
+      "to": "graph_engine.py::GraphEngine.export_graph_html",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::get_blast_radius",
+      "to": "server.py::get_graph_db",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::get_blast_radius",
+      "to": "graph_engine.py::GraphEngine.reset_database",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::get_blast_radius",
+      "to": "graph_engine.py::GraphEngine.get_blast_radius",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::get_blast_radius",
+      "to": "graph_engine.py::GraphEngine.get_injection_dependencies",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::index_codebase",
+      "to": "parser.py::CodeParser.find_project_root",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::index_codebase",
+      "to": "server.py::get_graph_db",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::index_codebase",
+      "to": "graph_engine.py::GraphEngine.reset_database",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::index_codebase",
+      "to": "parser.py::CodeParser.parse_directory",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::index_codebase",
+      "to": "graph_engine.py::GraphEngine.ingest_parse_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::index_codebase",
+      "to": "server.py::check_repo_sync_weekly",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "test_engine.py::main",
+      "to": "parser.py::CodeParser.parse_directory",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "test_engine.py::main",
+      "to": "graph_engine.py::GraphEngine.reset_database",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "test_engine.py::main",
+      "to": "graph_engine.py::GraphEngine.ingest_parse_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "test_engine.py::main",
+      "to": "graph_engine.py::GraphEngine.get_blast_radius",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "test_engine.py::main",
+      "to": "graph_engine.py::GraphEngine.get_injection_dependencies",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "test_engine.py::main",
+      "to": "server.py::index_codebase",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine.__init__",
+      "to": "graph_engine.py::GraphEngine._init_db",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine._init_db",
+      "to": "graph_engine.py::GraphEngine._create_schema",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine.reset_database",
+      "to": "graph_engine.py::GraphEngine._init_db",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine.export_graph_data",
+      "to": "graph_engine.py::GraphEngine.add_edge",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine.export_graph_html",
+      "to": "graph_engine.py::GraphEngine.export_graph_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.parse_file",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.parse_directory",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::install_mcp_config",
+      "to": "cli.py::get_python_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::install_mcp_config",
+      "to": "cli.py::get_server_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::install_mcp_config",
+      "to": "cli.py::detect_installed_ides",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::install_mcp_config",
+      "to": "docs/app.js::sorted",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::migrate_environment_and_db",
+      "to": "cli.py::get_python_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::migrate_environment_and_db",
+      "to": "cli.py::install_mcp_config",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::migrate_environment_and_db",
+      "to": "server.py::index_codebase",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::main",
+      "to": "cli.py::install_mcp_config",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::main",
+      "to": "server.py::index_codebase",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::main",
+      "to": "cli.py::migrate_environment_and_db",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::main",
+      "to": "server.py::get_graph_db",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "cli.py::main",
+      "to": "graph_engine.py::GraphEngine.export_graph_html",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/pdf_parser.py::PdfParser.parse_file",
+      "to": "parsers/base.py::BaseParser.empty_result",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/pdf_parser.py::PdfParser.parse_file",
+      "to": "parsers/base.py::BaseParser.get_rel_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/markdown_parser.py::MarkdownParser.parse_file",
+      "to": "parsers/base.py::BaseParser.empty_result",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/markdown_parser.py::MarkdownParser.parse_file",
+      "to": "parsers/base.py::BaseParser.get_rel_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/csv_parser.py::CsvParser.parse_file",
+      "to": "parsers/base.py::BaseParser.empty_result",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/csv_parser.py::CsvParser.parse_file",
+      "to": "parsers/base.py::BaseParser.get_rel_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser.__init__",
+      "to": "parsers/go_parser.py::GoParser.__init__",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser.__init__",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._register_middlewares",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser.__init__",
+      "to": "parsers/go_parser.py::GoParser._register_strategies",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._register_middlewares",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_middleware",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._register_strategies",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_handler",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._decorator_middleware",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_import",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_export",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_class",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._extract_decorator_names",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_function",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._extract_func_name",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_function",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_function",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._extract_decorator_names",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_function",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_jsx",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._extract_jsx_tag_name",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_jsx",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_call",
+      "to": "parsers/go_parser.py::GoParser._extract_callee_name",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_call",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._handle_call",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._extract_callee_name",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._extract_decorator_names",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._extract_jsx_tag_name",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser._extract_func_name",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser.__init__",
+      "to": "parsers/go_parser.py::GoParser.__init__",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser.__init__",
+      "to": "parsers/go_parser.py::GoParser._register_strategies",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._register_strategies",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_handler",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._handle_import",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._handle_function",
+      "to": "parsers/python_parser.py::PythonParser._process_function_node",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._handle_decorated_definition",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._handle_decorated_definition",
+      "to": "parsers/python_parser.py::PythonParser._process_function_node",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._handle_decorated_definition",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._process_function_node",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._process_function_node",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._process_function_node",
+      "to": "parsers/python_parser.py::PythonParser._extract_fastapi_depends",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._process_function_node",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._handle_call",
+      "to": "parsers/python_parser.py::PythonParser._get_callee_name",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._handle_call",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._get_callee_name",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser._extract_fastapi_depends",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser.__init__",
+      "to": "parsers/go_parser.py::GoParser.__init__",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser.__init__",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._register_middlewares",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser.__init__",
+      "to": "parsers/go_parser.py::GoParser._register_strategies",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._register_strategies",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_handler",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._decorator_middleware",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_import",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_export",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_class",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._extract_decorator_names",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_class",
+      "to": "parsers/typescript_parser.py::TypeScriptParser.find_type_identifiers",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser.find_type_identifiers",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser.find_type_identifiers",
+      "to": "parsers/typescript_parser.py::TypeScriptParser.find_type_identifiers",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_function",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_function",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_function",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._extract_decorator_names",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_function",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_jsx",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._extract_jsx_tag_name",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_jsx",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_call",
+      "to": "parsers/go_parser.py::GoParser._extract_callee_name",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._handle_call",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._extract_callee_name",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._extract_decorator_names",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser._extract_jsx_tag_name",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser.__init__",
+      "to": "parsers/go_parser.py::GoParser.__init__",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser.__init__",
+      "to": "parsers/go_parser.py::GoParser._register_strategies",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._register_strategies",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_handler",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_import",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_class",
+      "to": "parsers/java_parser.py::JavaParser._extract_annotations",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_class",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_method",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_method",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_method",
+      "to": "parsers/java_parser.py::JavaParser._extract_annotations",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._handle_method",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser._extract_annotations",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser.parse_file",
+      "to": "parsers/base.py::BaseParser.empty_result",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser.parse_file",
+      "to": "parsers/base.py::BaseParser.get_rel_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser.parse_file",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.get_language_label",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser.parse_file",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.get_parser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser.parse_file",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/sql_parser.py::SqlParser.parse_file",
+      "to": "parsers/base.py::BaseParser.empty_result",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/sql_parser.py::SqlParser.parse_file",
+      "to": "parsers/base.py::BaseParser.get_rel_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser.__init__",
+      "to": "parsers/go_parser.py::GoParser.__init__",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser.__init__",
+      "to": "parsers/go_parser.py::GoParser._register_strategies",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._register_strategies",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_handler",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_import",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_type",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_type",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_method",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_method",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_method",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_function",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_function",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_function",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_call",
+      "to": "parsers/go_parser.py::GoParser._extract_callee_name",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._handle_call",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser._extract_callee_name",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/json_parser.py::JsonParser.parse_file",
+      "to": "parsers/base.py::BaseParser.empty_result",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/json_parser.py::JsonParser.parse_file",
+      "to": "parsers/base.py::BaseParser.get_rel_path",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_sql_parser.py::test_parse_sql_ddl_and_dml",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_typescript_parser.py::test_parse_nestjs_controller_and_service",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_typescript_parser.py::test_parse_react_components_and_jsx",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_agents_dir_indexing.py::test_parse_directory_includes_agents_folder",
+      "to": "parser.py::CodeParser.parse_directory",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_real_repos_integration.py::test_real_fastapi_official_template",
+      "to": "parser.py::CodeParser.parse_directory",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_real_repos_integration.py::test_real_fastapi_official_template",
+      "to": "graph_engine.py::GraphEngine.ingest_parse_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_real_repos_integration.py::test_real_fastapi_official_template",
+      "to": "graph_engine.py::GraphEngine.get_blast_radius",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_real_repos_integration.py::test_real_nestjs_official_cats_app",
+      "to": "parser.py::CodeParser.parse_directory",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_real_repos_integration.py::test_real_nestjs_official_cats_app",
+      "to": "graph_engine.py::GraphEngine.ingest_parse_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_real_repos_integration.py::test_real_nestjs_official_cats_app",
+      "to": "graph_engine.py::GraphEngine.get_injection_dependencies",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_web_api.py::_asgi_request",
+      "to": "tests/test_web_api.py::_run",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_web_api.py::test_health_and_supported_endpoints",
+      "to": "tests/test_web_api.py::_asgi_request",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_web_api.py::test_upload_folder_filters_files_and_builds_connected_graph",
+      "to": "tests/test_web_api.py::_encode_multipart",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_web_api.py::test_upload_folder_filters_files_and_builds_connected_graph",
+      "to": "tests/test_web_api.py::_asgi_request",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_web_api.py::test_upload_zip_archive_and_reject_unsupported_only",
+      "to": "tests/test_web_api.py::_encode_multipart",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_web_api.py::test_upload_zip_archive_and_reject_unsupported_only",
+      "to": "tests/test_web_api.py::_asgi_request",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_repo_sync.py::test_check_repo_sync_weekly_non_git",
+      "to": "server.py::check_repo_sync_weekly",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_repo_sync.py::test_check_repo_sync_weekly_respects_interval",
+      "to": "server.py::check_repo_sync_weekly",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_repo_sync.py::test_check_repo_sync_tool_non_git",
+      "to": "server.py::check_repo_sync",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_repo_sync.py::test_check_repo_sync_tool_current_repo",
+      "to": "server.py::check_repo_sync",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_markdown_parser.py::test_parse_markdown_headings_and_links",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_csv_parser.py::test_parse_csv_columns_and_linkage",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_python_parser.py::test_parse_fastapi_and_python",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_json_parser.py::test_parse_package_json",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_json_parser.py::test_parse_openapi_json",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_pdf_parser.py::test_parse_pdf_pages_and_links",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_javascript_parser.py::test_parse_javascript_classes_and_commonjs",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_javascript_parser.py::test_parse_react_jsx_components_and_hooks",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_javascript_parser.py::test_code_parser_routing_for_js_and_jsx",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_export_html.py::test_export_graph_html_300_random_limit_and_show_more",
+      "to": "graph_engine.py::GraphEngine.ingest_parse_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_export_html.py::test_export_graph_html_300_random_limit_and_show_more",
+      "to": "graph_engine.py::GraphEngine.export_graph_html",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/nestjs_app.ts::UserController.findAll",
+      "to": "tests_fixtures/nestjs_app.ts::UserService.getUser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/react_app.tsx::UserProfile",
+      "to": "tests_fixtures/react_app.tsx::useUser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/java_app.java::UserController.getUsers",
+      "to": "tests_fixtures/java_app.java::UserRepository.findData",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/fastapi_app.py::read_users",
+      "to": "tests_fixtures/fastapi_app.py::get_db",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/go_app.go::Controller.HandleRequest",
+      "to": "tests_fixtures/go_app.go::Service.ExecuteQuery",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/go_app.go::main",
+      "to": "tests_fixtures/go_app.go::Controller.HandleRequest",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::loadGraphPayload",
+      "to": "docs/app.js::renderCategoryPills",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::loadGraphPayload",
+      "to": "docs/app.js::applyFiltersAndRender",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::onclick",
+      "to": "docs/app.js::renderCategoryPills",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::onclick",
+      "to": "docs/app.js::applyFiltersAndRender",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::onclick",
+      "to": "docs/app.js::selectAndFocusNode",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::onclick",
+      "to": "docs/app.js::loadGraphPayload",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::onclick",
+      "to": "docs/app.js::setStatusBanner",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::onclick",
+      "to": "docs/app.js::getApiBase",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::onclick",
+      "to": "docs/app.js::warmUpApi",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::onclick",
+      "to": "docs/app.js::isolateNeighborhood",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::selectAndFocusNode",
+      "to": "docs/app.js::renderCategoryPills",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::selectAndFocusNode",
+      "to": "docs/app.js::applyFiltersAndRender",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::selectAndFocusNode",
+      "to": "docs/app.js::escapeHtml",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::uploadEntriesToApi",
+      "to": "docs/app.js::shouldIgnorePath",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::uploadEntriesToApi",
+      "to": "docs/app.js::getExt",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::uploadEntriesToApi",
+      "to": "docs/app.js::setStatusBanner",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::uploadEntriesToApi",
+      "to": "docs/app.js::getApiBase",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::uploadEntriesToApi",
+      "to": "docs/app.js::loadGraphPayload",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::uploadEntriesToApi",
+      "to": "docs/app.js::setApiIndicator",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::coldStartTimer",
+      "to": "docs/app.js::setStatusBanner",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::readDroppedDataTransfer",
+      "to": "docs/app.js::traverseEntry",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::traverseEntry",
+      "to": "docs/app.js::readBatch",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::readBatch",
+      "to": "docs/app.js::traverseEntry",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::readBatch",
+      "to": "docs/app.js::readBatch",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::warmUpApi",
+      "to": "docs/app.js::getApiBase",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::warmUpApi",
+      "to": "docs/app.js::setApiIndicator",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::onchange",
+      "to": "docs/app.js::uploadEntriesToApi",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "docs/app.js::onchange",
+      "to": "docs/app.js::applyFiltersAndRender",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "scripts/build_demo_graph.py::main",
+      "to": "parser.py::CodeParser.parse_directory",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "scripts/build_demo_graph.py::main",
+      "to": "graph_engine.py::GraphEngine.ingest_parse_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "scripts/build_demo_graph.py::main",
+      "to": "graph_engine.py::GraphEngine.export_graph_data",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "test_engine.py::main",
+      "to": "parser.py::CodeParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "test_engine.py::main",
+      "to": "graph_engine.py::GraphEngine",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "server.py::get_graph_db",
+      "to": "graph_engine.py::GraphEngine",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "web_api.py::generate_graph_endpoint",
+      "to": "graph_engine.py::GraphEngine",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "benchmark.py::run_benchmark",
+      "to": "parser.py::CodeParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "benchmark.py::run_benchmark",
+      "to": "graph_engine.py::GraphEngine",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.__init__",
+      "to": "parsers/python_parser.py::PythonParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.__init__",
+      "to": "parsers/typescript_parser.py::TypeScriptParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.__init__",
+      "to": "parsers/javascript_parser.py::JavaScriptParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.__init__",
+      "to": "parsers/go_parser.py::GoParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.__init__",
+      "to": "parsers/java_parser.py::JavaParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.__init__",
+      "to": "parsers/json_parser.py::JsonParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.__init__",
+      "to": "parsers/sql_parser.py::SqlParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.__init__",
+      "to": "parsers/markdown_parser.py::MarkdownParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.__init__",
+      "to": "parsers/csv_parser.py::CsvParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser.__init__",
+      "to": "parsers/pdf_parser.py::PdfParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser.parse_file",
+      "to": "parsers/tree_sitter_base.py::TraversalContext",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_sql_parser.py::test_parse_sql_ddl_and_dml",
+      "to": "parsers/sql_parser.py::SqlParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_typescript_parser.py::test_parse_nestjs_controller_and_service",
+      "to": "parsers/typescript_parser.py::TypeScriptParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_typescript_parser.py::test_parse_react_components_and_jsx",
+      "to": "parsers/typescript_parser.py::TypeScriptParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_agents_dir_indexing.py::test_parse_directory_includes_agents_folder",
+      "to": "parser.py::CodeParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_real_repos_integration.py::test_real_fastapi_official_template",
+      "to": "parser.py::CodeParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_real_repos_integration.py::test_real_fastapi_official_template",
+      "to": "graph_engine.py::GraphEngine",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_real_repos_integration.py::test_real_nestjs_official_cats_app",
+      "to": "parser.py::CodeParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_real_repos_integration.py::test_real_nestjs_official_cats_app",
+      "to": "graph_engine.py::GraphEngine",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_markdown_parser.py::test_parse_markdown_headings_and_links",
+      "to": "parsers/markdown_parser.py::MarkdownParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_csv_parser.py::test_parse_csv_columns_and_linkage",
+      "to": "parsers/csv_parser.py::CsvParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_python_parser.py::test_parse_fastapi_and_python",
+      "to": "parsers/python_parser.py::PythonParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_json_parser.py::test_parse_package_json",
+      "to": "parsers/json_parser.py::JsonParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_json_parser.py::test_parse_openapi_json",
+      "to": "parsers/json_parser.py::JsonParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_pdf_parser.py::test_parse_pdf_pages_and_links",
+      "to": "parsers/pdf_parser.py::PdfParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_javascript_parser.py::test_parse_javascript_classes_and_commonjs",
+      "to": "parsers/javascript_parser.py::JavaScriptParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_javascript_parser.py::test_parse_react_jsx_components_and_hooks",
+      "to": "parsers/javascript_parser.py::JavaScriptParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_javascript_parser.py::test_code_parser_routing_for_js_and_jsx",
+      "to": "parser.py::CodeParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests/test_export_html.py::test_export_graph_html_300_random_limit_and_show_more",
+      "to": "graph_engine.py::GraphEngine",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/schema.sql::Query_SELECT_L3",
+      "to": "tests_fixtures/schema.sql::orders",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/schema.sql::Query_SELECT_L3",
+      "to": "tests_fixtures/schema.sql::users",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "scripts/build_demo_graph.py::main",
+      "to": "parser.py::CodeParser",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "scripts/build_demo_graph.py::main",
+      "to": "graph_engine.py::GraphEngine",
+      "type": "CALLS",
+      "label": "calls",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/schema.sql::orders",
+      "to": "tests_fixtures/schema.sql::users",
+      "type": "INJECTS",
+      "label": "injects",
+      "arrows": "to",
+      "dashes": true
+    },
+    {
+      "from": "tests_fixtures/nestjs_app.ts::UserController",
+      "to": "tests_fixtures/nestjs_app.ts::UserService",
+      "type": "INJECTS",
+      "label": "injects",
+      "arrows": "to",
+      "dashes": true
+    },
+    {
+      "from": "tests_fixtures/package.json::sample-fullstack-app",
+      "to": "npm::typescript",
+      "type": "INJECTS",
+      "label": "injects",
+      "arrows": "to",
+      "dashes": true
+    },
+    {
+      "from": "tests_fixtures/package.json::sample-fullstack-app",
+      "to": "npm::react",
+      "type": "INJECTS",
+      "label": "injects",
+      "arrows": "to",
+      "dashes": true
+    },
+    {
+      "from": "tests_fixtures/package.json::sample-fullstack-app",
+      "to": "npm::express",
+      "type": "INJECTS",
+      "label": "injects",
+      "arrows": "to",
+      "dashes": true
+    },
+    {
+      "from": "tests_fixtures/java_app.java::UserController",
+      "to": "tests_fixtures/java_app.java::UserRepository",
+      "type": "INJECTS",
+      "label": "injects",
+      "arrows": "to",
+      "dashes": true
+    },
+    {
+      "from": "tests_fixtures/fastapi_app.py::read_users",
+      "to": "tests_fixtures/fastapi_app.py::get_db",
+      "type": "INJECTS",
+      "label": "injects",
+      "arrows": "to",
+      "dashes": true
+    },
+    {
+      "from": "graph_engine.py::GraphEngine",
+      "to": "graph_engine.py::GraphEngine.__init__",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine",
+      "to": "graph_engine.py::GraphEngine._init_db",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine",
+      "to": "graph_engine.py::GraphEngine._create_schema",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine",
+      "to": "graph_engine.py::GraphEngine.reset_database",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine",
+      "to": "graph_engine.py::GraphEngine.ingest_parse_data",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine",
+      "to": "graph_engine.py::GraphEngine.get_blast_radius",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine",
+      "to": "graph_engine.py::GraphEngine.get_injection_dependencies",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine",
+      "to": "graph_engine.py::GraphEngine.export_graph_data",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine",
+      "to": "graph_engine.py::GraphEngine.add_edge",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "graph_engine.py::GraphEngine",
+      "to": "graph_engine.py::GraphEngine.export_graph_html",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser",
+      "to": "parser.py::CodeParser.__init__",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser",
+      "to": "parser.py::CodeParser.is_supported_file",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser",
+      "to": "parser.py::CodeParser.parse_file",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser",
+      "to": "parser.py::CodeParser.find_project_root",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parser.py::CodeParser",
+      "to": "parser.py::CodeParser.parse_directory",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/pdf_parser.py::PdfParser",
+      "to": "parsers/pdf_parser.py::PdfParser.parse_file",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/markdown_parser.py::MarkdownParser",
+      "to": "parsers/markdown_parser.py::MarkdownParser.parse_file",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/csv_parser.py::CsvParser",
+      "to": "parsers/csv_parser.py::CsvParser.parse_file",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser.__init__",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser.get_language_label",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._register_middlewares",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._register_strategies",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._decorator_middleware",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._handle_import",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._handle_export",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._handle_class",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._handle_function",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._handle_jsx",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._handle_call",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._extract_callee_name",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._extract_decorator_names",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._extract_jsx_tag_name",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/javascript_parser.py::JavaScriptParser",
+      "to": "parsers/javascript_parser.py::JavaScriptParser._extract_func_name",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser",
+      "to": "parsers/python_parser.py::PythonParser.__init__",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser",
+      "to": "parsers/python_parser.py::PythonParser._register_strategies",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser",
+      "to": "parsers/python_parser.py::PythonParser._handle_import",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser",
+      "to": "parsers/python_parser.py::PythonParser._handle_class",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser",
+      "to": "parsers/python_parser.py::PythonParser._handle_function",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser",
+      "to": "parsers/python_parser.py::PythonParser._handle_decorated_definition",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser",
+      "to": "parsers/python_parser.py::PythonParser._process_function_node",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser",
+      "to": "parsers/python_parser.py::PythonParser._handle_call",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser",
+      "to": "parsers/python_parser.py::PythonParser._get_callee_name",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/python_parser.py::PythonParser",
+      "to": "parsers/python_parser.py::PythonParser._extract_fastapi_depends",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser",
+      "to": "parsers/java_parser.py::JavaParser.__init__",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser",
+      "to": "parsers/java_parser.py::JavaParser._register_strategies",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser",
+      "to": "parsers/java_parser.py::JavaParser._handle_import",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser",
+      "to": "parsers/java_parser.py::JavaParser._handle_class",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser",
+      "to": "parsers/java_parser.py::JavaParser._handle_method",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser",
+      "to": "parsers/java_parser.py::JavaParser._handle_call",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/java_parser.py::JavaParser",
+      "to": "parsers/java_parser.py::JavaParser._extract_annotations",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TraversalContext",
+      "to": "parsers/tree_sitter_base.py::TraversalContext.get_node_text",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/sql_parser.py::SqlParser",
+      "to": "parsers/sql_parser.py::SqlParser.parse_file",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/base.py::BaseParser",
+      "to": "parsers/base.py::BaseParser.parse_file",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/base.py::BaseParser",
+      "to": "parsers/base.py::BaseParser.get_rel_path",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/base.py::BaseParser",
+      "to": "parsers/base.py::BaseParser.empty_result",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser",
+      "to": "parsers/go_parser.py::GoParser.__init__",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser",
+      "to": "parsers/go_parser.py::GoParser._register_strategies",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser",
+      "to": "parsers/go_parser.py::GoParser._handle_import",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser",
+      "to": "parsers/go_parser.py::GoParser._handle_type",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser",
+      "to": "parsers/go_parser.py::GoParser._handle_method",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser",
+      "to": "parsers/go_parser.py::GoParser._handle_function",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser",
+      "to": "parsers/go_parser.py::GoParser._handle_call",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/go_parser.py::GoParser",
+      "to": "parsers/go_parser.py::GoParser._extract_callee_name",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/nestjs_app.ts::UserController",
+      "to": "tests_fixtures/nestjs_app.ts::UserController.constructor",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/nestjs_app.ts::UserController",
+      "to": "tests_fixtures/nestjs_app.ts::UserController.findAll",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/go_app.go::Service",
+      "to": "tests_fixtures/go_app.go::Service.ExecuteQuery",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H1_Grafeando \ud83d\udd78\ufe0f",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H2_The Eternal Problem of Context",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H2_\u2753 What problem does it solve?",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H2_\u26a1 Quickstart (1-Line Install)",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H1_1. Create and activate Python virtual environment",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H1_2. Clone repository & install package",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H1_3. Configure MCP server for detected IDEs (or target specific platform: antigravity, cursor, claude, etc.)",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H2_\ud83c\udf10 Interactive HTML Graph Explorer & Web Playground",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H2_\ud83d\udcac How to use it",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H2_\ud83d\udee0\ufe0f Supported Languages & Technologies",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H2_\ud83e\udd16 Prompt Guide for AI IDEs (Cursor, Claude, Gemini, Windsurf)",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H3_1. \ud83d\ude80 Master Setup Prompt (Run Once Per Repo)",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H3_2. \ud83d\udee1\ufe0f Safe Code Editing Prompt (Preventing Breakages)",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H3_3. \ud83d\uddfa\ufe0f Codebase Exploration Prompt",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H2_\ud83d\udd04 Automatic Git Auto-Indexing Hook",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H2_Possible Improvements:",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "README.md::README.md",
+      "to": "README.md::H2_\ud83d\udcc4 License",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser.__init__",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser.get_parser",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser.get_language_label",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._register_middlewares",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._register_strategies",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._decorator_middleware",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._handle_import",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._handle_export",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._handle_class",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser.find_type_identifiers",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._handle_function",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._handle_jsx",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._handle_call",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._extract_callee_name",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._extract_decorator_names",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/typescript_parser.py::TypeScriptParser",
+      "to": "parsers/typescript_parser.py::TypeScriptParser._extract_jsx_tag_name",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.__init__",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_handler",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.register_middleware",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.get_parser",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.get_language_label",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.parse_file",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/tree_sitter_base.py::TreeSitterBaseParser",
+      "to": "parsers/tree_sitter_base.py::TreeSitterBaseParser.traverse_children",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "parsers/json_parser.py::JsonParser",
+      "to": "parsers/json_parser.py::JsonParser.parse_file",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/nestjs_app.ts::UserService",
+      "to": "tests_fixtures/nestjs_app.ts::UserService.getUser",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/java_app.java::UserRepository",
+      "to": "tests_fixtures/java_app.java::UserRepository.findData",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/java_app.java::UserController",
+      "to": "tests_fixtures/java_app.java::UserController.getUsers",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/go_app.go::Controller",
+      "to": "tests_fixtures/go_app.go::Controller.HandleRequest",
+      "type": "CONTAINS",
+      "label": "contains",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/react_app.tsx::UserProfile",
+      "to": "tests_fixtures/react_app.tsx::UserCard",
+      "type": "RENDERS",
+      "label": "renders",
+      "arrows": "to"
+    },
+    {
+      "from": "tests_fixtures/react_app.tsx::App",
+      "to": "tests_fixtures/react_app.tsx::UserProfile",
+      "type": "RENDERS",
+      "label": "renders",
+      "arrows": "to"
+    }
+  ],
+  "stats": {
+    "files": 46,
+    "nodes": 233,
+    "edges": 397,
+    "languages": {
+      "python": 36,
+      "markdown": 1,
+      "sql": 1,
+      "typescript": 1,
+      "tsx": 1,
+      "json": 2,
+      "java": 1,
+      "go": 1,
+      "javascript": 2
+    }
+  }
+}
