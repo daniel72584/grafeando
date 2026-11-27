@@ -11,3 +11,5 @@ services:
         value: 3.11.9
       - key: GRAFEANDO_CORS_ORIGINS
         value: "*"
+      - key: GRAFEANDO_API_URL
+        value: "https://grafeando.onrender.com"
