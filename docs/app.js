@@ -24,12 +24,12 @@
     function:   { bg: '#1e293b', border: '#64748b', text: '#cbd5e1' }
   };
 
-  // Resolve API base URL: same-origin when running via `grafeando web`, else Render URL
+  // Resolve API base URL: same-origin when running via `grafeando web` or directly on Render, else configured Render URL
   function getApiBase() {
     const saved = localStorage.getItem('grafeando_api_url');
     if (saved) return saved.replace(/\/+$/, '');
     const host = window.location.hostname;
-    if (host === 'localhost' || host === '127.0.0.1') {
+    if (host === 'localhost' || host === '127.0.0.1' || host.endsWith('.onrender.com')) {
       return '';
     }
     const cfg = (window.GRAFEANDO_CONFIG && window.GRAFEANDO_CONFIG.RENDER_API_URL) || '';

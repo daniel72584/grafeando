@@ -172,3 +172,93 @@ def test_upload_zip_archive_and_reject_unsupported_only():
     )
     assert bad_status == 400
     assert "Supported extensions" in bad_data["error"]
+
+
+def test_cors_headers_for_cross_origin_requests():
+    async def _run(method: str, path: str, headers: Dict[str, str]):
+        raw_headers = [(k.lower().encode("latin-1"), v.encode("latin-1")) for k, v in headers.items()]
+        scope = {
+            "type": "http",
+            "asgi": {"version": "3.0"},
+            "http_version": "1.1",
+            "method": method,
+            "scheme": "http",
+            "path": path,
+            "raw_path": path.encode("ascii"),
+            "query_string": b"",
+            "headers": raw_headers,
+            "client": ("127.0.0.1", 50000),
+            "server": ("testserver", 80),
+        }
+        status_code = 500
+        resp_headers: Dict[str, str] = {}
+
+        async def receive():
+            return {"type": "http.request", "body": b"", "more_body": False}
+
+        async def send(message):
+            nonlocal status_code
+            if message["type"] == "http.response.start":
+                status_code = message["status"]
+                for k, v in message.get("headers", []):
+                    resp_headers[k.decode("latin-1").lower()] = v.decode("latin-1")
+
+        await app(scope, receive, send)
+        return status_code, resp_headers
+
+    preflight_status, preflight_headers = asyncio.run(
+        _run(
+            "OPTIONS",
+            "/api/graph",
+            {
+                "Origin": "https://grafeando.onrender.com",
+                "Access-Control-Request-Method": "POST",
+            },
+        )
+    )
+    assert preflight_status == 200
+    assert preflight_headers.get("access-control-allow-origin") == "*"
+
+    get_status, get_headers = asyncio.run(
+        _run("GET", "/api/health", {"Origin": "https://grafeando.onrender.com"})
+    )
+    assert get_status == 200
+    assert get_headers.get("access-control-allow-origin") == "*"
+
+
+def test_config_js_reads_env_var(monkeypatch):
+    monkeypatch.setenv("GRAFEANDO_API_URL", "https://custom.onrender.com/")
+
+    async def _run():
+        scope = {
+            "type": "http",
+            "asgi": {"version": "3.0"},
+            "http_version": "1.1",
+            "method": "GET",
+            "scheme": "http",
+            "path": "/config.js",
+            "raw_path": b"/config.js",
+            "query_string": b"",
+            "headers": [],
+            "client": ("127.0.0.1", 50000),
+            "server": ("testserver", 80),
+        }
+        status_code = 500
+        chunks: List[bytes] = []
+
+        async def receive():
+            return {"type": "http.request", "body": b"", "more_body": False}
+
+        async def send(message):
+            nonlocal status_code
+            if message["type"] == "http.response.start":
+                status_code = message["status"]
+            elif message["type"] == "http.response.body":
+                chunks.append(message.get("body", b""))
+
+        await app(scope, receive, send)
+        return status_code, b"".join(chunks).decode("utf-8")
+
+    status, body = asyncio.run(_run())
+    assert status == 200
+    assert '"RENDER_API_URL": "https://custom.onrender.com"' in body

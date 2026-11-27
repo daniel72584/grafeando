@@ -1,4 +1,5 @@
 import io
+import json
 import os
 import sys
 import time
@@ -11,11 +12,29 @@ _pkg_root = str(Path(__file__).parent.resolve())
 if _pkg_root not in sys.path:
     sys.path.insert(0, _pkg_root)
 
+
+def _load_dotenv(env_path: Path) -> None:
+    """Lightweight .env loader (os.environ takes precedence over .env)."""
+    if not env_path.is_file():
+        return
+    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, val = line.split("=", 1)
+        key = key.strip()
+        val = val.strip().strip('"').strip("'")
+        if key:
+            os.environ.setdefault(key, val)
+
+
+_load_dotenv(Path(__file__).parent.resolve() / ".env")
+
 from starlette.applications import Starlette
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
-from starlette.responses import JSONResponse
+from starlette.responses import JSONResponse, Response
 from starlette.routing import Mount, Route
 from starlette.staticfiles import StaticFiles
 
@@ -228,6 +247,17 @@ async def generate_graph_endpoint(request: Request) -> JSONResponse:
     })
 
 
+async def config_js_endpoint(request: Request) -> Response:
+    config = {
+        "RENDER_API_URL": os.environ.get("GRAFEANDO_API_URL", "").strip().rstrip("/"),
+        "GITHUB_REPO_URL": os.environ.get(
+            "GRAFEANDO_GITHUB_REPO_URL", "https://github.com/daniel72584/grafeando"
+        ).strip(),
+    }
+    js_body = f"window.GRAFEANDO_CONFIG = {json.dumps(config, indent=2)};\n"
+    return Response(content=js_body, media_type="application/javascript")
+
+
 cors_origins_env = os.environ.get("GRAFEANDO_CORS_ORIGINS", "*")
 allowed_origins = [o.strip() for o in cors_origins_env.split(",") if o.strip()] or ["*"]
 
@@ -235,6 +265,7 @@ routes = [
     Route("/api/health", health_endpoint, methods=["GET"]),
     Route("/api/supported", supported_endpoint, methods=["GET"]),
     Route("/api/graph", generate_graph_endpoint, methods=["POST"]),
+    Route("/config.js", config_js_endpoint, methods=["GET"]),
 ]
 
 docs_dir = Path(__file__).parent.resolve() / "docs"
