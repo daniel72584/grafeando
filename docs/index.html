@@ -132,8 +132,10 @@
         </div>
       </div>
 
-      <div class="upload-status" id="upload-status">
-        <span id="upload-status-msg"></span>
+      <div class="upload-status" id="upload-status" role="status" aria-live="polite">
+        <span class="upload-status-icon" id="upload-status-icon"></span>
+        <span class="upload-status-msg" id="upload-status-msg"></span>
+        <button class="upload-status-close" id="upload-status-close" type="button" aria-label="Dismiss notification">&times;</button>
       </div>
     </section>
 
