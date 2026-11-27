@@ -44,7 +44,7 @@
   let allCategories = new Set();
   let selectedCategories = new Set();
   let groupCounts = {};
-  const NODE_PAGE_STEP = 300;
+  const NODE_PAGE_STEP = 100;
   let currentNodeLimit = NODE_PAGE_STEP;
   const edgeTypes = { CALLS: true, INJECTS: true, RENDERS: true, IMPLEMENTS: true, CONTAINS: true };
   let selectedNodeId = null;
