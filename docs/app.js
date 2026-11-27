@@ -76,16 +76,36 @@
     }
   );
 
+  let statusToastTimer = null;
+
   function setStatusBanner(kind, message) {
     const el = document.getElementById('upload-status');
+    const icon = document.getElementById('upload-status-icon');
     const msg = document.getElementById('upload-status-msg');
+    if (statusToastTimer) {
+      clearTimeout(statusToastTimer);
+      statusToastTimer = null;
+    }
     el.className = 'upload-status ' + (kind || '');
     if (!kind) {
       el.style.display = 'none';
       return;
     }
-    el.style.display = 'flex';
+    const icons = { info: '⏳', success: '✅', error: '⚠️' };
+    if (icon) icon.textContent = icons[kind] || 'ℹ️';
     msg.textContent = message;
+    el.style.display = 'flex';
+    if (kind === 'success') {
+      statusToastTimer = setTimeout(() => {
+        el.style.display = 'none';
+        el.className = 'upload-status';
+      }, 6500);
+    }
+  }
+
+  const closeStatusBtn = document.getElementById('upload-status-close');
+  if (closeStatusBtn) {
+    closeStatusBtn.addEventListener('click', () => setStatusBanner('', ''));
   }
 
   function loadGraphPayload(payload, isCustomUpload = false) {
